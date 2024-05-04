@@ -9,7 +9,7 @@ PreferredSize AppAppBar() {
   return PreferredSize(
       preferredSize: Size(Get.width, 60),
       child: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: AppColors.white,
         elevation: 1,
         centerTitle: true,
@@ -27,7 +27,8 @@ PreferredSize AppAppBar() {
                       ),
             ),
         actions: [
-          Container(
+           Container(
+            width: 45,
               margin: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 border: Border.all(color: AppColors.secondary, width: 1),
@@ -35,19 +36,12 @@ PreferredSize AppAppBar() {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50.0),
-                child: MyApp.user != null
-                    ? Image.network(
-                        MyApp.user!.image,
-                        height: 30.0,
-                        width: 30.0,
-                        fit: BoxFit.contain,
-                      )
-                    : Image.asset(
-                        'assets/images/logo.png',
-                        width: 30,
-                        height: 30,
-                        fit: BoxFit.contain,
-                      ),
+                child:  MyApp.user != null ? Image.network(
+               MyApp.user!.image ,
+                  height: 40.0,
+                  width: 40.0,
+                  fit: BoxFit.fill,
+                ): Image.asset('assets/images/logo.png'),
               ))
         ],
       ));

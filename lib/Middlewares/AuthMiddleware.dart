@@ -14,7 +14,7 @@ class AuthMiddleWare extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
    
-    if ( boxStorage.checkAuth()) {
+    if (boxStorage.checkAuth()) {
       return const RouteSettings(name: AppRoute.home);
     }
     return null;

@@ -20,7 +20,9 @@ class SplashController extends GetxController
     // }
 
     Future.delayed(const Duration(seconds: 3))
-        .then((value) => Get.offAndToNamed(AppRoute.login));
+        .then((value) => Get.offAndToNamed(AppRoute.splashScreen2));
+          Future.delayed(const Duration(seconds: 6))
+        .then((value) => Get.offAndToNamed(AppRoute.login ));
   }
 
   void onInit() async {

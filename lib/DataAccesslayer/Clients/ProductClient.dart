@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
 import '../../Constants/api.dart';
@@ -9,8 +7,8 @@ class ProductClient {
 
   ProductClient();
 
-  Future<dynamic> getSchools() async {
-    var response = await client.get(Uri.parse(baseUrl + schools));
+  Future<dynamic> getCategories() async {
+    var response = await client.get(Uri.parse(baseUrl + categories));
 
     if (response.statusCode == 200) {
       return response.body;

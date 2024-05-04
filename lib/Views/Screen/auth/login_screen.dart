@@ -17,8 +17,10 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(LoginController());
     return Scaffold(
+      backgroundColor: AppColors.white,
         resizeToAvoidBottomInset: true,
         body: SafeArea(
+          
             child: Padding(
           padding: EdgeInsets.all(25),
           child: GetBuilder<LoginController>(

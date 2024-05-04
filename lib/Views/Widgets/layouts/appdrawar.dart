@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../Constants/app_color.dart';
 import '../../../Constants/app_text_style.dart';
 import '../../../Constants/routes.dart';
+import '../../../Controllers/HomeController.dart';
 import '../../../main.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -14,7 +15,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // HomeController controller = Get.find();
+    HomeController controller = Get.find();
  //   LocaleController localeController = Get.find();
     return Drawer(
         backgroundColor: AppColors.white,
@@ -59,28 +60,28 @@ class AppDrawer extends StatelessWidget {
               style: AppTextStyle.body.copyWith(color: AppColors.primary),
             ),
             onTap: () {
-             // Get.toNamed(AppRoute.profile);
+              Get.toNamed(AppRoute.profile);
             },
           ),
     
  
-          ListTile(
-            leading: Icon(
-              Icons.language,
-              color: AppColors.primary,
-            ),
-            title: Text(
-              "switch_locale".tr,
-              style: AppTextStyle.body.copyWith(color: AppColors.primary),
-            ),
-            onTap: () {
-              if (Get.locale == Locale('ar')) {
-                Get.updateLocale(Locale('en'));
-              } else {
-                Get.updateLocale(Locale('ar'));
-              }
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(
+          //     Icons.language,
+          //     color: AppColors.primary,
+          //   ),
+          //   title: Text(
+          //     "switch_locale".tr,
+          //     style: AppTextStyle.body.copyWith(color: AppColors.primary),
+          //   ),
+          //   onTap: () {
+          //     if (Get.locale == Locale('ar')) {
+          //       Get.updateLocale(Locale('en'));
+          //     } else {
+          //       Get.updateLocale(Locale('ar'));
+          //     }
+          //   },
+          // ),
           ListTile(
             leading: Icon(
               Icons.logout,
@@ -91,7 +92,7 @@ class AppDrawer extends StatelessWidget {
               style: AppTextStyle.body.copyWith(color: AppColors.primary),
             ),
             onTap: () {
-             // controller.logout();
+              controller.logout();
             },
           ),
           /* Container(

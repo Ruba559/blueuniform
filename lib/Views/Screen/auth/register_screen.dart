@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../Constants/app_color.dart';
 import '../../../Constants/app_style.dart';
-import '../../../Constants/app_text_style.dart';
 import '../../../Controllers/AuthController.dart';
 import '../../../DataAccesslayer/Models/branch.dart';
 import '../../../DataAccesslayer/Models/city.dart';
@@ -25,13 +24,20 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(AuthController());
     return Scaffold(
+      backgroundColor: AppColors.white,
         resizeToAvoidBottomInset: true,
         body: SafeArea(
             child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
           child: GetBuilder<AuthController>(
               builder: (controller) => SingleChildScrollView(
-                      child: Form(
+                      child: controller.isLoading.value  
+                      ? Align(alignment: Alignment.center, child: 
+                     CircularProgressIndicator(
+                                  color: AppColors.primary,
+                                  strokeWidth: 3 ,
+                                  ) ,) :
+                     Form(
                     key: controller.formstate,
                     child: Column(children: [
                       Image.asset(

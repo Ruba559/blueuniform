@@ -5,7 +5,7 @@ import '../Models/user.dart';
 class BoxStorage{
   final box = GetStorage();
 
-  //Authentication Methods
+  
   checkAuth()  {
     if ( box.read('authed') != null) {
       return true;

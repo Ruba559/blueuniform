@@ -14,8 +14,6 @@ class AppButtomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      //  selectedLabelStyle: UITextStyle.xsmall,
-      //unselectedLabelStyle: UITextStyle.xsmall,
       backgroundColor: AppColors.primary,
       selectedItemColor: AppColors.white,
       unselectedItemColor: AppColors.white.withOpacity(.5),
@@ -31,19 +29,17 @@ class AppButtomNavBar extends StatelessWidget {
             break;
 
           case 1:
-            //  Get.toNamed(AppRoute.notifications);
+              Get.toNamed(AppRoute.cart);
             break;
 
           case 2:
-            //  Get.toNamed(AppRoute.files);
+               Get.toNamed(AppRoute.favorites);
             break;
 
           case 3:
-            //    Get.toNamed(AppRoute.settings);
+                Get.toNamed(AppRoute.setting);
             break;
-          case 4:
-            //    Get.toNamed(AppRoute.settings);
-            break;
+         
         }
       }),
       items: [

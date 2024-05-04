@@ -1,19 +1,19 @@
 import 'dart:convert';
 
 import '../Clients/ProductClient.dart';
-import '../Clients/RegisterClient.dart';
+import '../Models/category.dart';
 
 class ProductRepo {
   ProductClient client = ProductClient();
 
-  // Future<List<Product>> getSchools() async {
-  //   var response = await client.getSchools();
-  //   if (response != '') {
-  //     final parsed = json.decode(response).cast<Map<String, dynamic>>();
-  //     return parsed.map<Product>((json) => Product.fromMap(json)).toList();
-  //   }
-  //   return [];
-  // }
+  Future<List<Category>> getCategories() async {
+    var response = await client.getCategories();
+    if (response != '') {
+      final parsed = json.decode(response).cast<Map<String, dynamic>>();
+      return parsed.map<Category>((json) => Category.fromMap(json)).toList();
+    }
+    return [];
+  }
 
  
 }

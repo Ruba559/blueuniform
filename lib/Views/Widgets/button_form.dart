@@ -21,7 +21,7 @@ class ButtonForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        //   width: width,
+          width: width,
         margin: const EdgeInsets.all(10),
         child: ElevatedButton(
             onPressed: isLoading ? () {} : onPressed,

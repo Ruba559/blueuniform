@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Constants/app_color.dart';
-import '../../Controllers/SplashController.dart';
 
-class SplashScreen extends StatelessWidget {
-  SplashScreen({super.key});
+class SplashScreen2 extends StatelessWidget {
+  SplashScreen2({super.key});
 
-  final controller = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class SplashScreen extends StatelessWidget {
           Expanded(
             child: Center(
               child: Image.asset(
-                'assets/images/logo-1.png',
+                'assets/images/logo.png',
                 width: Get.width / 1,
               ),
             ),

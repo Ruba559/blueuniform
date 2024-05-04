@@ -17,6 +17,7 @@ class LoginInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
         resizeToAvoidBottomInset: true,
         body: SafeArea(
             child: Padding(

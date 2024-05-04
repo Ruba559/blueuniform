@@ -1,47 +1,92 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Middlewares/AuthMiddleware.dart';
 import '../Views/Screen/auth/login_info_screen.dart';
 import '../Views/Screen/auth/login_screen.dart';
 import '../Views/Screen/auth/register_screen.dart';
+import '../Views/Screen/cart_screen.dart';
+import '../Views/Screen/favorites_screen.dart';
 import '../Views/Screen/home_screen.dart';
+import '../Views/Screen/order_complate_screen.dart';
+import '../Views/Screen/order_info_screen.dart';
+import '../Views/Screen/payment_methods_screen.dart';
+import '../Views/Screen/position_screen.dart';
 import '../Views/Screen/product_screen.dart';
+import '../Views/Screen/profile_screen.dart';
+import '../Views/Screen/setting_screen.dart';
 import '../Views/Screen/splash_screen.dart';
+import '../Views/Screen/splash_screen2.dart';
 import 'routes.dart';
 
 List<GetPage<dynamic>> getPages = [
-   GetPage(name: AppRoute.splashScreen, page: () => SplashScreen()),
-
+  GetPage(
+      name: AppRoute.splashScreen,
+      middlewares: [AuthMiddleWare()],
+      page: () => SplashScreen()),
+  GetPage(
+      name: AppRoute.splashScreen2,
+      page: () => SplashScreen2(),
+      transition: Transition.circularReveal),
   GetPage(
       name: AppRoute.login,
       page: () => LoginScreen(),
-      transition: Transition.circularReveal),
-GetPage(
+      transition: Transition.downToUp),
+  GetPage(
       name: AppRoute.register,
       page: () => RegisterScreen(),
-      transition: Transition.circularReveal
-    ),
-      GetPage(
+      transition: Transition.circularReveal),
+  GetPage(
       name: AppRoute.loginInfo,
       page: () => LoginInfoScreen(),
-     transition: Transition.circularReveal
-    ),
+      transition: Transition.circularReveal),
   GetPage(
-      name: AppRoute.home,
-      page: () => HomeScreen(),
-       //middlewares: [AuthMiddleWare()],
-     ),
-
-      GetPage(
-      name: AppRoute.product,
-      page: () => ProductScreen(),
-        transition: Transition.circularReveal,
-     ),
-    //    GetPage(
-    //   name: AppRoute.cart,
-    //   page: () => CartScreen(),
-    //     transition: Transition.circularReveal,
-    //  ),
-
-
+    name: AppRoute.home,
+    page: () => HomeScreen(),
+  ),
+  GetPage(
+    name: AppRoute.product,
+    transition: Transition.upToDown,
+    page: () => ProductScreen(),
+  ),
+  GetPage(
+    name: AppRoute.cart,
+    page: () => CartScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.position,
+    page: () => PositionScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.orderInfo,
+    page: () => OrderInfoScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.PaymentMethods,
+    page: () => PaymentMethodsScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.orderComplate,
+    page: () => OrderComplateScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.favorites,
+    page: () => FavoritesScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.profile,
+    page: () => ProfileScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.setting,
+    page: () => SettingScreen(),
+    transition: Transition.circularReveal,
+  ),
 ];

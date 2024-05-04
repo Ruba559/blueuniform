@@ -51,11 +51,16 @@ class LoginController extends GetxController {
   }
 
   getRegister() {
-    print('object');
     Get.toNamed(AppRoute.register);
   }
 
   getUser() async {
     user = await boxStorage.getUser();
+  }
+
+    logout() async {
+    await boxStorage.removeUser();
+    MyApp.user = null;
+    Get.offAllNamed(AppRoute.login);
   }
 }
