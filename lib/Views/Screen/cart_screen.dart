@@ -18,23 +18,24 @@ class CartScreen extends StatelessWidget {
   CartController cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
+    cartController.getCartItemsFromStorage();
     return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
         bottomNavigationBar: AppButtomNavBar(
           selectedIndex: 1,
         ),
-           drawer: AppDrawer(),
+        drawer: AppDrawer(),
         body: Container(
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 AppListTitle(text: 'سلة الشراء'),
-           Expanded(child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                Expanded(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                       GetBuilder<CartController>(
-                          init: cartController,
                           builder: (controller) => Flexible(
                               child: ListView.builder(
                                   shrinkWrap: true,
@@ -118,9 +119,36 @@ class CartScreen extends StatelessWidget {
                                                   children: [
                                                     InkWell(
                                                       onTap: () => {
-                                                        controller
-                                                            .updateQuantity(
-                                                                index, 'minus')
+                                                        controller.cartItems[index].quantity <=
+                                                                1
+                                                            ? Get.defaultDialog(
+                                                                middleText: '',
+                                                                title:
+                                                                    ' هل انت متأكد من حذف العنصر ؟',
+                                                                buttonColor:
+                                                                    AppColors
+                                                                        .red,
+                                                                confirmTextColor:
+                                                                    AppColors
+                                                                        .white,
+                                                                cancelTextColor:
+                                                                    AppColors
+                                                                        .black,
+                                                                textConfirm:
+                                                                    'حذف',
+                                                                textCancel:
+                                                                    'إالغاء',
+                                                                onConfirm: () =>
+                                                                    {
+                                                                      controller.updateQuantity(
+                                                                          index,
+                                                                          'minus'),
+                                                                          Navigator.pop(context, true)
+                                                                    })
+                                                            : controller
+                                                                .updateQuantity(
+                                                                    index,
+                                                                    'minus')
                                                       },
                                                       child: Container(
                                                         padding:
@@ -167,10 +195,12 @@ class CartScreen extends StatelessWidget {
                                               ]),
                                         ));
                                   }))),
-                      ButtonForm(text: 'متابعة', color: AppColors.secondary , onPressed: () => {
-                          Get.toNamed(AppRoute.position)
-                      },)
-                    ]))     
+                      ButtonForm(
+                        text: 'متابعة',
+                        color: AppColors.secondary,
+                        onPressed: () => {Get.toNamed(AppRoute.position)},
+                      )
+                    ]))
               ],
             )));
   }

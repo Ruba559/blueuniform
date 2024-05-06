@@ -17,8 +17,8 @@ import '../Widgets/layouts/appdrawar.dart';
 
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
-  ProductController productController = Get.put(ProductController());
-  Category? category = Get.arguments;
+  //ProductController productController = Get.put(ProductController());
+  HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,25 +31,24 @@ class ProductScreen extends StatelessWidget {
         body: CustomScrollView(slivers: [
           SliverAppBar(
               backgroundColor: AppColors.white,
-              expandedHeight: 260,
+              expandedHeight: 320,
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
-                  padding: EdgeInsets.only(bottom: 16),
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(80)),
-                    color: AppColors.secondary,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(70),
+                    padding: EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(80)),
+                      color: AppColors.secondary,
                     ),
-                    child: Image.network(
-                      fit: BoxFit.cover,
-                      category!.image,
-                    ),
-                  )
-                ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(70),
+                      ),
+                      child: Image.network(
+                        fit: BoxFit.cover,
+                        homeController.category!.image,
+                      ),
+                    )),
               )),
           SliverToBoxAdapter(
             child: Container(
@@ -64,21 +63,21 @@ class ProductScreen extends StatelessWidget {
                         children: [
                           Column(children: [
                             Text(
-                              category!.name,
+                              homeController.category!.name,
                               style: AppTextStyle.title,
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                             '',
+                              '',
                               style: AppTextStyle.body
                                   .copyWith(color: AppColors.secondary),
                             )
                           ]),
                           Column(children: [
                             Text(
-                              category!.price.toString(),
+                              homeController.category!.price.toString(),
                               style: AppTextStyle.title
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
@@ -94,8 +93,7 @@ class ProductScreen extends StatelessWidget {
                         text: "المقاسات المتوفرة",
                       ),
                     ),
-                    GetBuilder<ProductController>(
-                         init: productController,
+                    GetBuilder<HomeController>(
                         builder: (controller) => InputDecorator(
                               decoration: const InputDecoration(
                                 isDense: true,
@@ -109,9 +107,9 @@ class ProductScreen extends StatelessWidget {
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<Product>(
                                   isDense: true,
-                                //  value: controller.product! ,
+                                  value: homeController.product!,
                                   isExpanded: true,
-                                  items: category!.products!
+                                  items: homeController.category!.products!
                                       .map((Product item) =>
                                           DropdownMenuItem<Product>(
                                               value: item,
@@ -129,7 +127,7 @@ class ProductScreen extends StatelessWidget {
                         text: "الكمية المطلوبة",
                       ),
                     ),
-                    GetBuilder<ProductController>(
+                    GetBuilder<HomeController>(
                         builder: (controller) => Row(
                                 children: List.generate(
                               5,
@@ -166,24 +164,30 @@ class ProductScreen extends StatelessWidget {
                           text: 'إضافة لسلة الشراء',
                           color: AppColors.secondary,
                           width: 225,
-                          onPressed: () => {productController.addToCart(category)},
+                          onPressed: () => {
+                            homeController.addToCart(homeController.category)
+                          },
                         ),
-                    InkWell(
-                      onTap: () => {
-                        productController.addToFavorites(category)
-                      },
-                      child: 
-                     Container(
-                          margin: EdgeInsets.all(10),
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              color: AppColors.red, borderRadius: radius10),
-                          child: Icon(
-                            Icons.favorite_border,
-                            color: AppColors.white,
-                          ),
-                        ),
-                    )   
+                        InkWell(
+                          onTap: () => {
+                            homeController
+                                .addToFavorites(homeController.category)
+                          },
+                          child: Container(
+                              margin: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: AppColors.red, borderRadius: radius10),
+                              child:
+                                  //  homeController.favoritesController.favoriteItems.where((element) => element.category!.id.isEqual(homeController.category!.id)).first != Null ? Icon(
+                                  //   Icons.favorite_sharp,
+                                  //   color: AppColors.white,
+                                  // ) :
+                                  Icon(
+                                Icons.favorite_border,
+                                color: AppColors.white,
+                              )),
+                        )
                       ],
                     )
                   ],

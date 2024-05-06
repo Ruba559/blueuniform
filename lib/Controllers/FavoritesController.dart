@@ -7,12 +7,6 @@ class FavoritesController extends GetxController {
   List<Favorite> favoriteItems = [];
   BoxClient boxClient = BoxClient();
 
-  void onInit() async {
-    getFavoriteItemsFromStorage();
-    update();
-    super.onInit();
-  }
-
   Future<void> getFavoriteItemsFromStorage() async {
     favoriteItems = await boxClient.getFavoriteItems();
 
@@ -26,6 +20,7 @@ class FavoritesController extends GetxController {
       var item = Favorite(
         product: product,
         category: category,
+        product_id : product.id,
       );
       print(item.category!.name);
       favoriteItems.add(item);
@@ -43,6 +38,7 @@ class FavoritesController extends GetxController {
   }
 
   int? getItemIndex(product_id, category_id) {
+    print(favoriteItems);
     for (var index = 0; index < favoriteItems.length; index++) {
       if (favoriteItems[index].product!.id == product_id &&
           favoriteItems[index].category!.id == category_id) {

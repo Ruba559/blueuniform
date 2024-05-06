@@ -22,11 +22,11 @@ class OrderComplateScreen extends StatelessWidget {
           selectedIndex: 0,
         ),
            drawer: AppDrawer(),
-        body:  SingleChildScrollView(
-          child: Container(
-             height: 600,
+        body: Container(
+           
                 padding: const EdgeInsets.all(25),
-                child: Column(
+                child:   Expanded(
+          child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(height: 1,),

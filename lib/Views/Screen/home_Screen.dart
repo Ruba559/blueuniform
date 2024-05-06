@@ -47,12 +47,12 @@ class HomeScreen extends StatelessWidget {
                                     controller.categories.length, (index) {
                                   return InkWell(
                                       onTap: () => {
-                                            // controller.getProduct(controller.categories[index])
-                                            Get.toNamed(
-                                              AppRoute.product,
-                                              arguments:
-                                                  controller.categories[index],
-                                            )
+                                             controller.getProduct(controller.categories[index])
+                                            // Get.toNamed(
+                                            //   AppRoute.product,
+                                            //   arguments:
+                                            //       controller.categories[index],
+                                            // )
                                           },
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(25),

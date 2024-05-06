@@ -11,12 +11,7 @@ class CartController extends GetxController {
 
   var paymentMethode = 'sadad';
 
-  void onInit() async {
-    getCartItemsFromStorage();
-    print(cartItems);
-    update();
-    super.onInit();
-  }
+  int quantity = 0;
 
   Future<void> getCartItemsFromStorage() async {
     cartItems = await boxClient.getCartItems();
@@ -26,7 +21,6 @@ class CartController extends GetxController {
 
   addToCart(quantity, product, category) async {
     var cartItemIndex = getCartItemIndex(product.id, category.id);
-
     if (cartItemIndex == null) {
       var cartItem = Cart(
         quantity: quantity,
@@ -35,9 +29,10 @@ class CartController extends GetxController {
       );
       cartItems.add(cartItem);
       await syncCart();
-      
-      totalAmount += category.price * quantity;
-      print(totalAmount);
+
+      calc();
+      // print(cartItems);
+      //print(totalAmount);
       SnackBars.showSuccess('تمت الإضافة للسلة بنجاح');
       update();
     } else {
@@ -47,7 +42,6 @@ class CartController extends GetxController {
 
   Future<void> syncCart() async {
     await boxClient.addToCart(cartItems);
-  
   }
 
   int? getCartItemIndex(product_id, category_id) {
@@ -61,20 +55,22 @@ class CartController extends GetxController {
   }
 
   Future<void> updateQuantity(index, type) async {
+    
     if (type == 'plus') {
       cartItems[index!].quantity = cartItems[index!].quantity + 1;
     }
     if (type == 'minus') {
       if (cartItems[index!].quantity <= 1) {
+        //  print(cartItems);
         cartItems.removeAt(index);
+        // print(cartItems);
       } else {
         cartItems[index!].quantity = cartItems[index!].quantity - 1;
       }
     }
-
     await syncCart();
-
     update();
+    print(cartItems.length);
   }
 
   Future<void> calc() async {
@@ -83,6 +79,11 @@ class CartController extends GetxController {
     }
     update();
   }
+
+  //  await showDialog(
+  //     context: context,
+  //     builder: (context) => new AlertDialog(...),
+  //   );
 
   selectPaymentMethode(value) {
     paymentMethode = value;

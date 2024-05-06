@@ -1,3 +1,5 @@
+import 'package:blueuniform/Controllers/CartController.dart';
+import 'package:blueuniform/Controllers/FavoritesController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,24 +16,67 @@ class HomeController extends GetxController {
   var isLoading = false.obs;
 
   List<Category> categories = [];
+  late Product? product;
+
+  late Category? category;
+
+  var quantity = 1;
+
+  bool isfav = false;
+
+  CartController cartController = CartController();
+
+  FavoritesController favoritesController = FavoritesController();
 
   void onInit() async {
     isLoading.value = true;
     categories = await productRepo.getCategories();
+
     isLoading.value = false;
 
     update();
     super.onInit();
   }
 
-  // getProduct(category) {
-  //   category = category;
-  //   //product = category!.products!.first;
+  getProduct(value) {
+    category = value;
+    product = category!.products!.first;
 
-  //   update();
+    // for (var i = 0; i < favoritesController.favoriteItems.length; i++) {
+    //   if (favoritesController.favoriteItems[i].category!.id != category!.id) {
+    //     isfav = false;
+    //   } else {
+    //     isfav = true;
+    //   }
+    // }
 
-  //   Get.toNamed(AppRoute.product );
-  // }
+    Get.toNamed(AppRoute.product);
+
+    update();
+  }
+
+  selectSize(value) {
+    product = value;
+    update();
+  }
+
+  selectQuantity(value) {
+    quantity = value;
+    update();
+  }
+
+  addToCart(category) async {
+    cartController.addToCart(quantity, product, category);
+
+    // product = category!.products!.first;
+    update();
+  }
+
+  addToFavorites(category) async {
+    favoritesController.addToFavorites(product, category);
+    isfav = true;
+    update();
+  }
 
   BoxStorage boxStorage = BoxStorage();
   logout() async {

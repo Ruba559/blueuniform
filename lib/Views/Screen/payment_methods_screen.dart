@@ -24,16 +24,15 @@ class PaymentMethodsScreen extends StatelessWidget {
           selectedIndex: 0,
         ),
            drawer: AppDrawer(),
-        body: SingleChildScrollView(
-          child: Container(
-          //  height: 600,
+        body:  Container(
+           
             padding: const EdgeInsets.all(20),
-            child: Column(
+            child:  SingleChildScrollView(child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppListTitle(text: 'وسائل الدفع المتاحة'),
                GetBuilder<CartController>(
-                          builder: (controller) => Column(
+                          builder: (controller) =>  Column(
                   children: [
                  Container(
                       padding: EdgeInsets.all(5),
@@ -81,6 +80,7 @@ class PaymentMethodsScreen extends StatelessWidget {
                     ),),
                   ],
                 )),
+                SizedBox(height: 15,),
                 ButtonForm(
                   text: 'دفع قيمة الطلب',
                   color: AppColors.secondary,
@@ -88,7 +88,7 @@ class PaymentMethodsScreen extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ));
+          )),
+        );
   }
 }

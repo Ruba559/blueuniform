@@ -18,6 +18,7 @@ class FavoritesScreen extends StatelessWidget {
   FavoritesController favoriteController = Get.put(FavoritesController());
   @override
   Widget build(BuildContext context) {
+     favoriteController.getFavoriteItemsFromStorage();
     return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
@@ -34,6 +35,7 @@ class FavoritesScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GetBuilder<FavoritesController>(
+                           init: favoriteController,
                           builder: (controller) => Flexible(
                               child: ListView.builder(
                                   shrinkWrap: true,

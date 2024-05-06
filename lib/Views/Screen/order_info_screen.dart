@@ -30,10 +30,10 @@ class OrderInfoScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppListTitle(text: 'معلومات الطلب'),
-               Container(
-                      
-                        height: 370,
+                Flexible(
+                    child: Container(
                         padding: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(10),
                         width: double.infinity,
                         decoration: BoxDecoration(
                             color: AppColors.lightgrey, borderRadius: radius10),
@@ -47,8 +47,8 @@ class OrderInfoScreen extends StatelessWidget {
                               ),
                             ),
                             GetBuilder<CartController>(
-                                // init: cartController,
-                                builder: (controller) => Flexible(
+                                builder: (controller) => Expanded(
+                                    flex: 3,
                                     child: ListView.builder(
                                         shrinkWrap: true,
                                         itemCount: controller.cartItems.length,
@@ -59,7 +59,7 @@ class OrderInfoScreen extends StatelessWidget {
                                               margin:
                                                   const EdgeInsets.symmetric(
                                                       vertical: 4),
-                                              padding: const EdgeInsets.all(6),
+                                              padding: const EdgeInsets.all(10),
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -67,32 +67,40 @@ class OrderInfoScreen extends StatelessWidget {
                                                         .category!.name,
                                                     style: AppTextStyle.body,
                                                   ),
-                                                  SizedBox(width: 15,),
-                                                  Text(  "عدد ${controller.cartItems[index].quantity}",  style: AppTextStyle.body)
+                                                  SizedBox(
+                                                    width: 15,
+                                                  ),
+                                                  Text(
+                                                      "عدد ${controller.cartItems[index].quantity}",
+                                                      style: AppTextStyle.body)
                                                 ],
                                               ));
                                         }))),
-
-
-                                       Container(
-                                        alignment: Alignment.bottomRight,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 4),
-                                              padding: const EdgeInsets.all(6),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                   '  السعر الإجمالي : ' ,
-                                                    style: AppTextStyle.body,
-                                                  ),
-                                                  SizedBox(width: 15,),
-                                                  Text(  " ${controller.totalAmount.toString()} ريال سعودي",  style: AppTextStyle.title.copyWith(fontWeight: FontWeight.bold))
-                                                ],
-                                              ))
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                    alignment: Alignment.bottomRight,
+                                 
+                                    padding: const EdgeInsets.all(6),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          ' السعر الإجمالي : ',
+                                          style: AppTextStyle.body,
+                                        ),
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text(
+                                            " ${controller.totalAmount.toString()} ريال سعودي",
+                                            style: AppTextStyle.title.copyWith(
+                                                fontWeight: FontWeight.bold))
+                                      ],
+                                    )))
                           ],
-                        )),
+                        ))),
                 ButtonForm(
                   text: 'المتابعة والدفع',
                   color: AppColors.secondary,

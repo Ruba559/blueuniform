@@ -23,13 +23,16 @@ class PaymentMethodItem extends StatelessWidget {
         child: InkWell(
             child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           Container(
+            decoration: BoxDecoration(borderRadius:radius20,
+            color: AppColors.white ),
               child: ClipRRect(
+                
             borderRadius: radius20,
-            child: Image.asset(
+            child:  Image.asset(
               image!,
               height: 60,
               width: 60,
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
             ),
           )),
           SizedBox(

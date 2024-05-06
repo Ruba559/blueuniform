@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +11,18 @@ import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PositionScreen extends StatelessWidget {
   PositionScreen({super.key});
- ProductController productController = Get.find();
+  ProductController productController = Get.put(ProductController());
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14,
+  );
+  List<Marker> markers = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,24 +31,44 @@ class PositionScreen extends StatelessWidget {
         bottomNavigationBar: AppButtomNavBar(
           selectedIndex: 0,
         ),
-           drawer: AppDrawer(),
+        drawer: AppDrawer(),
         body: Container(
             padding: const EdgeInsets.all(20),
-            child: Column(
+            child: SingleChildScrollView(
+                child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppListTitle(text: 'التوصيل'),
-      // Expanded(child:  GoogleMap(
-      //   initialCameraPosition: CameraPosition(
-      //     target: LatLng(37.7749, -122.4194), // San Francisco coordinates
-      //     zoom: 12,
-      //   ),
-      // ),) ,
-           ButtonForm(text: 'تعيين الموقع', color: AppColors.secondary , onPressed: () => {
-            Get.toNamed(AppRoute.orderInfo)
-                   //   productController.getOrderInfo()
-                      },)
+                Container(
+                  height: 400,
+                  width: double.infinity,
+                  child: GoogleMap(
+                    mapType: MapType.normal,
+                    initialCameraPosition: _kGooglePlex,
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+                    },
+                    markers: markers.toSet(),
+                    onTap: (argument) {
+                      print(argument.longitude);
+                      markers.add(Marker(
+                          markerId: MarkerId("lili"),
+                          position:
+                              LatLng(argument.latitude, argument.longitude)));
+                     
+
+                    },
+                  ),
+                ),
+                ButtonForm(
+                  text: 'تعيين الموقع',
+                  color: AppColors.secondary,
+                  onPressed: () => {
+                    Get.toNamed(AppRoute.orderInfo)
+                    //   productController.getOrderInfo()
+                  },
+                )
               ],
-            )));
+            ))));
   }
 }
