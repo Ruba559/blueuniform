@@ -41,6 +41,6 @@ class SnackBars {
           textAlign: TextAlign.center,
         ),
        duration: const Duration(seconds: 3),
-       backgroundColor: AppColors.grey);
+       backgroundColor: AppColors.red);
   }
 }

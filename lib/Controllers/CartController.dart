@@ -30,9 +30,7 @@ class CartController extends GetxController {
       cartItems.add(cartItem);
       await syncCart();
 
-      calc();
-      // print(cartItems);
-      //print(totalAmount);
+  
       SnackBars.showSuccess('تمت الإضافة للسلة بنجاح');
       update();
     } else {
@@ -55,7 +53,7 @@ class CartController extends GetxController {
   }
 
   Future<void> updateQuantity(index, type) async {
-    
+
     if (type == 'plus') {
       cartItems[index!].quantity = cartItems[index!].quantity + 1;
     }

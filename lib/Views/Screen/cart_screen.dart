@@ -16,6 +16,7 @@ import 'package:get/get.dart';
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
   CartController cartController = Get.put(CartController());
+    HomeController hometController = Get.find();
   @override
   Widget build(BuildContext context) {
     cartController.getCartItemsFromStorage();
@@ -198,7 +199,7 @@ class CartScreen extends StatelessWidget {
                       ButtonForm(
                         text: 'متابعة',
                         color: AppColors.secondary,
-                        onPressed: () => {Get.toNamed(AppRoute.position)},
+                        onPressed: () => {hometController.getPosition() },
                       )
                     ]))
               ],

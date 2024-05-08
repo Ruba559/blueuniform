@@ -17,6 +17,7 @@ class OrderInfoScreen extends StatelessWidget {
   CartController controller = Get.find();
   @override
   Widget build(BuildContext context) {
+    controller.calc();
     return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
@@ -80,7 +81,6 @@ class OrderInfoScreen extends StatelessWidget {
                                 flex: 1,
                                 child: Container(
                                     alignment: Alignment.bottomRight,
-                                 
                                     padding: const EdgeInsets.all(6),
                                     child: Column(
                                       crossAxisAlignment:
@@ -93,10 +93,11 @@ class OrderInfoScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 15,
                                         ),
+                                       
                                         Text(
                                             " ${controller.totalAmount.toString()} ريال سعودي",
                                             style: AppTextStyle.title.copyWith(
-                                                fontWeight: FontWeight.bold))
+                                                fontWeight: FontWeight.bold)),
                                       ],
                                     )))
                           ],

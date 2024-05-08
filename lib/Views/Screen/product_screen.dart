@@ -5,15 +5,12 @@ import 'package:flutter/material.dart';
 
 import '../../Constants/app_color.dart';
 import '../../Controllers/HomeController.dart';
-import '../../Controllers/ProductController.dart';
-import '../../DataAccesslayer/Models/category.dart';
 import '../../DataAccesslayer/Models/product.dart';
 import '../Widgets/label_form.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import 'package:get/get.dart';
 
-import '../Widgets/layouts/appdrawar.dart';
 
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
