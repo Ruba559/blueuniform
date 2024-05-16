@@ -43,7 +43,7 @@ class AppButtomNavBar extends StatelessWidget {
         }
       }),
       items: [
-         const BottomNavigationBarItem(
+          BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
@@ -51,9 +51,9 @@ class AppButtomNavBar extends StatelessWidget {
               size: 24,
             ),
           ),
-          label: 'الرئيسية',
+          label: 'home'.tr,
         ),
-          const BottomNavigationBarItem(
+           BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
@@ -61,9 +61,9 @@ class AppButtomNavBar extends StatelessWidget {
               size: 24,
             ),
           ),
-          label: 'سلة الشراء',
+          label: 'shopping_cart'.tr,
         ),
-         const BottomNavigationBarItem(
+          BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
@@ -71,9 +71,9 @@ class AppButtomNavBar extends StatelessWidget {
               size: 24,
             ),
           ),
-          label: 'المفضلة',
+          label: 'favorite'.tr,
         ),
-        const BottomNavigationBarItem(
+         BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
@@ -81,7 +81,7 @@ class AppButtomNavBar extends StatelessWidget {
               size: 24,
             ),
           ),
-          label: 'الإعدادات',
+          label: 'settings'.tr,
         ),
       ],
     );

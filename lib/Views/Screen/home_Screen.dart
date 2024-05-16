@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              AppListTitle(text: 'الملابس المتاحة'),
+              AppListTitle(text: 'clothes_available'.tr),
               GetBuilder<HomeController>(
                   builder: (controller) => Flexible(
                         child: controller.isLoading.value
@@ -45,11 +45,7 @@ class HomeScreen extends StatelessWidget {
                                   return InkWell(
                                       onTap: () => {
                                              controller.getProduct(controller.categories[index])
-                                            // Get.toNamed(
-                                            //   AppRoute.product,
-                                            //   arguments:
-                                            //       controller.categories[index],
-                                            // )
+                                            
                                           },
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(25),

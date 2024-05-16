@@ -2,7 +2,6 @@ import 'package:blueuniform/Constants/app_style.dart';
 import 'package:blueuniform/Constants/app_text_style.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
-
 import '../../Constants/app_color.dart';
 import '../../Controllers/HomeController.dart';
 import '../../DataAccesslayer/Models/product.dart';
@@ -14,7 +13,7 @@ import 'package:get/get.dart';
 
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
-  //ProductController productController = Get.put(ProductController());
+  
   HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -87,7 +86,7 @@ class ProductScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: LabelForm(
-                        text: "المقاسات المتوفرة",
+                        text: "available_sizes".tr,
                       ),
                     ),
                     GetBuilder<HomeController>(
@@ -121,7 +120,7 @@ class ProductScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: LabelForm(
-                        text: "الكمية المطلوبة",
+                        text: "required_quantity".tr,
                       ),
                     ),
                     GetBuilder<HomeController>(
@@ -158,7 +157,7 @@ class ProductScreen extends StatelessWidget {
                     Row(
                       children: [
                         ButtonForm(
-                          text: 'إضافة لسلة الشراء',
+                          text: "add_to_cart".tr,
                           color: AppColors.secondary,
                           width: 225,
                           onPressed: () => {

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../Constants/app_color.dart';
 import '../../../Constants/app_text_style.dart';
 import '../../../Controllers/LoginController.dart';
 import '../../../Functions/valid_input.dart';
 import '../../Widgets/button_form.dart';
 import '../../Widgets/input_form.dart';
-import '../../Widgets/label_form.dart';
 import '../../Widgets/list_title.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -32,9 +30,9 @@ class LoginScreen extends StatelessWidget {
                       height: 150,
                       //   fit: BoxFit.fill,
                     ),
-                   const AppListTitle(text: 'تسجيل الدخول', textAlign: 'center',),
+                    AppListTitle(text: "login".tr, textAlign: 'center',),
                     InputForm(
-                      label: 'رقم الجوال',
+                      label: 'phone'.tr,
                       valid: (val) {
                         return validInput(val!, 2, 50, "phone", true, null);
                       },
@@ -43,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     InputForm(
                       passwordText: true,
-                      label: 'كلمة المرور',
+                      label: 'password'.tr,
                       valid: (val) {
                         return validInput(val!, 3, 20, "password", true, null);
                       },
@@ -55,20 +53,20 @@ class LoginScreen extends StatelessWidget {
                     ),
                     Obx(() {
                       return ButtonForm(
-                          text: "متابعة",
+                          text: "continue".tr,
                           color: AppColors.secondary,
                           onPressed: () async {
                             controller.login();
                           },
                           isLoading: controller.logging.value);
                     }),
-                    const Text(
-                      'ليس لديك حساب ؟ ',
+                     Text(
+                      "dont_have_an_account".tr,
                       style: AppTextStyle.body,
                       textAlign: TextAlign.center,
                     ),
                    ButtonForm(
-                          text: "أنشئ حسابك الخاص",
+                          text: "create_your_own_account".tr,
                           
                           color: AppColors.primary,
                           onPressed: () => {controller.getRegister()})

@@ -43,7 +43,7 @@ class OrderInfoScreen extends StatelessWidget {
                             Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                'التفاصيل',
+                                'details'.tr,
                                 style: AppTextStyle.medium,
                               ),
                             ),
@@ -72,7 +72,7 @@ class OrderInfoScreen extends StatelessWidget {
                                                     width: 15,
                                                   ),
                                                   Text(
-                                                      "عدد ${controller.cartItems[index].quantity}",
+                                                      "${'number'.tr} ${controller.cartItems[index].quantity}",
                                                       style: AppTextStyle.body)
                                                 ],
                                               ));
@@ -87,7 +87,7 @@ class OrderInfoScreen extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          ' السعر الإجمالي : ',
+                                          'total'.tr,
                                           style: AppTextStyle.body,
                                         ),
                                         SizedBox(
@@ -103,7 +103,7 @@ class OrderInfoScreen extends StatelessWidget {
                           ],
                         ))),
                 ButtonForm(
-                  text: 'المتابعة والدفع',
+                  text: 'continue_and_payment'.tr,
                   color: AppColors.secondary,
                   onPressed: () => {Get.toNamed(AppRoute.PaymentMethods)},
                 )

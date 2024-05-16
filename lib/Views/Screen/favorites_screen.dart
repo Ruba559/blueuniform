@@ -1,10 +1,7 @@
-import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
-
 import '../../Constants/app_color.dart';
 import '../../Constants/app_style.dart';
 import '../../Constants/app_text_style.dart';
-import '../../Constants/routes.dart';
 import '../../Controllers/FavoritesController.dart';
 import '../../Controllers/HomeController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
@@ -31,7 +28,7 @@ class FavoritesScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                AppListTitle(text: 'المفضلة'),
+                AppListTitle(text: 'favorite'.tr),
                 Expanded(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +110,7 @@ class FavoritesScreen extends StatelessWidget {
                                                                   .spaceBetween,
                                                           children: [
                                                             Text(
-                                                              "السعر : ${controller.favoriteItems[index].category!.price}",
+                                                              "${'price'.tr} : ${controller.favoriteItems[index].category!.price}",
                                                               style:
                                                                   AppTextStyle
                                                                       .xsmall,

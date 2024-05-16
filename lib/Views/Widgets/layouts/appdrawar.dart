@@ -65,23 +65,23 @@ class AppDrawer extends StatelessWidget {
           ),
     
  
-          // ListTile(
-          //   leading: Icon(
-          //     Icons.language,
-          //     color: AppColors.primary,
-          //   ),
-          //   title: Text(
-          //     "switch_locale".tr,
-          //     style: AppTextStyle.body.copyWith(color: AppColors.primary),
-          //   ),
-          //   onTap: () {
-          //     if (Get.locale == Locale('ar')) {
-          //       Get.updateLocale(Locale('en'));
-          //     } else {
-          //       Get.updateLocale(Locale('ar'));
-          //     }
-          //   },
-          // ),
+          ListTile(
+            leading: Icon(
+              Icons.language,
+              color: AppColors.primary,
+            ),
+            title: Text(
+              "switch_locale".tr,
+              style: AppTextStyle.body.copyWith(color: AppColors.primary),
+            ),
+            onTap: () {
+              if (Get.locale == Locale('ar')) {
+                Get.updateLocale(Locale('en'));
+              } else {
+                Get.updateLocale(Locale('ar'));
+              }
+            },
+          ),
           ListTile(
             leading: Icon(
               Icons.logout,

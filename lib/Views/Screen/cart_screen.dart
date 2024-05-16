@@ -1,10 +1,8 @@
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
-
 import '../../Constants/app_color.dart';
 import '../../Constants/app_style.dart';
 import '../../Constants/app_text_style.dart';
-import '../../Constants/routes.dart';
 import '../../Controllers/CartController.dart';
 import '../../Controllers/HomeController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
@@ -31,7 +29,7 @@ class CartScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                AppListTitle(text: 'سلة الشراء'),
+                AppListTitle(text: 'shopping_cart'.tr),
                 Expanded(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -100,7 +98,8 @@ class CartScreen extends StatelessWidget {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          "الكمية : ${controller.cartItems[index].quantity}",
+                                                           '${'quantity'.tr} : ${controller.cartItems[index].quantity}'
+                                                          ,
                                                           style: AppTextStyle
                                                               .xsmall,
                                                         ),
@@ -108,7 +107,8 @@ class CartScreen extends StatelessWidget {
                                                           width: 10,
                                                         ),
                                                         Text(
-                                                          "السعر : ${controller.cartItems[index].category!.price}",
+                                                          '${'price'.tr} : ${controller.cartItems[index].category!.price}'
+                                                          ,
                                                           style: AppTextStyle
                                                               .xsmall,
                                                         ),
@@ -125,7 +125,7 @@ class CartScreen extends StatelessWidget {
                                                             ? Get.defaultDialog(
                                                                 middleText: '',
                                                                 title:
-                                                                    ' هل انت متأكد من حذف العنصر ؟',
+                                                                    "delete_title".tr,
                                                                 buttonColor:
                                                                     AppColors
                                                                         .red,
@@ -136,9 +136,9 @@ class CartScreen extends StatelessWidget {
                                                                     AppColors
                                                                         .black,
                                                                 textConfirm:
-                                                                    'حذف',
+                                                                    'delete'.tr,
                                                                 textCancel:
-                                                                    'إالغاء',
+                                                                    'close'.tr,
                                                                 onConfirm: () =>
                                                                     {
                                                                       controller.updateQuantity(
@@ -197,7 +197,7 @@ class CartScreen extends StatelessWidget {
                                         ));
                                   }))),
                       ButtonForm(
-                        text: 'متابعة',
+                        text: 'continue'.tr,
                         color: AppColors.secondary,
                         onPressed: () => {hometController.getPosition() },
                       )

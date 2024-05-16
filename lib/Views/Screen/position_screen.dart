@@ -5,7 +5,6 @@ import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
 
 import '../../Constants/app_color.dart';
-import '../../Constants/routes.dart';
 import '../../Controllers/LocationController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
@@ -16,19 +15,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PositionScreen extends StatelessWidget {
   PositionScreen({super.key});
-  // ProductController productController = Get.put(ProductController());
+
   HomeController homeController = Get.find();
   LocationController locationController = Get.put(LocationController());
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
-  //   CameraPosition _kGooglePlex = CameraPosition(
-  //   target: LatLng(locationController.currentPosition.altitude, -122.085749655962),
-  //   zoom: 14,
-  // );
-  List<Marker> markers = [];
+
   @override
   Widget build(BuildContext context) {
-    locationController.getPosision();
     return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
@@ -42,34 +34,51 @@ class PositionScreen extends StatelessWidget {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppListTitle(text: 'التوصيل'),
+                AppListTitle(text: 'delivery'.tr),
                 GetBuilder<LocationController>(
                     builder: (controller) => Container(
                           height: 400,
                           width: double.infinity,
-                          child: GoogleMap(
-                            mapType: MapType.normal,
-                            initialCameraPosition:
-                                locationController.kGooglePlex!,
-                            onMapCreated: (GoogleMapController controller) {
-                              _controller.complete(controller);
-                            },
-                            markers: markers.toSet(),
-                            onTap: (argument) {
-                              print(argument.longitude);
-                              markers.add(Marker(
-                                  markerId: MarkerId("lili"),
+                          child: Obx(
+                            () => GoogleMap(
+                              mapType: MapType.normal,
+                              initialCameraPosition: CameraPosition(
+                                target: LatLng(
+                                  locationController.position.value?.latitude ??
+                                      0.0,
+                                  locationController
+                                          .position.value?.longitude ??
+                                      0.0,
+                                ),
+                                zoom: 14,
+                              ),
+                              markers: Set<Marker>.from([
+                                Marker(
+                                  markerId: MarkerId('currentPosition'),
                                   position: LatLng(
-                                      argument.latitude, argument.longitude)));
-                            },
+                                    locationController
+                                            .position.value?.latitude ??
+                                        0.0,
+                                    locationController
+                                            .position.value?.longitude ??
+                                        0.0,
+                                  ),
+                                  infoWindow:
+                                      InfoWindow(title: 'Current Position'),
+                                ),
+                              ]),
+                            ),
                           ),
+
+                    
                         )),
                 ButtonForm(
-                  text: 'تعيين الموقع',
+                  text: "set_location".tr,
                   color: AppColors.secondary,
                   onPressed: () => {
-                    Get.toNamed(AppRoute.orderInfo)
-                    //   productController.getOrderInfo()
+                  //  Get.toNamed(AppRoute.orderInfo)
+                     homeController.getOrderInfo(locationController
+                                            .position.value)
                   },
                 )
               ],

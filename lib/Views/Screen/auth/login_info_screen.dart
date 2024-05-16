@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../Constants/app_color.dart';
-import '../../../Constants/app_text_style.dart';
 import '../../../Controllers/AuthController.dart';
-import '../../../Controllers/LoginController.dart';
 import '../../../Functions/valid_input.dart';
 import '../../Widgets/button_form.dart';
 import '../../Widgets/input_form.dart';
-import '../../Widgets/label_form.dart';
 import '../../Widgets/list_title.dart';
 
 class LoginInfoScreen extends StatelessWidget {
@@ -29,9 +25,8 @@ class LoginInfoScreen extends StatelessWidget {
                     Image.asset(
                       'assets/images/logo.png',
                       height: 150,
-                      //   fit: BoxFit.fill,
                     ),
-                    const AppListTitle(text: 'معلومات الدخول', textAlign: 'center',),
+                     AppListTitle(text: "login_information".tr, textAlign: 'center',),
                     InputForm(
                       label: 'رقم الجوال',
                       valid: (val) {
@@ -41,7 +36,7 @@ class LoginInfoScreen extends StatelessWidget {
                     ),
                     InputForm(
                       passwordText: true,
-                      label: 'كلمة المرور ',
+                      label: 'password'.tr,
                       valid: (val) {
                         return validInput(val!, 3, 20, "password", true, null);
                       },
@@ -49,7 +44,7 @@ class LoginInfoScreen extends StatelessWidget {
                     ),
                     InputForm(
                       passwordText: true,
-                      label: 'تأكيد كلمة المرور',
+                      label: 'confirm_password'.tr,
                       valid: (val) {
                         return validInput(val!, 3, 20, "confirmPassword", true,
                             controller.password.text);
@@ -58,7 +53,7 @@ class LoginInfoScreen extends StatelessWidget {
                     ),
                     Obx(() {
                       return ButtonForm(
-                        text: "إنشاء الحساب",
+                        text: "create_account".tr,
                         color: AppColors.primary,
                         onPressed: () async {
                           controller.register();
@@ -67,7 +62,7 @@ class LoginInfoScreen extends StatelessWidget {
                       );
                     }),
                     ButtonForm(
-                        text: "السابق",
+                        text: "previous".tr,
                         color: AppColors.grey,
                         onPressed: () => {controller.getRegister()}),
                   ]))),

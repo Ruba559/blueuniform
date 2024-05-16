@@ -8,15 +8,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../Constants/routes.dart';
 import '../DataAccesslayer/Clients/BoxStorage.dart';
+import '../DataAccesslayer/Models/cart.dart';
 import '../DataAccesslayer/Models/category.dart';
 import '../DataAccesslayer/Models/product.dart';
+import '../DataAccesslayer/Repository/OrderRepo.dart';
 import '../DataAccesslayer/Repository/ProductRepo.dart';
 import '../Views/Widgets/snackbar.dart';
 import '../main.dart';
 
 class HomeController extends GetxController {
   ProductRepo productRepo = ProductRepo();
-
+  OrderRepo orderRepo = OrderRepo();
   var isLoading = false.obs;
 
   List<Category> categories = [];
@@ -28,7 +30,7 @@ class HomeController extends GetxController {
 
   bool isfav = false;
 
-  late CameraPosition kGooglePlex;
+  var paymentMethode = 'sadad';
 
   CartController cartController = CartController();
 
@@ -88,13 +90,45 @@ class HomeController extends GetxController {
 
   getPosition() async {
     if (await locationController.checkLocationServiceEnabled()) {
-     
-
-
       Get.toNamed(AppRoute.position);
     } else {
       SnackBars.showWarning('يرجى تفعيل الموقع');
     }
+  }
+
+  final position = Rx<Position?>(null);
+  getOrderInfo(value) {
+    position.value = value;
+
+    Get.toNamed(AppRoute.orderInfo);
+  }
+
+  List<Map<String, dynamic>> cartItems = [];
+
+  void getCartItemsMap() {
+    cartItems.clear();
+    for (Cart item in cartController.cartItems) {
+      cartItems.add({
+        'quantity': item.quantity,
+        'category': item.category!.id,
+        'product': item.product!.id,
+      });
+    }
+  }
+
+  addOrder() async {
+    isLoading.value = true;
+    getCartItemsMap();
+    await orderRepo.addOrder(MyApp.user!.id, paymentMethode,
+        position.value!.latitude, position.value!.longitude, cartItems);
+    isLoading.value = false;
+    cartController.clearCart();
+    Get.offNamed(AppRoute.orderComplate);
+  }
+
+  selectPaymentMethode(value) {
+    paymentMethode = value;
+    update();
   }
 
   BoxStorage boxStorage = BoxStorage();

@@ -9,7 +9,6 @@ class CartController extends GetxController {
 
   late num totalAmount = 0;
 
-  var paymentMethode = 'sadad';
 
   int quantity = 0;
 
@@ -78,13 +77,15 @@ class CartController extends GetxController {
     update();
   }
 
+ Future<void> clearCart() async {
+    cartItems.clear();
+    await syncCart();
+    calc();
+  }
   //  await showDialog(
   //     context: context,
   //     builder: (context) => new AlertDialog(...),
   //   );
 
-  selectPaymentMethode(value) {
-    paymentMethode = value;
-    update();
-  }
+
 }

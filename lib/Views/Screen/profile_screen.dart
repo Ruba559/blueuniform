@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                   AppListTitle(text: 'الملف الشخصي',),
+                   AppListTitle(text: 'profile'.tr),
                     SizedBox(
                       height: 50,
                     ),
@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                   ),
                                InputForm(
-                      label: 'رقم الجوال',
+                      label: "phone".tr,
                       valid: (val) {
                         return validInput(val!, 2, 50, "phone", true, null);
                       },
@@ -97,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     InputForm(
                       passwordText: true,
-                      label: 'كلمة المرور ',
+                      label: 'password'.tr,
                       valid: (val) {
                         return validInput(val!, 3, 20, "password", true, null);
                       },
@@ -106,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
                                   SizedBox(height: 20),
                                   Obx(() {
                                     return ButtonForm(
-                                        text: 'حفظ',
+                                        text: 'save'.tr,
                                         color: AppColors.secondary,
                                         onPressed: () async {
                                           controller.updateProfile();

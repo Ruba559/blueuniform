@@ -1,5 +1,6 @@
 
 import 'package:blueuniform/Constants/pages.dart';
+import 'package:blueuniform/Data/lang.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: Locale('ar'),
       getPages: getPages,
-    //  translations: Lang(),
+      translations: Lang(),
     );
   }
 }

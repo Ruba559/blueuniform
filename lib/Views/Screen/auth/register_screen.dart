@@ -45,11 +45,11 @@ class RegisterScreen extends StatelessWidget {
                         height: 70,
                         //   fit: BoxFit.fill,
                       ),
-                      const AppListTitle(text: 'إنشاء حساب', textAlign: 'center',),
-                      const Align(
+                       AppListTitle(text: 'create_account'.tr, textAlign: 'center',),
+                       Align(
                         alignment: Alignment.bottomRight,
                         child: LabelForm(
-                          text: "اسم المدرسة",
+                          text: 'school_name'.tr,
                         ),
                       ),
 
@@ -86,10 +86,10 @@ class RegisterScreen extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                const Align(
+                                 Align(
                                     alignment: Alignment.bottomRight,
                                     child: LabelForm(
-                                      text: "الفرع/ الحي",
+                                      text: "branch".tr,
                                     )),
                                 InputDecorator(
                                   decoration: const InputDecoration(
@@ -127,10 +127,10 @@ class RegisterScreen extends StatelessWidget {
                           Expanded(
                               child: Column(
                             children: [
-                              const Align(
+                               Align(
                                   alignment: Alignment.bottomRight,
                                   child: LabelForm(
-                                    text: "المدينة",
+                                    text: "city".tr,
                                   )),
                               InputDecorator(
                                 decoration: const InputDecoration(
@@ -164,7 +164,7 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
                       InputForm(
-                        label: 'اسم الطالب',
+                        label: "student_name".tr,
                         valid: (val) {
                           return validInput(val!, 2, 50, "email", true, null);
                         },
@@ -176,10 +176,10 @@ class RegisterScreen extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                const Align(
+                                 Align(
                                     alignment: Alignment.bottomRight,
                                     child: LabelForm(
-                                      text: "المرحلة",
+                                      text: "stage".tr,
                                     )),
                                 InputDecorator(
                                   decoration: const InputDecoration(
@@ -217,10 +217,10 @@ class RegisterScreen extends StatelessWidget {
                           Expanded(
                               child: Column(
                             children: [
-                              const Align(
+                               Align(
                                   alignment: Alignment.bottomRight,
                                   child: LabelForm(
-                                    text: "القسم",
+                                    text: "section".tr,
                                   )),
                               InputDecorator(
                                 decoration: const InputDecoration(
@@ -259,10 +259,10 @@ class RegisterScreen extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                const Align(
+                                 Align(
                                     alignment: Alignment.bottomRight,
                                     child: LabelForm(
-                                      text: "الصف",
+                                      text: "classe".tr,
                                     )),
                                 InputDecorator(
                                   decoration: const InputDecoration(
@@ -300,10 +300,10 @@ class RegisterScreen extends StatelessWidget {
                           Expanded(
                               child: Column(
                             children: [
-                              const Align(
+                               Align(
                                   alignment: Alignment.bottomRight,
                                   child: LabelForm(
-                                    text: "الفصل",
+                                    text: "semester".tr,
                                   )),
                               InputDecorator(
                                 decoration: const InputDecoration(
@@ -336,7 +336,7 @@ class RegisterScreen extends StatelessWidget {
                           ))
                         ],
                       ),
-                      // Obx(() {
+                     // Obx(() {
                       //   return
                       ButtonForm(
                         text: "التالي",
