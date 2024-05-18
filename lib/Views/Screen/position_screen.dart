@@ -16,8 +16,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class PositionScreen extends StatelessWidget {
   PositionScreen({super.key});
 
+ 
   HomeController homeController = Get.find();
-  LocationController locationController = Get.put(LocationController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +31,12 @@ class PositionScreen extends StatelessWidget {
         body: Container(
             padding: const EdgeInsets.all(20),
             child: SingleChildScrollView(
-                child: Column(
+                child:  GetBuilder<LocationController>(
+                    builder: (controller) =>  Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppListTitle(text: 'delivery'.tr),
-                GetBuilder<LocationController>(
-                    builder: (controller) => Container(
+                Container(
                           height: 400,
                           width: double.infinity,
                           child: Obx(
@@ -44,9 +44,9 @@ class PositionScreen extends StatelessWidget {
                               mapType: MapType.normal,
                               initialCameraPosition: CameraPosition(
                                 target: LatLng(
-                                  locationController.position.value?.latitude ??
+                                  controller.position.value?.latitude ??
                                       0.0,
-                                  locationController
+                                  controller
                                           .position.value?.longitude ??
                                       0.0,
                                 ),
@@ -56,10 +56,10 @@ class PositionScreen extends StatelessWidget {
                                 Marker(
                                   markerId: MarkerId('currentPosition'),
                                   position: LatLng(
-                                    locationController
+                                    controller
                                             .position.value?.latitude ??
                                         0.0,
-                                    locationController
+                                    controller
                                             .position.value?.longitude ??
                                         0.0,
                                   ),
@@ -71,17 +71,17 @@ class PositionScreen extends StatelessWidget {
                           ),
 
                     
-                        )),
+                        ),
                 ButtonForm(
                   text: "set_location".tr,
                   color: AppColors.secondary,
                   onPressed: () => {
                   //  Get.toNamed(AppRoute.orderInfo)
-                     homeController.getOrderInfo(locationController
+                     homeController.getOrderInfo(controller
                                             .position.value)
                   },
                 )
               ],
-            ))));
+            )))));
   }
 }

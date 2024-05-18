@@ -5,6 +5,7 @@ import '../../Constants/app_style.dart';
 import '../../Constants/app_text_style.dart';
 import '../../Controllers/CartController.dart';
 import '../../Controllers/HomeController.dart';
+import '../../Controllers/LocationController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
@@ -15,6 +16,7 @@ class CartScreen extends StatelessWidget {
   CartScreen({super.key});
   CartController cartController = Get.put(CartController());
     HomeController hometController = Get.find();
+     LocationController locationController = Get.put(LocationController());
   @override
   Widget build(BuildContext context) {
     cartController.getCartItemsFromStorage();
@@ -31,11 +33,11 @@ class CartScreen extends StatelessWidget {
               children: [
                 AppListTitle(text: 'shopping_cart'.tr),
                 Expanded(
-                    child: Column(
+                    child:  GetBuilder<CartController>(
+                          builder: (controller) => Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                      GetBuilder<CartController>(
-                          builder: (controller) => Flexible(
+                      Flexible(
                               child: ListView.builder(
                                   shrinkWrap: true,
                                   itemCount: controller.cartItems.length,
@@ -195,14 +197,14 @@ class CartScreen extends StatelessWidget {
                                                 )
                                               ]),
                                         ));
-                                  }))),
+                                  })),
                       ButtonForm(
                         text: 'continue'.tr,
-                        color: AppColors.secondary,
-                        onPressed: () => {hometController.getPosition() },
+                        color: cartController.cartItems.length  <= 0 ? AppColors.grey : AppColors.secondary,
+                        onPressed: () => { cartController.cartItems.length  <= 0 ? null : hometController.getPosition() },
                       )
                     ]))
-              ],
+            )],
             )));
   }
 }

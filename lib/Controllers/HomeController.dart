@@ -13,6 +13,7 @@ import '../DataAccesslayer/Models/category.dart';
 import '../DataAccesslayer/Models/product.dart';
 import '../DataAccesslayer/Repository/OrderRepo.dart';
 import '../DataAccesslayer/Repository/ProductRepo.dart';
+import '../Functions/check_internet.dart';
 import '../Views/Widgets/snackbar.dart';
 import '../main.dart';
 
@@ -40,9 +41,13 @@ class HomeController extends GetxController {
 
   void onInit() async {
     isLoading.value = true;
-    categories = await productRepo.getCategories();
+    if (await checkInternet()) {
+      categories = await productRepo.getCategories();
+        isLoading.value = false;
+    }else{
 
-    isLoading.value = false;
+    }
+  
 
     update();
     super.onInit();
@@ -51,15 +56,6 @@ class HomeController extends GetxController {
   getProduct(value) {
     category = value;
     product = category!.products!.first;
-
-    // for (var i = 0; i < favoritesController.favoriteItems.length; i++) {
-    //   if (favoritesController.favoriteItems[i].category!.id != category!.id) {
-    //     isfav = false;
-    //   } else {
-    //     isfav = true;
-    //   }
-    // }
-
     Get.toNamed(AppRoute.product);
 
     update();
@@ -77,8 +73,6 @@ class HomeController extends GetxController {
 
   addToCart(category) async {
     cartController.addToCart(quantity, product, category);
-
-    // product = category!.products!.first;
     update();
   }
 

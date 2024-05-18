@@ -15,7 +15,7 @@ import 'DataAccesslayer/Models/user.dart';
 // }
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
  

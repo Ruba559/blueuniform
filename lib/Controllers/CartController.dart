@@ -9,7 +9,6 @@ class CartController extends GetxController {
 
   late num totalAmount = 0;
 
-
   int quantity = 0;
 
   Future<void> getCartItemsFromStorage() async {
@@ -29,7 +28,6 @@ class CartController extends GetxController {
       cartItems.add(cartItem);
       await syncCart();
 
-  
       SnackBars.showSuccess('تمت الإضافة للسلة بنجاح');
       update();
     } else {
@@ -39,6 +37,7 @@ class CartController extends GetxController {
 
   Future<void> syncCart() async {
     await boxClient.addToCart(cartItems);
+    
   }
 
   int? getCartItemIndex(product_id, category_id) {
@@ -52,20 +51,22 @@ class CartController extends GetxController {
   }
 
   Future<void> updateQuantity(index, type) async {
-
     if (type == 'plus') {
       cartItems[index!].quantity = cartItems[index!].quantity + 1;
     }
     if (type == 'minus') {
       if (cartItems[index!].quantity <= 1) {
-        //  print(cartItems);
+        print(cartItems);
         cartItems.removeAt(index);
-        // print(cartItems);
+        print('ddddddddddddd');
+            print(cartItems);
+        await syncCart();
+        print(cartItems);
       } else {
         cartItems[index!].quantity = cartItems[index!].quantity - 1;
       }
     }
-    await syncCart();
+    
     update();
     print(cartItems.length);
   }
@@ -77,7 +78,7 @@ class CartController extends GetxController {
     update();
   }
 
- Future<void> clearCart() async {
+  Future<void> clearCart() async {
     cartItems.clear();
     await syncCart();
     calc();
@@ -86,6 +87,4 @@ class CartController extends GetxController {
   //     context: context,
   //     builder: (context) => new AlertDialog(...),
   //   );
-
-
 }

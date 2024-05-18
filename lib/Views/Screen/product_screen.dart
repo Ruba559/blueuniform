@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../Constants/app_color.dart';
 import '../../Controllers/HomeController.dart';
 import '../../DataAccesslayer/Models/product.dart';
+import '../../main.dart';
 import '../Widgets/label_form.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
@@ -66,7 +67,7 @@ class ProductScreen extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              '',
+                              MyApp.user!.stage,
                               style: AppTextStyle.body
                                   .copyWith(color: AppColors.secondary),
                             )
@@ -164,7 +165,8 @@ class ProductScreen extends StatelessWidget {
                             homeController.addToCart(homeController.category)
                           },
                         ),
-                        InkWell(
+                       GetBuilder<HomeController>(
+                        builder: (controller) =>  InkWell(
                           onTap: () => {
                             homeController
                                 .addToFavorites(homeController.category)
@@ -175,15 +177,15 @@ class ProductScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: AppColors.red, borderRadius: radius10),
                               child:
-                                  //  homeController.favoritesController.favoriteItems.where((element) => element.category!.id.isEqual(homeController.category!.id)).first != Null ? Icon(
-                                  //   Icons.favorite_sharp,
-                                  //   color: AppColors.white,
-                                  // ) :
+                                   controller.favoritesController.getItemIndex(homeController.product!.id , homeController.category!.id ) != null ? Icon(
+                                    Icons.favorite_sharp,
+                                    color: AppColors.white,
+                                  ) :
                                   Icon(
                                 Icons.favorite_border,
                                 color: AppColors.white,
                               )),
-                        )
+                        ))
                       ],
                     )
                   ],

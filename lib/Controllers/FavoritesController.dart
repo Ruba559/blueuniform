@@ -20,7 +20,7 @@ class FavoritesController extends GetxController {
       var item = Favorite(
         product: product,
         category: category,
-        product_id : product.id,
+        product_id: product.id,
       );
       print(item.category!.name);
       favoriteItems.add(item);

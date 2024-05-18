@@ -22,7 +22,6 @@ class BoxClient {
     print(cartItems);
     var map = cartItems.map((item) => item.toJson());
     await box.write('cart_items', map.toList());
-    
   }
 
   Future<List<Favorite>> getFavoriteItems() async {
@@ -39,9 +38,10 @@ class BoxClient {
 
   Future<void> addToFavorite(List<Favorite> favoriteItems) async {
     print('hihihi');
-    print(favoriteItems);
+    print(favoriteItems.length);
     await box.remove('favorite_items');
     var map = favoriteItems.map((item) => item.toJson());
     await box.write('favorite_items', map.toList());
+    print(favoriteItems.length);
   }
 }

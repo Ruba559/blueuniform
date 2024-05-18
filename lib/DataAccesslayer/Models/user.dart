@@ -9,7 +9,7 @@ class User {
   final int city_id;
   final int section_id;
   final int classe_id;
-  final int stage_id;
+  final String stage;
   final int semester_id;
   final int branch_id;
 
@@ -24,7 +24,7 @@ class User {
     required this.city_id,
     required this.section_id,
     required this.classe_id,
-    required this.stage_id,
+    required this.stage,
     required this.semester_id,
     required this.branch_id,
     required this.createdAt,
@@ -40,7 +40,7 @@ class User {
       city_id: map['city_id'] ,
       section_id: map['section_id'] ,
       classe_id: map['classe_id'] ,
-      stage_id: map['stage_id'],
+      stage: map['stage'] ?? "",
       semester_id: map['semester_id'],
       branch_id: map['branch_id'] ,
       createdAt: map['created_at'] ?? "",
