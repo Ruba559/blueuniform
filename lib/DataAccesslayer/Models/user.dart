@@ -30,25 +30,93 @@ class User {
     required this.createdAt,
   });
 
+  // factory User.fromMap(Map<String, dynamic> map) {
+  //   return User(
+  //     id: map['id'] as int,
+  //     studentName: map['studentName'] ?? "",
+  //     email: map['email'] ?? "",
+  //     image: map['image'] ?? "",
+  //     school_id: map['school_id'],
+  //     city_id: map['city_id'],
+  //     section_id: map['section_id'],
+  //     classe_id: map['classe_id'],
+  //     stage: map['stage'] ?? "",
+  //     semester_id: map['semester_id'],
+  //     branch_id: map['branch_id'],
+  //     createdAt: map['created_at'] ?? "",
+  //   );
+  // }
+
+  // factory User.fromJson(String source) =>
+  //     User.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      "id": id,
+      "studentName": studentName,
+      "email": email,
+      "image": image,
+      "school_id": school_id,
+      "city_id": city_id,
+      "section_id": section_id,
+      "classe_id": classe_id,
+      "stage": stage,
+      "semester_id": semester_id,
+      "branch_id": branch_id,
+      "created_at": createdAt,
+    };
+  }
+
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id'] as int,
-      studentName: map['studentName'] ?? "",
-      email: map['email'] ?? "",
-      image: map['image'] ?? "",
-      school_id: map['school_id'] ,
-      city_id: map['city_id'] ,
-      section_id: map['section_id'] ,
-      classe_id: map['classe_id'] ,
-      stage: map['stage'] ?? "",
-      semester_id: map['semester_id'],
-      branch_id: map['branch_id'] ,
-      createdAt: map['created_at'] ?? "",
+      id: map['id']?.toInt() ?? 0,
+      studentName: map['studentName'] ?? '',
+      email: map['email'] ?? '',
+      image: map['image'] ?? '',
+      school_id: map['school_id'] ?? '',
+      city_id: map['city_id'] ?? '',
+      section_id: map['section_id'] ?? '',
+      classe_id: map['classe_id'] ?? '',
+      stage: map['stage'] ?? '',
+      semester_id: map['semester_id'] ?? '',
+      branch_id: map['branch_id'] ?? '',
+      createdAt: map['created_at'] ?? '',
     );
   }
 
+  factory User.fromBoxMap(Map<String, dynamic> map) {
+    return User(
+      id: map['id']?.toInt() ?? 0,
+      studentName: map['studentName'] ?? '',
+      email: map['email'] ?? '',
+      image: map['image'] ?? '',
+      school_id: map['school_id'] ?? '',
+      city_id: map['city_id'] ?? '',
+      section_id: map['section_id'] ?? '',
+      classe_id: map['classe_id'] ?? '',
+      stage: map['stage'] ?? '',
+      semester_id: map['semester_id'] ?? '',
+      branch_id: map['branch_id'] ?? '',
+      createdAt: map['created_at'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
   factory User.fromJson(String source) =>
       User.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  toJson() {}
+  // Map<String, dynamic> toJson() => {
+  //       "id": id,
+  //       "studentName": studentName,
+  //       "email": email,
+  //       "image": image,
+  //       "school_id": school_id,
+  //       "city_id": city_id,
+  //       "section_id": section_id,
+  //       "classe_id": classe_id,
+  //       "stage": stage,
+  //       "semester_id": semester_id,
+  //       "branch_id": branch_id,
+  //       "created_at": createdAt,
+  //     };
 }

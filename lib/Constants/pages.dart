@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Middlewares/AuthMiddleware.dart';
+import '../Views/Screen/address_screen.dart';
 import '../Views/Screen/auth/login_info_screen.dart';
 import '../Views/Screen/auth/login_screen.dart';
 import '../Views/Screen/auth/register_screen.dart';
@@ -22,7 +23,7 @@ import 'routes.dart';
 List<GetPage<dynamic>> getPages = [
   GetPage(
       name: AppRoute.splashScreen,
-      middlewares: [AuthMiddleWare()],
+     // middlewares: [AuthMiddleWare()],
       page: () => SplashScreen()),
   GetPage(
       name: AppRoute.splashScreen2,
@@ -87,6 +88,11 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoute.setting,
     page: () => SettingScreen(),
+    transition: Transition.circularReveal,
+  ),
+   GetPage(
+    name: AppRoute.getAddress,
+    page: () => AddressScreen(),
     transition: Transition.circularReveal,
   ),
 ];

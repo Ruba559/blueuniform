@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'DataAccesslayer/Models/user.dart';
+import 'bindings/init_bindings.dart';
 
 
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       locale: Locale('ar'),
       getPages: getPages,
       translations: Lang(),
+        initialBinding: InitBinding(),
     );
   }
 }

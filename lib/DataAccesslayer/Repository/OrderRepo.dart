@@ -7,9 +7,9 @@ class OrderRepo {
   OrderClient client = OrderClient();
 
   Future<dynamic> addOrder(
-      user_id, paymentMethode, latitude, longitude, cartItems) async {
-    if (await client.addOrder(user_id, paymentMethode, latitude, longitude, cartItems)) {
-      var response = await client.addOrder(user_id, paymentMethode, latitude, longitude, cartItems);
+      user_id, paymentMethode, latitude, longitude, cartItems,address) async {
+    if (await client.addOrder(user_id, paymentMethode, latitude, longitude, cartItems , address)) {
+      var response = await client.addOrder(user_id, paymentMethode, latitude, longitude, cartItems , address);
 
       return true;
     } else {

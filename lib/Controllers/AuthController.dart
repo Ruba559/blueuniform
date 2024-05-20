@@ -1,3 +1,4 @@
+import 'package:blueuniform/Controllers/userController.dart';
 import 'package:blueuniform/DataAccesslayer/Models/semester.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,7 @@ class AuthController extends GetxController {
   late Stage stage;
   late Semester semester;
 
+ final UserController userController = Get.find();
   late User user;
 
   var isLoading = false.obs;
@@ -128,8 +130,9 @@ class AuthController extends GetxController {
           semester.id.toString(),
           branch.id.toString());
 
-       await boxStorage.setUser(user);
-        MyApp.user = user;
+   MyApp.user = user;
+        await userController.saveAuthState(user);
+
 
         isLoading.value = false;
          Get.offAllNamed(AppRoute.home);

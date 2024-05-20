@@ -11,8 +11,9 @@ class AppRoute {
   static const String position = '/position';
   static const String orderInfo = '/orderInfo';
   static const String PaymentMethods = '/PaymentMethods';
-  static const String orderComplate =  '/orderComplate';
-  static const String favorites =  '/favorites';
-  static const String profile =  '/profile';
-  static const String setting =  '/setting';
+  static const String orderComplate = '/orderComplate';
+  static const String favorites = '/favorites';
+  static const String profile = '/profile';
+  static const String setting = '/setting';
+  static const String getAddress = '/getAddress';
 }

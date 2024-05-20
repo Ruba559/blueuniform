@@ -11,6 +11,15 @@ class CartController extends GetxController {
 
   int quantity = 0;
 
+  @override
+  void onInit() async {
+    super.onInit();
+    await getCartItemsFromStorage();
+    print('hi');
+    print(cartItems.length);
+    update();
+  }
+
   Future<void> getCartItemsFromStorage() async {
     cartItems = await boxClient.getCartItems();
 
@@ -37,7 +46,6 @@ class CartController extends GetxController {
 
   Future<void> syncCart() async {
     await boxClient.addToCart(cartItems);
-    
   }
 
   int? getCartItemIndex(product_id, category_id) {
@@ -59,14 +67,14 @@ class CartController extends GetxController {
         print(cartItems);
         cartItems.removeAt(index);
         print('ddddddddddddd');
-            print(cartItems);
+        print(cartItems);
         await syncCart();
         print(cartItems);
       } else {
         cartItems[index!].quantity = cartItems[index!].quantity - 1;
       }
     }
-    
+
     update();
     print(cartItems.length);
   }

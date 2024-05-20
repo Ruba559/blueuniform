@@ -39,15 +39,15 @@ class HomeController extends GetxController {
 
   LocationController locationController = LocationController();
 
+  late TextEditingController address;
+
   void onInit() async {
+    address = TextEditingController();
     isLoading.value = true;
     if (await checkInternet()) {
       categories = await productRepo.getCategories();
-        isLoading.value = false;
-    }else{
-
-    }
-  
+      isLoading.value = false;
+    } else {}
 
     update();
     super.onInit();
@@ -111,10 +111,16 @@ class HomeController extends GetxController {
   }
 
   addOrder() async {
+    print(address.text);
     isLoading.value = true;
     getCartItemsMap();
-    await orderRepo.addOrder(MyApp.user!.id, paymentMethode,
-        position.value!.latitude, position.value!.longitude, cartItems);
+    await orderRepo.addOrder(
+        MyApp.user!.id,
+        paymentMethode,
+        position.value!.latitude,
+        position.value!.longitude,
+        cartItems,
+        address.text);
     isLoading.value = false;
     cartController.clearCart();
     Get.offNamed(AppRoute.orderComplate);

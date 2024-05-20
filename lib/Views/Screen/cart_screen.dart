@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
-  CartController cartController = Get.put(CartController());
+  CartController cartController = Get.find();
     HomeController hometController = Get.find();
      LocationController locationController = Get.put(LocationController());
   @override

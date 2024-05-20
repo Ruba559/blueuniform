@@ -20,6 +20,8 @@ class Cart {
         product: json["product"],
       );
 
+
+
   Map<String, dynamic> toJson() => {
         "quantity": quantity,
         "category": category,

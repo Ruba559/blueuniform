@@ -19,6 +19,8 @@ class Favorite {
          product_id: json["product_id"] ?? 0,
       );
 
+
+
   Map<String, dynamic> toJson() => {
         "category": category,
         "product": product,

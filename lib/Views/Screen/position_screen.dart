@@ -5,6 +5,7 @@ import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
 
 import '../../Constants/app_color.dart';
+import '../../Constants/routes.dart';
 import '../../Controllers/LocationController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
@@ -76,9 +77,9 @@ class PositionScreen extends StatelessWidget {
                   text: "set_location".tr,
                   color: AppColors.secondary,
                   onPressed: () => {
-                  //  Get.toNamed(AppRoute.orderInfo)
-                     homeController.getOrderInfo(controller
-                                            .position.value)
+                    Get.toNamed(AppRoute.getAddress)
+                    //  homeController.getOrderInfo(controller
+                    //                         .position.value)
                   },
                 )
               ],

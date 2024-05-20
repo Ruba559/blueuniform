@@ -1,3 +1,4 @@
+import 'package:blueuniform/Controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Constants/routes.dart';
@@ -20,6 +21,7 @@ class LoginController extends GetxController {
   var logging = false.obs;
 
   var message = '';
+  final UserController userController = Get.find();
 
   void onInit() {
     email = TextEditingController();
@@ -33,9 +35,9 @@ class LoginController extends GetxController {
       if (await userRepo.login(email.text, password.text) != '') {
         late User user;
         user = await userRepo.login(email.text, password.text);
-
-        await boxStorage.setUser(user);
         MyApp.user = user;
+        await userController.saveAuthState(user);
+
         logging.value = false;
         message = '';
         update();
@@ -58,7 +60,7 @@ class LoginController extends GetxController {
     user = await boxStorage.getUser();
   }
 
-    logout() async {
+  logout() async {
     await boxStorage.removeUser();
     MyApp.user = null;
     Get.offAllNamed(AppRoute.login);
