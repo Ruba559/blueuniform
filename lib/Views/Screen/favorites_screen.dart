@@ -55,9 +55,9 @@ class FavoritesScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(6),
                                             child: InkWell( 
                                               onTap: () => {
-                                                    homeController.getProduct(controller.favoriteItems[
-                                                                index]
-                                                            .category!)
+                                                    // homeController.getProduct(controller.favoriteItems[
+                                                    //             index]
+                                                    //         .category!)
                                               },
                                               child: Row(
                                                   mainAxisAlignment:
@@ -71,7 +71,7 @@ class FavoritesScreen extends StatelessWidget {
                                                         controller
                                                             .favoriteItems[
                                                                 index]
-                                                            .category!
+                                                            
                                                             .image,
                                                         height: 80,
                                                         width: 80,
@@ -89,7 +89,7 @@ class FavoritesScreen extends StatelessWidget {
                                                               controller
                                                                   .favoriteItems[
                                                                       index]
-                                                                  .category!
+                                                                 
                                                                   .name,
                                                               style: AppTextStyle
                                                                   .body
@@ -110,7 +110,7 @@ class FavoritesScreen extends StatelessWidget {
                                                                   .spaceBetween,
                                                           children: [
                                                             Text(
-                                                              "${'price'.tr} : ${controller.favoriteItems[index].category!.price}",
+                                                              "${'price'.tr} : ${controller.favoriteItems[index].price}",
                                                               style:
                                                                   AppTextStyle
                                                                       .xsmall,

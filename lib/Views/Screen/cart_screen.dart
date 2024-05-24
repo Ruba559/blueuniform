@@ -65,7 +65,7 @@ class CartScreen extends StatelessWidget {
                                                   borderRadius: radius20,
                                                   child: Image.network(
                                                     controller.cartItems[index]
-                                                        .category!.image,
+                                                        .image,
                                                     height: 80,
                                                     width: 80,
                                                     fit: BoxFit.fill,
@@ -80,8 +80,7 @@ class CartScreen extends StatelessWidget {
                                                         child: Text(
                                                           controller
                                                               .cartItems[index]
-                                                              .category!
-                                                              .name,
+                                                              .name.toString(),
                                                           style: AppTextStyle
                                                               .body
                                                               .copyWith(
@@ -109,7 +108,7 @@ class CartScreen extends StatelessWidget {
                                                           width: 10,
                                                         ),
                                                         Text(
-                                                          '${'price'.tr} : ${controller.cartItems[index].category!.price}'
+                                                          '${'price'.tr} : ${controller.cartItems[index].price}'
                                                           ,
                                                           style: AppTextStyle
                                                               .xsmall,

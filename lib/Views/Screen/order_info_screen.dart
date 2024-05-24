@@ -65,7 +65,7 @@ class OrderInfoScreen extends StatelessWidget {
                                                 children: [
                                                   Text(
                                                     controller.cartItems[index]
-                                                        .category!.name,
+                                                        .name,
                                                     style: AppTextStyle.body,
                                                   ),
                                                   SizedBox(

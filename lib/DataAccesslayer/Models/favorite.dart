@@ -4,26 +4,33 @@ import 'package:blueuniform/DataAccesslayer/Models/category.dart';
 import 'package:blueuniform/DataAccesslayer/Models/product.dart';
 
 class Favorite {
-  Category? category;
-  Product? product;
-  int product_id;
+  String name;
+  String image;
+  num price;
+  int categoryId;
+
   Favorite({
-    required this.category,
-    required this.product,
-    required this.product_id,
+    required this.name,
+    required this.image,
+    required this.price,
+    required this.categoryId,
   });
 
-  factory Favorite.fromJson(Map<String, dynamic> json) => Favorite(
-        category: json["category"],
-        product: json["product"],
-         product_id: json["product_id"] ?? 0,
-      );
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'image': image,
+      'price': price,
+      'category_id': categoryId,
+    };
+  }
 
-
-
-  Map<String, dynamic> toJson() => {
-        "category": category,
-        "product": product,
-         "product_id": product_id  ,
-      };
+  factory Favorite.fromMap(Map<String, dynamic> map) {
+    return Favorite(
+      name: map['name'] as String,
+      image: map['image'] as String,
+      price: map['price'] as num,
+       categoryId: map['category_id'] as int,
+    );
+  }
 }

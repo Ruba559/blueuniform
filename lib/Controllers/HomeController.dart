@@ -72,12 +72,14 @@ class HomeController extends GetxController {
   }
 
   addToCart(category) async {
-    cartController.addToCart(quantity, product, category);
+    cartController.addToCart(quantity, category.name.toString(), category.image,
+        category.price, product!.id, category.id);
     update();
   }
 
   addToFavorites(category) async {
-    favoritesController.addToFavorites(product, category);
+    favoritesController.addToFavorites( category.name.toString(), category.image,
+        category.price , category.id);
     isfav = true;
     update();
   }
@@ -91,12 +93,17 @@ class HomeController extends GetxController {
   }
 
   final position = Rx<Position?>(null);
-  getOrderInfo(value) {
-    position.value = value;
 
-    Get.toNamed(AppRoute.orderInfo);
+  getAddress(value) {
+    position.value = value;
+    print(position.value);
+    Get.toNamed(AppRoute.getAddress);
   }
 
+
+ getOrderInfo() {
+    Get.toNamed(AppRoute.orderInfo);
+  }
   List<Map<String, dynamic>> cartItems = [];
 
   void getCartItemsMap() {
@@ -104,14 +111,13 @@ class HomeController extends GetxController {
     for (Cart item in cartController.cartItems) {
       cartItems.add({
         'quantity': item.quantity,
-        'category': item.category!.id,
-        'product': item.product!.id,
+        'product_id': item.productId,
       });
     }
   }
 
   addOrder() async {
-    print(address.text);
+    
     isLoading.value = true;
     getCartItemsMap();
     await orderRepo.addOrder(

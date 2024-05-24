@@ -57,6 +57,7 @@ class Lang implements Translations {
           "save": "حفظ",
           "switch_locale": "Switch Locale",
           "settings" : "الإعدادات",
+          "address_label" : "ادخل العنوان بالتفصيل",
         },
         "en": {
           "home": " Home",
@@ -112,6 +113,7 @@ class Lang implements Translations {
           "save": "Save",
           "switch_locale": "تبديل اللغة",
           "settings" : "Settings",
+           "address_label" : "Enter the address in detail",
         },
       };
 }

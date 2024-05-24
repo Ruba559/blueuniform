@@ -22,6 +22,7 @@ class AddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
         bottomNavigationBar: AppButtomNavBar(
@@ -33,12 +34,13 @@ class AddressScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppListTitle(text: 'العنوان'),
+                AppListTitle(text: 'delivery'.tr),
+                SizedBox(height: 100,),
                 Flexible(
                     child: 
                  InputForm(
-                      passwordText: true,
-                      label: 'address'.tr,
+                  isTextarea : 4,
+                      label: 'address_label'.tr,
                       valid: (val) {
                         return validInput(val!, 3, 20, "text", true, null);
                       },
@@ -49,8 +51,7 @@ class AddressScreen extends StatelessWidget {
                   text: 'continue_and_payment'.tr,
                   color: AppColors.secondary,
                   onPressed: () => {
-                            homeController.getOrderInfo(homeController
-                                            .position.value)
+                            homeController.getOrderInfo()
                   },
                 )
               ],

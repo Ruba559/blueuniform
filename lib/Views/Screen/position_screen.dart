@@ -77,9 +77,9 @@ class PositionScreen extends StatelessWidget {
                   text: "set_location".tr,
                   color: AppColors.secondary,
                   onPressed: () => {
-                    Get.toNamed(AppRoute.getAddress)
-                    //  homeController.getOrderInfo(controller
-                    //                         .position.value)
+                    //Get.toNamed(AppRoute.)
+                     homeController.getAddress(controller
+                                            .position.value)
                   },
                 )
               ],

@@ -177,7 +177,7 @@ class ProductScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: AppColors.red, borderRadius: radius10),
                               child:
-                                   controller.favoritesController.getItemIndex(homeController.product!.id , homeController.category!.id ) != null ? Icon(
+                                   controller.favoritesController.getItemIndex( homeController.category!.id ) != null ? Icon(
                                     Icons.favorite_sharp,
                                     color: AppColors.white,
                                   ) :

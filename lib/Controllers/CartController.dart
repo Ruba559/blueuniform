@@ -26,13 +26,16 @@ class CartController extends GetxController {
     update();
   }
 
-  addToCart(quantity, product, category) async {
-    var cartItemIndex = getCartItemIndex(product.id, category.id);
+  addToCart(quantity, name, image, price, id, categoryId) async {
+    var cartItemIndex = getCartItemIndex(id, categoryId);
     if (cartItemIndex == null) {
       var cartItem = Cart(
         quantity: quantity,
-        product: product,
-        category: category,
+        name: name,
+        image: image,
+        price: price,
+        productId: id,
+        categoryId: categoryId,
       );
       cartItems.add(cartItem);
       await syncCart();
@@ -50,8 +53,8 @@ class CartController extends GetxController {
 
   int? getCartItemIndex(product_id, category_id) {
     for (var index = 0; index < cartItems.length; index++) {
-      if (cartItems[index].product!.id == product_id &&
-          cartItems[index].category!.id == category_id) {
+      if (cartItems[index].productId == product_id &&
+          cartItems[index].categoryId == category_id) {
         return index;
       }
     }
@@ -69,7 +72,9 @@ class CartController extends GetxController {
         print('ddddddddddddd');
         print(cartItems);
         await syncCart();
-        print(cartItems);
+        await getCartItemsFromStorage();
+
+        print(cartItems.length);
       } else {
         cartItems[index!].quantity = cartItems[index!].quantity - 1;
       }
@@ -81,7 +86,7 @@ class CartController extends GetxController {
 
   Future<void> calc() async {
     for (var item in cartItems) {
-      totalAmount += item.category!.price;
+      totalAmount += item.price;
     }
     update();
   }
