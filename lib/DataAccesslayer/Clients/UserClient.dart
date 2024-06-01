@@ -33,13 +33,12 @@ class UserClient {
   }
 
 
-  Future<dynamic> UpdateProfile(id, name, email, password, image) async {
+  Future<dynamic> UpdateProfile(id, email, password, image) async {
     var request =
         http.MultipartRequest('POST', Uri.parse(baseUrl + updateProfile));
 
     request.fields.addAll({
       'id': id.toString(),
-      'name': name.toString(),
       'email': email.toString(),
       'password': password.toString(),
     });

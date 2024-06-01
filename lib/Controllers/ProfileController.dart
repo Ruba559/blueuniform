@@ -8,7 +8,6 @@ import '../DataAccesslayer/Repository/UserRepo.dart';
 import '../main.dart';
 
 class ProfileController extends GetxController {
-  TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController? password = TextEditingController();
 
@@ -34,25 +33,25 @@ class ProfileController extends GetxController {
     super.onInit();
   }
 
+  
+
   void setUserDetails(User? user) {
-    print(user);
     if (user != null) {
       email.value = TextEditingValue(text: MyApp.user!.email);
     }
   }
 
-  Future<void> updateProfile() async {
-    if (name.text != '' && email.text != '') {
+ updateProfile() async {
+   
+    if (email.text != '') {
       isLoading.value = true;
-
       user = await userRepo.updateProfile(
-          MyApp.user?.id, name.text, email.text, password!.text, image!.path);
+          MyApp.user?.id, email.text, password!.text, image!.path);
 
       if (user != '') {
         isLoading.value = false;
         MyApp.user = user;
         update();
-        print('done');
       }
     }
   }

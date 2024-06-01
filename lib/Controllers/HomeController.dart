@@ -59,6 +59,16 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoute.product);
 
     update();
+
+    
+  }
+
+  getProductFromProducts(category_id)
+  {
+     category = categories.where((element) => element.id.isEqual(category_id)).first ;
+       Get.toNamed(AppRoute.product);
+
+    update();
   }
 
   selectSize(value) {

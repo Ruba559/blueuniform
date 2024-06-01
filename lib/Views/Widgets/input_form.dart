@@ -26,7 +26,7 @@ class InputForm extends StatelessWidget {
       this.passwordText = false,
       this.label,
       this.color = AppColors.black, 
-     this.keyboardType = TextInputType.name, this.isTextarea,});
+     this.keyboardType = TextInputType.name, this.isTextarea = 1,});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class InputForm extends StatelessWidget {
       Container(
         margin: const EdgeInsets.only(bottom: 8),
         child: TextFormField(
-           maxLines: isTextarea != 1 ? isTextarea : 1 ,
+           maxLines: isTextarea  ,
           validator: valid,
           obscureText: passwordText,
           controller: mycontroller,

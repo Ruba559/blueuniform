@@ -19,7 +19,7 @@ class BoxStorage{
 
  Future<User> getAuthedUser() async {
     print(await box.read('userdata'));
-    return User.fromBoxMap(await box.read('userdata'));
+    return User.fromMap(await box.read('userdata'));
   }
 
     Future<bool> getAuthState() async {

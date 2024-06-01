@@ -20,10 +20,10 @@ class UserRepo {
     }
   }
 
-Future<dynamic> updateProfile(id, name, email, password , image ) async {
-      if (await client.UpdateProfile(id, name, email, password , image ) != '') {
+Future<dynamic> updateProfile(id, email, password , image ) async {
+      if (await client.UpdateProfile(id, email, password , image ) != '') {
 
-    var response = await client.UpdateProfile(id, name, email, password , image);
+    var response = await client.UpdateProfile(id, email, password , image);
    
        return User.fromJson(response);
     } else {

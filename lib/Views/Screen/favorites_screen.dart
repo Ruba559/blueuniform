@@ -55,9 +55,9 @@ class FavoritesScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(6),
                                             child: InkWell( 
                                               onTap: () => {
-                                                    // homeController.getProduct(controller.favoriteItems[
-                                                    //             index]
-                                                    //         .category!)
+                                                    homeController.getProductFromProducts(controller.favoriteItems[
+                                                                index]
+                                                            .categoryId)
                                               },
                                               child: Row(
                                                   mainAxisAlignment:

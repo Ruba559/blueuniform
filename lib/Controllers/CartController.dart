@@ -4,7 +4,9 @@ import '../DataAccesslayer/Models/cart.dart';
 import '../Views/Widgets/snackbar.dart';
 
 class CartController extends GetxController {
-  List<Cart> cartItems = [];
+//  List<Cart> cartItems = [].obs;
+  List<Cart> cartItems = <Cart>[].obs;
+
   BoxClient boxClient = BoxClient();
 
   late num totalAmount = 0;
@@ -16,14 +18,13 @@ class CartController extends GetxController {
     super.onInit();
     await getCartItemsFromStorage();
     print('hi');
-    print(cartItems.length);
+    print('$cartItems.length i');
     update();
   }
 
   Future<void> getCartItemsFromStorage() async {
     cartItems = await boxClient.getCartItems();
-
-    update();
+  update();
   }
 
   addToCart(quantity, name, image, price, id, categoryId) async {
@@ -49,6 +50,8 @@ class CartController extends GetxController {
 
   Future<void> syncCart() async {
     await boxClient.addToCart(cartItems);
+  update();
+    print(cartItems.length);
   }
 
   int? getCartItemIndex(product_id, category_id) {

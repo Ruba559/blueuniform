@@ -58,6 +58,9 @@ class Lang implements Translations {
           "switch_locale": "Switch Locale",
           "settings" : "الإعدادات",
           "address_label" : "ادخل العنوان بالتفصيل",
+            "cant_be_empty": "الحقل مطلوب",
+          "not_match": "غير متطابق",
+          "not_valid_email": "بريد الكتروني غير صحيح",
         },
         "en": {
           "home": " Home",
@@ -114,6 +117,10 @@ class Lang implements Translations {
           "switch_locale": "تبديل اللغة",
           "settings" : "Settings",
            "address_label" : "Enter the address in detail",
+             "cant_be_empty": "Can't be empty",
+          "not_match": "Not Match",
+          "not_valid_email": "not valid email",
+          
         },
       };
 }

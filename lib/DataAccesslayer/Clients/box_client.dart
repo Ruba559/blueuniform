@@ -29,23 +29,7 @@ class BoxClient {
   }
  
 
-  // Future<List<Cart>> getCartItems() async {
-  //   var cartItems = await box.read('cart_items');
-  //   print(cartItems);
-  //   if (cartItems != null && cartItems != "") {
-  //     final data = cartItems.cast<Map<String, dynamic>>();
-  //     return data.map<Cart>((json) => Cart.fromMap(json)).toList();
-  //   }
-
-  //   return [];
-  // }
-
-  // Future<void> addToCart(List<Cart> cartItems) async {
-  //   await box.remove('cart_items');
-  //   print(cartItems);
-  //   var map = cartItems.map((item) => item.toJson());
-  //   await box.write('cart_items', map.toList());
-  // }
+ 
 
 
   Future<List<Favorite>> getFavoriteItems() async {
