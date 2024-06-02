@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+
 import '../DataAccesslayer/Clients/box_client.dart';
 import '../DataAccesslayer/Models/cart.dart';
 import '../Views/Widgets/snackbar.dart';
 
 class CartController extends GetxController {
 //  List<Cart> cartItems = [].obs;
-  List<Cart> cartItems = <Cart>[].obs;
+  List<Cart> cartItems = [];
 
   BoxClient boxClient = BoxClient();
 
@@ -24,7 +25,7 @@ class CartController extends GetxController {
 
   Future<void> getCartItemsFromStorage() async {
     cartItems = await boxClient.getCartItems();
-  update();
+    update();
   }
 
   addToCart(quantity, name, image, price, id, categoryId) async {
@@ -40,7 +41,7 @@ class CartController extends GetxController {
       );
       cartItems.add(cartItem);
       await syncCart();
-
+      print(cartItems);
       SnackBars.showSuccess('تمت الإضافة للسلة بنجاح');
       update();
     } else {
@@ -50,7 +51,7 @@ class CartController extends GetxController {
 
   Future<void> syncCart() async {
     await boxClient.addToCart(cartItems);
-  update();
+    update();
     print(cartItems.length);
   }
 

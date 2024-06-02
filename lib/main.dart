@@ -1,4 +1,3 @@
-
 import 'package:blueuniform/Constants/pages.dart';
 import 'package:blueuniform/Data/lang.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +6,6 @@ import 'package:get_storage/get_storage.dart';
 
 import 'DataAccesslayer/Models/user.dart';
 import 'bindings/init_bindings.dart';
-
-
 
 // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 //   print(message.data);
@@ -19,8 +16,8 @@ void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
- 
-   await GetStorage.init();
+
+  await GetStorage.init();
 
   runApp(const MyApp());
 }
@@ -28,7 +25,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   static User? user;
-   static int bottomSelectedItem = 0;
+  static int bottomSelectedItem = 0;
   @override
   Widget build(BuildContext context) {
     //Get.put(LocaleController());
@@ -38,7 +35,7 @@ class MyApp extends StatelessWidget {
       locale: Locale('ar'),
       getPages: getPages,
       translations: Lang(),
-        initialBinding: InitBinding(),
+      initialBinding: InitBinding(),
     );
   }
 }

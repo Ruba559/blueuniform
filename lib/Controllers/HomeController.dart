@@ -4,7 +4,6 @@ import 'package:blueuniform/Controllers/LocationController.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../Constants/routes.dart';
 import '../DataAccesslayer/Clients/BoxStorage.dart';
@@ -33,7 +32,7 @@ class HomeController extends GetxController {
 
   var paymentMethode = 'sadad';
 
-  CartController cartController = CartController();
+  CartController cartController = Get.find();
 
   FavoritesController favoritesController = FavoritesController();
 
@@ -59,14 +58,12 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoute.product);
 
     update();
-
-    
   }
 
-  getProductFromProducts(category_id)
-  {
-     category = categories.where((element) => element.id.isEqual(category_id)).first ;
-       Get.toNamed(AppRoute.product);
+  getProductFromProducts(category_id) {
+    category =
+        categories.where((element) => element.id.isEqual(category_id)).first;
+    Get.toNamed(AppRoute.product);
 
     update();
   }
@@ -88,8 +85,8 @@ class HomeController extends GetxController {
   }
 
   addToFavorites(category) async {
-    favoritesController.addToFavorites( category.name.toString(), category.image,
-        category.price , category.id);
+    favoritesController.addToFavorites(
+        category.name.toString(), category.image, category.price, category.id);
     isfav = true;
     update();
   }
@@ -110,10 +107,10 @@ class HomeController extends GetxController {
     Get.toNamed(AppRoute.getAddress);
   }
 
-
- getOrderInfo() {
+  getOrderInfo() {
     Get.toNamed(AppRoute.orderInfo);
   }
+
   List<Map<String, dynamic>> cartItems = [];
 
   void getCartItemsMap() {
@@ -127,7 +124,6 @@ class HomeController extends GetxController {
   }
 
   addOrder() async {
-    
     isLoading.value = true;
     getCartItemsMap();
     await orderRepo.addOrder(
