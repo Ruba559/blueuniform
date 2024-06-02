@@ -1,12 +1,12 @@
 import 'package:blueuniform/Views/Widgets/layouts/appdrawar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../Constants/app_color.dart';
 import '../../Controllers/HomeController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/list_title.dart';
-import 'package:get/get.dart';
-
 import '../Widgets/shimmer/category_shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -44,14 +44,18 @@ class HomeScreen extends StatelessWidget {
                                     controller.categories.length, (index) {
                                   return InkWell(
                                       onTap: () => {
-                                             controller.getProduct(controller.categories[index])
-                                            
+                                            controller.getProduct(
+                                                controller.categories[index])
                                           },
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(25),
-                                        child: Image.network(
-                                            fit: BoxFit.fill,
-                                            controller.categories[index].image),
+                                        child: Hero(
+                                          tag: controller.categories[index].id,
+                                          child: Image.network(
+                                              fit: BoxFit.fill,
+                                              controller
+                                                  .categories[index].image),
+                                        ),
                                       ));
                                 }),
                               ),

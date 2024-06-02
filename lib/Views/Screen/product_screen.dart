@@ -2,6 +2,8 @@ import 'package:blueuniform/Constants/app_style.dart';
 import 'package:blueuniform/Constants/app_text_style.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../Constants/app_color.dart';
 import '../../Controllers/HomeController.dart';
 import '../../DataAccesslayer/Models/product.dart';
@@ -9,12 +11,10 @@ import '../../main.dart';
 import '../Widgets/label_form.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
-import 'package:get/get.dart';
-
 
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
-  
+
   HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,12 @@ class ProductScreen extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(70),
                       ),
-                      child: Image.network(
-                        fit: BoxFit.cover,
-                        homeController.category!.image,
+                      child: Hero(
+                        tag: homeController.category!.id,
+                        child: Image.network(
+                          fit: BoxFit.cover,
+                          homeController.category!.image,
+                        ),
                       ),
                     )),
               )),
@@ -165,27 +168,31 @@ class ProductScreen extends StatelessWidget {
                             homeController.addToCart(homeController.category)
                           },
                         ),
-                       GetBuilder<HomeController>(
-                        builder: (controller) =>  InkWell(
-                          onTap: () => {
-                            homeController
-                                .addToFavorites(homeController.category)
-                          },
-                          child: Container(
-                              margin: EdgeInsets.all(10),
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.red, borderRadius: radius10),
-                              child:
-                                   controller.favoritesController.getItemIndex( homeController.category!.id ) != null ? Icon(
-                                    Icons.favorite_sharp,
-                                    color: AppColors.white,
-                                  ) :
-                                  Icon(
-                                Icons.favorite_border,
-                                color: AppColors.white,
-                              )),
-                        ))
+                        GetBuilder<HomeController>(
+                            builder: (controller) => InkWell(
+                                  onTap: () => {
+                                    homeController
+                                        .addToFavorites(homeController.category)
+                                  },
+                                  child: Container(
+                                      margin: EdgeInsets.all(10),
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          color: AppColors.red,
+                                          borderRadius: radius10),
+                                      child: controller.favoritesController
+                                                  .getItemIndex(homeController
+                                                      .category!.id) !=
+                                              null
+                                          ? Icon(
+                                              Icons.favorite_sharp,
+                                              color: AppColors.white,
+                                            )
+                                          : Icon(
+                                              Icons.favorite_border,
+                                              color: AppColors.white,
+                                            )),
+                                ))
                       ],
                     )
                   ],

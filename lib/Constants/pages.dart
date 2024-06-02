@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Controllers/ProfileController.dart';
 import '../Views/Screen/address_screen.dart';
 import '../Views/Screen/auth/login_info_screen.dart';
 import '../Views/Screen/auth/login_screen.dart';
@@ -24,7 +22,7 @@ import 'routes.dart';
 List<GetPage<dynamic>> getPages = [
   GetPage(
       name: AppRoute.splashScreen,
-     // middlewares: [AuthMiddleWare()],
+      // middlewares: [AuthMiddleWare()],
       page: () => SplashScreen()),
   GetPage(
       name: AppRoute.splashScreen2,
@@ -48,7 +46,6 @@ List<GetPage<dynamic>> getPages = [
   ),
   GetPage(
     name: AppRoute.product,
-    transition: Transition.upToDown,
     page: () => ProductScreen(),
   ),
   GetPage(
@@ -85,14 +82,14 @@ List<GetPage<dynamic>> getPages = [
     name: AppRoute.profile,
     page: () => ProfileScreen(),
     transition: Transition.circularReveal,
-     binding: ( ProfileBinding()),
+    binding: (ProfileBinding()),
   ),
   GetPage(
     name: AppRoute.setting,
     page: () => SettingScreen(),
     transition: Transition.circularReveal,
   ),
-   GetPage(
+  GetPage(
     name: AppRoute.getAddress,
     page: () => AddressScreen(),
     transition: Transition.circularReveal,
