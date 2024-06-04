@@ -89,6 +89,14 @@ class ProfileScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                    InputForm(
+                                  label: "name".tr,
+                                  valid: (val) {
+                                    return validInput(
+                                        val!, 2, 50, "text", true, null);
+                                  },
+                                  mycontroller: controller.name,
+                                ),
                                 InputForm(
                                   label: "phone".tr,
                                   valid: (val) {

@@ -20,7 +20,6 @@ class CartScreen extends StatelessWidget {
   LocationController locationController = Get.put(LocationController());
   @override
   Widget build(BuildContext context) {
-    /*  cartController.getCartItemsFromStorage();  */
     return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),

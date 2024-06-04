@@ -9,6 +9,7 @@ import '../Views/Screen/favorites_screen.dart';
 import '../Views/Screen/home_screen.dart';
 import '../Views/Screen/order_complate_screen.dart';
 import '../Views/Screen/order_info_screen.dart';
+import '../Views/Screen/orders_screen.dart';
 import '../Views/Screen/payment_methods_screen.dart';
 import '../Views/Screen/position_screen.dart';
 import '../Views/Screen/product_screen.dart';
@@ -16,13 +17,11 @@ import '../Views/Screen/profile_screen.dart';
 import '../Views/Screen/setting_screen.dart';
 import '../Views/Screen/splash_screen.dart';
 import '../Views/Screen/splash_screen2.dart';
-import '../bindings/profile_binding.dart';
 import 'routes.dart';
 
 List<GetPage<dynamic>> getPages = [
   GetPage(
       name: AppRoute.splashScreen,
-      // middlewares: [AuthMiddleWare()],
       page: () => SplashScreen()),
   GetPage(
       name: AppRoute.splashScreen2,
@@ -82,7 +81,6 @@ List<GetPage<dynamic>> getPages = [
     name: AppRoute.profile,
     page: () => ProfileScreen(),
     transition: Transition.circularReveal,
-    binding: (ProfileBinding()),
   ),
   GetPage(
     name: AppRoute.setting,
@@ -92,6 +90,11 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoute.getAddress,
     page: () => AddressScreen(),
+    transition: Transition.circularReveal,
+  ),
+   GetPage(
+    name: AppRoute.orders,
+    page: () => OrdersScreen(),
     transition: Transition.circularReveal,
   ),
 ];

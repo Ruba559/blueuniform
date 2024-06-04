@@ -52,6 +52,19 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
+              Icons.list,
+              color: AppColors.primary,
+            ),
+            title: Text(
+              "orders".tr,
+              style: AppTextStyle.body.copyWith(color: AppColors.primary),
+            ),
+            onTap: () {
+              Get.toNamed(AppRoute.orders);
+            },
+          ),
+      ListTile(
+            leading: Icon(
               Icons.person,
               color: AppColors.primary,
             ),
@@ -63,7 +76,6 @@ class AppDrawer extends StatelessWidget {
               Get.toNamed(AppRoute.profile);
             },
           ),
-    
  
           ListTile(
             leading: Icon(

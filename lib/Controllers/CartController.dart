@@ -5,7 +5,7 @@ import '../DataAccesslayer/Models/cart.dart';
 import '../Views/Widgets/snackbar.dart';
 
 class CartController extends GetxController {
-//  List<Cart> cartItems = [].obs;
+  
   List<Cart> cartItems = [];
 
   BoxClient boxClient = BoxClient();
@@ -18,30 +18,27 @@ class CartController extends GetxController {
   void onInit() async {
     super.onInit();
     await getCartItemsFromStorage();
-    print('hi');
-    print('$cartItems.length i');
-    update();
   }
 
   Future<void> getCartItemsFromStorage() async {
     cartItems = await boxClient.getCartItems();
-    update();
   }
 
-  addToCart(quantity, name, image, price, id, categoryId) async {
-    var cartItemIndex = getCartItemIndex(id, categoryId);
+  addToCart(quantity,  category , product) async {
+
+    var cartItemIndex = getCartItemIndex(product.id, category.id);
     if (cartItemIndex == null) {
       var cartItem = Cart(
         quantity: quantity,
-        name: name,
-        image: image,
-        price: price,
-        productId: id,
-        categoryId: categoryId,
+        name: category.name,
+        image: category.image,
+        price: category.price,
+        productId: product.id,
+        categoryId: category.id,
       );
       cartItems.add(cartItem);
       await syncCart();
-      print(cartItems);
+
       SnackBars.showSuccess('تمت الإضافة للسلة بنجاح');
       update();
     } else {
@@ -51,8 +48,6 @@ class CartController extends GetxController {
 
   Future<void> syncCart() async {
     await boxClient.addToCart(cartItems);
-    update();
-    print(cartItems.length);
   }
 
   int? getCartItemIndex(product_id, category_id) {
@@ -71,12 +66,8 @@ class CartController extends GetxController {
     }
     if (type == 'minus') {
       if (cartItems[index!].quantity <= 1) {
-        print(cartItems);
         cartItems.removeAt(index);
-        print('ddddddddddddd');
-        print(cartItems);
         await syncCart();
-        await getCartItemsFromStorage();
 
         print(cartItems.length);
       } else {
@@ -100,8 +91,5 @@ class CartController extends GetxController {
     await syncCart();
     calc();
   }
-  //  await showDialog(
-  //     context: context,
-  //     builder: (context) => new AlertDialog(...),
-  //   );
+  
 }

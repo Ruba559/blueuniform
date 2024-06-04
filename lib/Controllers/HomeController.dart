@@ -1,5 +1,4 @@
 import 'package:blueuniform/Controllers/CartController.dart';
-import 'package:blueuniform/Controllers/FavoritesController.dart';
 import 'package:blueuniform/Controllers/LocationController.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -34,9 +33,8 @@ class HomeController extends GetxController {
 
   CartController cartController = Get.find();
 
-  FavoritesController favoritesController = FavoritesController();
+  LocationController locationController = Get.put(LocationController());
 
-  LocationController locationController = LocationController();
 
   late TextEditingController address;
 
@@ -78,18 +76,6 @@ class HomeController extends GetxController {
     update();
   }
 
-  addToCart(category) async {
-    cartController.addToCart(quantity, category.name.toString(), category.image,
-        category.price, product!.id, category.id);
-    update();
-  }
-
-  addToFavorites(category) async {
-    favoritesController.addToFavorites(
-        category.name.toString(), category.image, category.price, category.id);
-    isfav = true;
-    update();
-  }
 
   getPosition() async {
     if (await locationController.checkLocationServiceEnabled()) {
@@ -119,6 +105,8 @@ class HomeController extends GetxController {
       cartItems.add({
         'quantity': item.quantity,
         'product_id': item.productId,
+        'price' : item.price,
+        'total' : item.price * item.quantity ,
       });
     }
   }
@@ -132,7 +120,8 @@ class HomeController extends GetxController {
         position.value!.latitude,
         position.value!.longitude,
         cartItems,
-        address.text);
+        address.text,
+        cartController.totalAmount);
     isLoading.value = false;
     cartController.clearCart();
     Get.offNamed(AppRoute.orderComplate);

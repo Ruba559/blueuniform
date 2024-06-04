@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
 
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight) / 3;

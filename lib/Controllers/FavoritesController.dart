@@ -1,3 +1,4 @@
+import 'package:blueuniform/DataAccesslayer/Models/product.dart';
 import 'package:get/get.dart';
 import '../DataAccesslayer/Clients/box_client.dart';
 import '../DataAccesslayer/Models/favorite.dart';
@@ -13,15 +14,15 @@ class FavoritesController extends GetxController {
     update();
   }
 
-  addToFavorites( name, image, price,  categoryId) async {
-    var itemIndex = getItemIndex( categoryId);
+  addToFavorites(category) async {
+    var itemIndex = getItemIndex(category.id);
 
     if (itemIndex == null) {
       var item = Favorite(
-        name: name,
-        image: image,
-        price: price,
-        categoryId: categoryId,
+        name: category.name,
+        image: category.image,
+        price: category.price,
+        categoryId: category.id,
       );
 
       favoriteItems.add(item);
