@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../../../Constants/app_color.dart';
 import '../../../Constants/app_text_style.dart';
 import '../../../Constants/routes.dart';
@@ -16,7 +15,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController controller = Get.find();
- //   LocaleController localeController = Get.find();
+    //   LocaleController localeController = Get.find();
     return Drawer(
         backgroundColor: AppColors.white,
         child: ListView(children: [
@@ -52,6 +51,21 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
+              Icons.shopping_cart,
+              color: AppColors.primary,
+            ),
+            title: Text(
+              'shopping_cart'.tr,
+              style: AppTextStyle.body.copyWith(
+                color: AppColors.primary,
+              ),
+            ),
+            onTap: () {
+              Get.toNamed(AppRoute.cart);
+            },
+          ),
+          ListTile(
+            leading: Icon(
               Icons.person,
               color: AppColors.primary,
             ),
@@ -63,8 +77,6 @@ class AppDrawer extends StatelessWidget {
               Get.toNamed(AppRoute.profile);
             },
           ),
-    
- 
           ListTile(
             leading: Icon(
               Icons.language,

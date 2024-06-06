@@ -15,7 +15,7 @@ import '../Widgets/layouts/appbar.dart';
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
 
-  HomeController homeController = Get.find();
+  final HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +28,7 @@ class ProductScreen extends StatelessWidget {
         body: CustomScrollView(slivers: [
           SliverAppBar(
               backgroundColor: AppColors.white,
-              expandedHeight: 320,
+              expandedHeight: 500,
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                     padding: EdgeInsets.only(bottom: 16),
