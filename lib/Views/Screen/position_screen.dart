@@ -18,7 +18,7 @@ class PositionScreen extends StatelessWidget {
   PositionScreen({super.key});
 
  
-  HomeController homeController = Get.find();
+final  HomeController homeController = Get.find();
 
   @override
   Widget build(BuildContext context) {

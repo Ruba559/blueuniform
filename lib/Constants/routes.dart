@@ -17,5 +17,5 @@ class AppRoute {
   static const String setting = '/setting';
   static const String getAddress = '/getAddress';
   static const String orders = '/orders';
-
+  static const String orderDetails = '/orderDetails';
 }

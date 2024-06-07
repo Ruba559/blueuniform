@@ -1,23 +1,23 @@
 import 'package:blueuniform/Constants/app_style.dart';
 import 'package:blueuniform/Constants/app_text_style.dart';
+import 'package:blueuniform/Controllers/OrderController.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
 import '../../Constants/app_color.dart';
-import '../../Constants/routes.dart';
-import '../../Controllers/CartController.dart';
+import '../../DataAccesslayer/Models/order.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
 import 'package:get/get.dart';
 
-class OrderInfoScreen extends StatelessWidget {
-  OrderInfoScreen({super.key});
+class OrderDetailsScreen extends StatelessWidget {
+  OrderDetailsScreen({super.key});
 
-final  CartController controller = Get.find();
+  final OrderController controller = Get.find();
+  final Order order = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    controller.calc();
     return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
@@ -30,7 +30,7 @@ final  CartController controller = Get.find();
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppListTitle(text: 'معلومات الطلب'),
+                AppListTitle(text: ' الطلب : # ' + order.id.toString()),
                 Flexible(
                     child: Container(
                         padding: EdgeInsets.all(20),
@@ -47,12 +47,12 @@ final  CartController controller = Get.find();
                                 style: AppTextStyle.medium,
                               ),
                             ),
-                            GetBuilder<CartController>(
+                            GetBuilder<OrderController>(
                                 builder: (controller) => Expanded(
                                     flex: 3,
                                     child: ListView.builder(
                                         shrinkWrap: true,
-                                        itemCount: controller.cartItems.length,
+                                        itemCount: order.orderDetails.length,
                                         scrollDirection: Axis.vertical,
                                         itemBuilder:
                                             (BuildContext context, int index) {
@@ -63,16 +63,16 @@ final  CartController controller = Get.find();
                                               padding: const EdgeInsets.all(10),
                                               child: Row(
                                                 children: [
-                                                  Text(
-                                                    controller.cartItems[index]
-                                                        .name,
+                                                  Text( 
+                                                   '${'size'.tr} ${order
+                                                        .orderDetails[index].product}',
                                                     style: AppTextStyle.body,
                                                   ),
                                                   SizedBox(
                                                     width: 15,
                                                   ),
                                                   Text(
-                                                      "${'number'.tr} ${controller.cartItems[index].quantity}",
+                                                      "${'number'.tr} ${order.orderDetails[index].quantity}",
                                                       style: AppTextStyle.body)
                                                 ],
                                               ));
@@ -93,20 +93,23 @@ final  CartController controller = Get.find();
                                         SizedBox(
                                           width: 15,
                                         ),
-                                       
                                         Text(
-                                            " ${controller.totalAmount.toString()} ريال سعودي",
+                                            " ${order.totalPrice.toString()} ريال سعودي",
                                             style: AppTextStyle.title.copyWith(
                                                 fontWeight: FontWeight.bold)),
                                       ],
                                     )))
                           ],
                         ))),
-                ButtonForm(
-                  text: 'continue_and_payment'.tr,
-                  color: AppColors.secondary,
-                  onPressed: () => {Get.toNamed(AppRoute.PaymentMethods)},
-                )
+             ButtonForm(
+                  text: 'update'.tr,
+                  color:   order.status == 0 ? AppColors.secondary : AppColors.grey,
+                  onPressed: () => {
+
+controller.updateOrder(order)
+
+                  },
+                ) 
               ],
             )));
   }

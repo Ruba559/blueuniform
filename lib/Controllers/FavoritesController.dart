@@ -1,4 +1,3 @@
-import 'package:blueuniform/DataAccesslayer/Models/product.dart';
 import 'package:get/get.dart';
 import '../DataAccesslayer/Clients/box_client.dart';
 import '../DataAccesslayer/Models/favorite.dart';
@@ -7,6 +6,12 @@ import '../Views/Widgets/snackbar.dart';
 class FavoritesController extends GetxController {
   List<Favorite> favoriteItems = [];
   BoxClient boxClient = BoxClient();
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await getFavoriteItemsFromStorage();
+  }
 
   Future<void> getFavoriteItemsFromStorage() async {
     favoriteItems = await boxClient.getFavoriteItems();
@@ -31,7 +36,10 @@ class FavoritesController extends GetxController {
       SnackBars.showSuccess('تمت الإضافة للمفضلة بنجاح');
       update();
     } else {
-      SnackBars.showWarning('تمت الاضافة مسبقاً');
+      favoriteItems.removeAt(itemIndex);
+      await syncItems();
+      update();
+      SnackBars.showSuccess('تمت الازالة من المفضلة');
     }
   }
 
@@ -39,8 +47,8 @@ class FavoritesController extends GetxController {
     await boxClient.addToFavorite(favoriteItems);
   }
 
-  int? getItemIndex( category_id) {
-    print(favoriteItems);
+  int? getItemIndex(category_id) {
+    print(category_id);
     for (var index = 0; index < favoriteItems.length; index++) {
       if (favoriteItems[index].categoryId == category_id) {
         return index;

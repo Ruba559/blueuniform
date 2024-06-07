@@ -39,7 +39,7 @@ class Lang implements Translations {
           "request_sent": "تم إرسال الطلب",
           "back_to_home": "العودة للرئيسية",
           "details": "التفاصيل",
-          "number": "عدد",
+          "number": "عدد: ",
           "total": "السعر الإجمالي :",
           "continue_and_payment": " متابعة و الدفع",
           "available_payment_methods": "وسائل الدفع المتاحة",
@@ -62,6 +62,8 @@ class Lang implements Translations {
           "not_match": "غير متطابق",
           "not_valid_email": "بريد الكتروني غير صحيح",
           "orders" : "الطلبات",
+          'size' : " القياس: ",
+          "update" : "تعديل",
         },
         "en": {
           "home": " Home",
@@ -99,7 +101,7 @@ class Lang implements Translations {
           "request_sent": "Request sent",
           "back_to_home": "Back to home",
           "details": "Details",
-          "number": "Number",
+          "number": "Number :",
           "total": "Total : ",
           "continue_and_payment": "Continue and payment",
           "available_payment_methods": "Available payment methods",
@@ -122,6 +124,8 @@ class Lang implements Translations {
           "not_match": "Not Match",
           "not_valid_email": "not valid email",
           "orders" : "Orders",
+          "size" : "size :",
+            "update" : "Update"
         },
       };
 }

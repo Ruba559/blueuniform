@@ -15,9 +15,9 @@ import '../Widgets/list_title.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
-  CartController cartController = Get.find();
-  HomeController hometController = Get.find();
-  LocationController locationController = Get.put(LocationController());
+ final CartController cartController = Get.find();
+ final HomeController hometController = Get.find();
+ final LocationController locationController = Get.put(LocationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

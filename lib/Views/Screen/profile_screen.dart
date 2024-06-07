@@ -17,7 +17,7 @@ import '../Widgets/list_title.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
-  ProfileController controller = Get.put(ProfileController());
+ final ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(

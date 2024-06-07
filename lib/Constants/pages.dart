@@ -8,6 +8,7 @@ import '../Views/Screen/cart_screen.dart';
 import '../Views/Screen/favorites_screen.dart';
 import '../Views/Screen/home_screen.dart';
 import '../Views/Screen/order_complate_screen.dart';
+import '../Views/Screen/order_details_screen.dart';
 import '../Views/Screen/order_info_screen.dart';
 import '../Views/Screen/orders_screen.dart';
 import '../Views/Screen/payment_methods_screen.dart';
@@ -95,6 +96,11 @@ List<GetPage<dynamic>> getPages = [
    GetPage(
     name: AppRoute.orders,
     page: () => OrdersScreen(),
+    transition: Transition.circularReveal,
+  ),
+     GetPage(
+    name: AppRoute.orderDetails,
+    page: () => OrderDetailsScreen(),
     transition: Transition.circularReveal,
   ),
 ];
