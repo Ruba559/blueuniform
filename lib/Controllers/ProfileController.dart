@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:blueuniform/Controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../DataAccesslayer/Clients/BoxStorage.dart';
 import '../DataAccesslayer/Models/user.dart';
 import '../DataAccesslayer/Repository/UserRepo.dart';
+import '../Views/Widgets/snackbar.dart';
 import '../main.dart';
 
 class ProfileController extends GetxController {
@@ -19,8 +19,8 @@ class ProfileController extends GetxController {
   User? user;
 
   var isLoading = false.obs;
-  
-final UserController userController = Get.find();
+
+  final BoxStorage boxClient = BoxStorage();
 
   selectImage() async {
     XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -47,15 +47,17 @@ final UserController userController = Get.find();
   updateProfile() async {
     if (email.text != '') {
       isLoading.value = true;
-    
-      user = await userRepo.updateProfile(
-          MyApp.user?.id, email.text, name!.text, password!.text, image != null? image!.path : null);
+
+      user = await userRepo.updateProfile(MyApp.user?.id, email.text,
+          name!.text, password!.text, image != null ? image!.path : null);
 
       if (user != '') {
-           isLoading.value = false;
+        isLoading.value = false;
         MyApp.user = user;
-    await userController.saveAuthState(user!);
+        await boxClient.setAuthedUser(user!);
+
         update();
+        SnackBars.showSuccess('profile_updated'.tr);
       }
     }
   }

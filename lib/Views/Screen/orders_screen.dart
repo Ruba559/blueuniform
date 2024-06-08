@@ -81,7 +81,7 @@ final  OrderController orderController = Get.put(OrderController());
                                                                 padding: EdgeInsets.all(10),
                                                               margin: EdgeInsets.all(5),
                                                                 child:
-                                                                   Text('# $index' , style: AppTextStyle.body.copyWith(color: AppColors.white),)),
+                                                                   Text('# ${controller.orderItems[index].id}' , style: AppTextStyle.body.copyWith(color: AppColors.white),)),
                                                                    SizedBox(width: 30,),
                                                             Column(
                                                               crossAxisAlignment:
@@ -98,7 +98,7 @@ final  OrderController orderController = Get.put(OrderController());
                                                                               .ellipsis,
                                                                     ),
 
-                                                                    Text(controller.orderItems[index].status == 0? 'قيد الانتظار' : 'تم الطلب'),
+                                                                    Text(controller.orderItems[index].status == 0? 'pending'.tr : "order_done"),
                                                               
                                                               ],
                                                             ),

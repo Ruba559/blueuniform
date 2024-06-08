@@ -30,7 +30,7 @@ final  CartController controller = Get.find();
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppListTitle(text: 'معلومات الطلب'),
+                AppListTitle(text: 'order_info'.tr),
                 Flexible(
                     child: Container(
                         padding: EdgeInsets.all(20),
@@ -39,14 +39,13 @@ final  CartController controller = Get.find();
                         decoration: BoxDecoration(
                             color: AppColors.lightgrey, borderRadius: radius10),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
+                             Text(
                                 'details'.tr,
                                 style: AppTextStyle.medium,
                               ),
-                            ),
+                            
                             GetBuilder<CartController>(
                                 builder: (controller) => Expanded(
                                     flex: 3,
@@ -80,7 +79,7 @@ final  CartController controller = Get.find();
                             Expanded(
                                 flex: 1,
                                 child: Container(
-                                    alignment: Alignment.bottomRight,
+                                 
                                     padding: const EdgeInsets.all(6),
                                     child: Column(
                                       crossAxisAlignment:

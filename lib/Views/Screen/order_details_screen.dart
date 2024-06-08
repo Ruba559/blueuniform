@@ -30,22 +30,21 @@ class OrderDetailsScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppListTitle(text: ' الطلب : # ' + order.id.toString()),
+                AppListTitle(text: 'order'.tr + order.id.toString()),
                 Flexible(
                     child: Container(
                         padding: EdgeInsets.all(20),
                         margin: EdgeInsets.all(10),
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: AppColors.lightgrey, borderRadius: radius10),
+                            color: const Color.fromRGBO(241, 241, 241, 1), borderRadius: radius10),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
+                           Text(
                                 'details'.tr,
                                 style: AppTextStyle.medium,
-                              ),
+                              
                             ),
                             GetBuilder<OrderController>(
                                 builder: (controller) => Expanded(
@@ -62,10 +61,18 @@ class OrderDetailsScreen extends StatelessWidget {
                                                       vertical: 4),
                                               padding: const EdgeInsets.all(10),
                                               child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                 children: [
-                                                  Text( 
-                                                   '${'size'.tr} ${order
-                                                        .orderDetails[index].product}',
+                                                   Text(
+                                                    '${order.orderDetails[index].category!.name}',
+                                                    style: AppTextStyle.body,
+                                                     overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis
+                                                  ),
+                                                
+                                                  Text(
+                                                    '${'size'.tr} ${order.orderDetails[index].product!.size}',
                                                     style: AppTextStyle.body,
                                                   ),
                                                   SizedBox(
@@ -80,7 +87,7 @@ class OrderDetailsScreen extends StatelessWidget {
                             Expanded(
                                 flex: 1,
                                 child: Container(
-                                    alignment: Alignment.bottomRight,
+                                  //  alignment: Alignment.bottomRight,
                                     padding: const EdgeInsets.all(6),
                                     child: Column(
                                       crossAxisAlignment:
@@ -101,15 +108,12 @@ class OrderDetailsScreen extends StatelessWidget {
                                     )))
                           ],
                         ))),
-             ButtonForm(
+                ButtonForm(
                   text: 'update'.tr,
-                  color:   order.status == 0 ? AppColors.secondary : AppColors.grey,
-                  onPressed: () => {
-
-controller.updateOrder(order)
-
-                  },
-                ) 
+                  color:
+                      order.status == 0 ? AppColors.secondary : AppColors.grey,
+                  onPressed: () => {controller.updateOrder(order)},
+                )
               ],
             )));
   }

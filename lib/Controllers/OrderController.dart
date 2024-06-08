@@ -39,7 +39,7 @@ class OrderController extends GetxController {
         name: item.category.name,
         image: item.category.image,
         price: item.category.price,
-        productId: item.product_id,
+        productId: item.product.id,
         categoryId: item.category.id,
       );
       cartItems.add(cartItem);

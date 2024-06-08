@@ -15,16 +15,6 @@ class Product {
 
 
   
-  //   factory Product.fromMap(Map<String, dynamic> map) {
-  //   return Product(
-  //      id: map['id'] as int,
-  //     size: map['size']  as String,
-  //     quantity: map['quantity'] as int,
-  //     createdAt: map['created_at'] as String,
-  //   );
-  // }
-
-
 
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(

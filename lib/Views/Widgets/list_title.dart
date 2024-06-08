@@ -13,13 +13,13 @@ class AppListTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return   Padding(
       padding: EdgeInsets.all(5),
       child: ListTile(
         title: Text(
           text,
           style: AppTextStyle.title.copyWith(fontWeight: FontWeight.bold),
-          textAlign: textAlign == 'center' ? TextAlign.center : TextAlign.right,
+       //   textAlign: textAlign == 'center' ? TextAlign.center : TextAlign.right,
         ),
       ),
     );

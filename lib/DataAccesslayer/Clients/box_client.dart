@@ -11,7 +11,7 @@ class BoxClient {
 
 
   Future<List<Cart>> getCartItems() async {
-    var cartItems = await box.read('cart_items');
+    var cartItems = await box.read('blue_cart_items');
     if (cartItems != null) {
       final data =
           cartItems.cast<Map<String, dynamic>>();
@@ -23,9 +23,9 @@ class BoxClient {
   }
 
   Future<void> addToCart(List<Cart> cartItems) async {
-    await box.remove('cart_items');
+    await box.remove('blue_cart_items');
     var map = cartItems.map((e) => e.toMap());
-    await box.write('cart_items', map.toList());
+    await box.write('blue_cart_items', map.toList());
   }
  
 
@@ -33,7 +33,7 @@ class BoxClient {
 
 
   Future<List<Favorite>> getFavoriteItems() async {
-    var favoriteItems = await box.read('favorite_items');
+    var favoriteItems = await box.read('blue_favorite_items');
     if (favoriteItems != null) {
       final data =
           favoriteItems.cast<Map<String, dynamic>>();
@@ -45,9 +45,9 @@ class BoxClient {
   }
 
   Future<void> addToFavorite(List<Favorite> favoriteItems) async {
-    await box.remove('favorite_items');
+    await box.remove('blue_favorite_items');
     var map = favoriteItems.map((e) => e.toMap());
-    await box.write('favorite_items', map.toList());
+    await box.write('blue_favorite_items', map.toList());
   }
  
 }
