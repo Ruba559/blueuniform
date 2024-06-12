@@ -14,12 +14,13 @@ class AppButtomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: AppColors.primary,
-      selectedItemColor: AppColors.white,
-      unselectedItemColor: AppColors.white.withOpacity(.5),
+      backgroundColor: AppColors.white,
+      selectedItemColor: AppColors.primary,
+      unselectedItemColor: AppColors.grey.withOpacity(.5),
+      elevation: 0,
       currentIndex: this.selectedIndex,
       type: BottomNavigationBarType.fixed,
-      selectedLabelStyle: AppTextStyle.small,
+      selectedLabelStyle: AppTextStyle.small.apply(color: AppColors.secondary),
       unselectedLabelStyle: AppTextStyle.small.apply(fontSizeFactor: .8),
       onTap: ((value) {
         MyApp.bottomSelectedItem = value;
@@ -29,21 +30,20 @@ class AppButtomNavBar extends StatelessWidget {
             break;
 
           case 1:
-              Get.toNamed(AppRoute.cart);
+            Get.toNamed(AppRoute.cart);
             break;
 
           case 2:
-               Get.toNamed(AppRoute.favorites);
+            Get.toNamed(AppRoute.favorites);
             break;
 
           case 3:
-                Get.toNamed(AppRoute.setting);
+            Get.toNamed(AppRoute.setting);
             break;
-         
         }
       }),
       items: [
-          BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
@@ -53,7 +53,7 @@ class AppButtomNavBar extends StatelessWidget {
           ),
           label: 'home'.tr,
         ),
-           BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
@@ -63,7 +63,7 @@ class AppButtomNavBar extends StatelessWidget {
           ),
           label: 'shopping_cart'.tr,
         ),
-          BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
@@ -73,7 +73,7 @@ class AppButtomNavBar extends StatelessWidget {
           ),
           label: 'favorite'.tr,
         ),
-         BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(

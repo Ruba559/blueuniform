@@ -1,23 +1,20 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+
 import '../../../Constants/app_color.dart';
-import '../../../Constants/app_text_style.dart';
 import '../../../Functions/valid_input.dart';
 import '../../../main.dart';
 import '../../Controllers/ProfileController.dart';
 import '../Widgets/button_form.dart';
 import '../Widgets/input_form.dart';
-import '../Widgets/label_form.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
-  ProfileController controller = Get.put(ProfileController());
+  final ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     AppListTitle(text: 'profile'.tr),
                     SizedBox(
-                      height: 50,
+                      height: 10,
                     ),
                     Expanded(
                         child: GetBuilder(
@@ -77,11 +74,13 @@ class ProfileScreen extends StatelessWidget {
                                             onTap: () async {
                                               await controller.selectImage();
                                             },
-                                            child: Container(
+                                            child: CircleAvatar(
+                                              backgroundColor:
+                                                  AppColors.secondary,
                                               child: Icon(
                                                 FontAwesomeIcons
                                                     .solidPenToSquare,
-                                                color: AppColors.primary,
+                                                color: AppColors.white,
                                                 size: 18,
                                               ),
                                             ),
@@ -89,7 +88,7 @@ class ProfileScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                    InputForm(
+                                InputForm(
                                   label: "name".tr,
                                   valid: (val) {
                                     return validInput(

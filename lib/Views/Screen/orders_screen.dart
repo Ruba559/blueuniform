@@ -1,4 +1,4 @@
-import 'package:blueuniform/Views/Widgets/button_form.dart';
+import 'package:blueuniform/Constants/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +7,6 @@ import '../../Constants/app_style.dart';
 import '../../Constants/app_text_style.dart';
 import '../../Controllers/CartController.dart';
 import '../../Controllers/HomeController.dart';
-import '../../Controllers/LocationController.dart';
 import '../../Controllers/OrderController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
@@ -16,9 +15,9 @@ import '../Widgets/list_title.dart';
 
 class OrdersScreen extends StatelessWidget {
   OrdersScreen({super.key});
-  CartController cartController = Get.find();
-  HomeController hometController = Get.find();
-  OrderController orderController = Get.put(OrderController());
+ final CartController cartController = Get.find();
+final  HomeController hometController = Get.find();
+final  OrderController orderController = Get.put(OrderController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +62,9 @@ class OrdersScreen extends StatelessWidget {
                                                     padding:
                                                         const EdgeInsets.all(6),
                                                     child: InkWell(
+                                                      onTap: () => {
+                                                        Get.toNamed(AppRoute.orderDetails , arguments: controller.orderItems[index])
+                                                      },
                                                       child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
@@ -79,7 +81,7 @@ class OrdersScreen extends StatelessWidget {
                                                                 padding: EdgeInsets.all(10),
                                                               margin: EdgeInsets.all(5),
                                                                 child:
-                                                                   Text('# $index' , style: AppTextStyle.body.copyWith(color: AppColors.white),)),
+                                                                   Text('# ${controller.orderItems[index].id}' , style: AppTextStyle.body.copyWith(color: AppColors.white),)),
                                                                    SizedBox(width: 30,),
                                                             Column(
                                                               crossAxisAlignment:
@@ -96,7 +98,7 @@ class OrdersScreen extends StatelessWidget {
                                                                               .ellipsis,
                                                                     ),
 
-                                                                    Text(controller.orderItems[index].status == 0? 'قيد الانتظار' : 'تم الطلب'),
+                                                                    Text(controller.orderItems[index].status == 0? 'pending'.tr : "order_done"),
                                                               
                                                               ],
                                                             ),

@@ -17,10 +17,10 @@ import '../Widgets/layouts/appbar.dart';
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
 
-  HomeController homeController = Get.find();
-
-  CartController cartController = Get.find();
-  FavoritesController favoritesController = Get.find();
+final  HomeController homeController = Get.find();
+  
+ final CartController cartController = Get.find();
+ final FavoritesController favoritesController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +178,7 @@ class ProductScreen extends StatelessWidget {
                                 homeController.product!)
                           },
                         ),
-                        GetBuilder<HomeController>(
+                        GetBuilder<FavoritesController>(
                             builder: (controller) => InkWell(
                                   onTap: () => {
                                     favoritesController.addToFavorites(

@@ -50,6 +50,10 @@ class CartController extends GetxController {
     await boxClient.addToCart(cartItems);
   }
 
+Future<void> syncCartUpdate(value) async {
+    await boxClient.addToCart(value);
+  }
+
   int? getCartItemIndex(product_id, category_id) {
     for (var index = 0; index < cartItems.length; index++) {
       if (cartItems[index].productId == product_id &&

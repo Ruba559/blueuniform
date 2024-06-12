@@ -29,6 +29,9 @@ class HomeScreen extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               AppListTitle(text: 'clothes_available'.tr),
+              SizedBox(
+                height: 20,
+              ),
               GetBuilder(
                   init: homeController,
                   builder: (_) {

@@ -15,7 +15,7 @@ class PositionScreen extends StatelessWidget {
   PositionScreen({super.key});
 
   final HomeController homeController = Get.find();
-  final LatLng center = const LatLng(-33.86, 151.20);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

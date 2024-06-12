@@ -1,3 +1,7 @@
+import 'package:blueuniform/Views/Screen/auth/about_screen.dart';
+import 'package:blueuniform/Views/Screen/auth/contact_screen.dart';
+import 'package:blueuniform/Views/Screen/auth/privacy_screen.dart';
+import 'package:blueuniform/Views/Screen/auth/terms_screen.dart';
 import 'package:get/get.dart';
 
 import '../Views/Screen/address_screen.dart';
@@ -8,6 +12,7 @@ import '../Views/Screen/cart_screen.dart';
 import '../Views/Screen/favorites_screen.dart';
 import '../Views/Screen/home_screen.dart';
 import '../Views/Screen/order_complate_screen.dart';
+import '../Views/Screen/order_details_screen.dart';
 import '../Views/Screen/order_info_screen.dart';
 import '../Views/Screen/orders_screen.dart';
 import '../Views/Screen/payment_methods_screen.dart';
@@ -20,9 +25,7 @@ import '../Views/Screen/splash_screen2.dart';
 import 'routes.dart';
 
 List<GetPage<dynamic>> getPages = [
-  GetPage(
-      name: AppRoute.splashScreen,
-      page: () => SplashScreen()),
+  GetPage(name: AppRoute.splashScreen, page: () => SplashScreen()),
   GetPage(
       name: AppRoute.splashScreen2,
       page: () => SplashScreen2(),
@@ -92,9 +95,34 @@ List<GetPage<dynamic>> getPages = [
     page: () => AddressScreen(),
     transition: Transition.circularReveal,
   ),
-   GetPage(
+  GetPage(
     name: AppRoute.orders,
     page: () => OrdersScreen(),
     transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.orderDetails,
+    page: () => OrderDetailsScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.about,
+    page: () => AboutScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.privacy,
+    page: () => PrivacyScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.terms,
+    page: () => TermsScreen(),
+    transition: Transition.circularReveal,
+  ),
+  GetPage(
+    name: AppRoute.contactus,
+    page: () => ContactScreen(),
+    transition: Transition.leftToRight,
   ),
 ];

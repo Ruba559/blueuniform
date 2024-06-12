@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 class PaymentMethodsScreen extends StatelessWidget {
   PaymentMethodsScreen({super.key});
   @override
-  HomeController homeController = Get.find();
+final  HomeController homeController = Get.find();
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,

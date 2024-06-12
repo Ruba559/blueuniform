@@ -18,7 +18,7 @@ class AddressScreen extends StatelessWidget {
   AddressScreen({super.key});
 
  
-  HomeController homeController = Get.find();
+ final HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

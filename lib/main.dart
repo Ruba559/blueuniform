@@ -43,6 +43,10 @@ class MyApp extends StatelessWidget {
       getPages: getPages,
       translations: Lang(),
       initialBinding: InitBinding(),
+      theme: ThemeData(
+        useMaterial3: false,
+        // ...
+      ),
     );
   }
 }
