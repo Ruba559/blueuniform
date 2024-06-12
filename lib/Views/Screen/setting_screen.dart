@@ -1,12 +1,11 @@
-import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../Constants/app_color.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
-import 'package:get/get.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({super.key});
@@ -18,15 +17,13 @@ class SettingScreen extends StatelessWidget {
         bottomNavigationBar: AppButtomNavBar(
           selectedIndex: 3,
         ),
-           drawer: AppDrawer(),
+        drawer: AppDrawer(),
         body: Container(
             padding: const EdgeInsets.all(20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppListTitle(text: 'الإعدادات'),
-
-          
+                AppListTitle(text: 'settings'.tr),
               ],
             )));
   }

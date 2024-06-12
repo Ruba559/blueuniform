@@ -3,6 +3,8 @@ import 'package:blueuniform/Data/lang.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 
 import 'DataAccesslayer/Models/user.dart';
 import 'bindings/init_bindings.dart';
@@ -16,7 +18,12 @@ void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
+  final GoogleMapsFlutterPlatform mapsImplementation =
+      GoogleMapsFlutterPlatform.instance;
+  if (mapsImplementation is GoogleMapsFlutterAndroid) {
+    // Force Hybrid Composition mode.
+    mapsImplementation.useAndroidViewSurface = true;
+  }
   await GetStorage.init();
 
   runApp(const MyApp());
@@ -36,6 +43,10 @@ class MyApp extends StatelessWidget {
       getPages: getPages,
       translations: Lang(),
       initialBinding: InitBinding(),
+      theme: ThemeData(
+        useMaterial3: false,
+        // ...
+      ),
     );
   }
 }

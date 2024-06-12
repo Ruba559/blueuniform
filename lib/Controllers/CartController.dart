@@ -38,7 +38,7 @@ class CartController extends GetxController {
       cartItems.add(cartItem);
       await syncCart();
 
-      SnackBars.showSuccess('added_to_cart'.tr);
+      SnackBars.showSuccess('add_to_cart'.tr);
       update();
     } else {
       SnackBars.showWarning('already_added'.tr);

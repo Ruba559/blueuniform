@@ -31,15 +31,12 @@ final  HomeController homeController = Get.find();
           selectedIndex: 0,
         ),
         //   drawer: AppDrawer(),
-        body: CustomScrollView(
-       
-          slivers: [
-            
+        body: CustomScrollView(slivers: [
           SliverAppBar(
-        automaticallyImplyLeading: false,
+              automaticallyImplyLeading: false,
               backgroundColor: AppColors.white,
-              expandedHeight: 320,
-              flexibleSpace:  FlexibleSpaceBar(
+              expandedHeight: 500,
+              flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                     padding: EdgeInsets.only(bottom: 16),
                     decoration: BoxDecoration(
@@ -61,7 +58,6 @@ final  HomeController homeController = Get.find();
                     )),
               )),
           SliverToBoxAdapter(
-            
             child: Container(
                 padding: EdgeInsets.all(25),
                 width: double.infinity,
@@ -176,14 +172,17 @@ final  HomeController homeController = Get.find();
                           color: AppColors.secondary,
                           width: 225,
                           onPressed: () => {
-                            cartController.addToCart(homeController.quantity , homeController.category! , homeController.product!)
+                            cartController.addToCart(
+                                homeController.quantity,
+                                homeController.category!,
+                                homeController.product!)
                           },
                         ),
                         GetBuilder<FavoritesController>(
                             builder: (controller) => InkWell(
                                   onTap: () => {
-                                    favoritesController
-                                        .addToFavorites( homeController.category! )
+                                    favoritesController.addToFavorites(
+                                        homeController.category!)
                                   },
                                   child: Container(
                                       margin: EdgeInsets.all(10),
@@ -191,8 +190,8 @@ final  HomeController homeController = Get.find();
                                       decoration: BoxDecoration(
                                           color: AppColors.red,
                                           borderRadius: radius10),
-                                      child: favoritesController
-                                                  .getItemIndex(homeController
+                                      child: favoritesController.getItemIndex(
+                                                  homeController
                                                       .category!.id) !=
                                               null
                                           ? Icon(

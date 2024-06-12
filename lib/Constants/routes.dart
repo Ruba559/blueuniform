@@ -18,4 +18,8 @@ class AppRoute {
   static const String getAddress = '/getAddress';
   static const String orders = '/orders';
   static const String orderDetails = '/orderDetails';
+  static const String about = "/home/about-us";
+  static const String privacy = "/home/privacy";
+  static const String terms = "/home/terms";
+  static const String contactus = "/home/contactus";
 }

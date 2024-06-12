@@ -9,17 +9,21 @@ class AppListTitle extends StatelessWidget {
   final String? textAlign;
 
   const AppListTitle(
-      {super.key, required this.text, this.color = AppColors.black, this.textAlign});
+      {super.key,
+      required this.text,
+      this.color = AppColors.primary,
+      this.textAlign});
 
   @override
   Widget build(BuildContext context) {
-    return   Padding(
+    return Padding(
       padding: EdgeInsets.all(5),
-      child: ListTile(
-        title: Text(
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
           text,
           style: AppTextStyle.title.copyWith(fontWeight: FontWeight.bold),
-       //   textAlign: textAlign == 'center' ? TextAlign.center : TextAlign.right,
+          //   textAlign: textAlign == 'center' ? TextAlign.center : TextAlign.right,
         ),
       ),
     );

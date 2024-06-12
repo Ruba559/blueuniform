@@ -6,7 +6,6 @@ import '../../Constants/app_color.dart';
 class SplashScreen2 extends StatelessWidget {
   SplashScreen2({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +17,10 @@ class SplashScreen2 extends StatelessWidget {
             child: Center(
               child: Image.asset(
                 'assets/images/logo.png',
-                width: Get.width / 1,
+                width: Get.width / 2,
               ),
             ),
           ),
-        
         ],
       )),
     );
