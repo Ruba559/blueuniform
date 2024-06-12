@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 
 class FavoritesScreen extends StatelessWidget {
   FavoritesScreen({super.key});
-  FavoritesController favoriteController = Get.put(FavoritesController());
+  FavoritesController favoriteController = Get.find();
    HomeController homeController = Get.find();
   @override
   Widget build(BuildContext context) {

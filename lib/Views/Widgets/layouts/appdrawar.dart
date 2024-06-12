@@ -51,17 +51,15 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.shopping_cart,
+              Icons.list,
               color: AppColors.primary,
             ),
             title: Text(
-              'shopping_cart'.tr,
-              style: AppTextStyle.body.copyWith(
-                color: AppColors.primary,
-              ),
+              "orders".tr,
+              style: AppTextStyle.body.copyWith(color: AppColors.primary),
             ),
             onTap: () {
-              Get.toNamed(AppRoute.cart);
+              Get.toNamed(AppRoute.orders);
             },
           ),
           ListTile(

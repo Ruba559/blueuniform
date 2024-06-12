@@ -1,25 +1,21 @@
-import 'dart:async';
-
 import 'package:blueuniform/Controllers/HomeController.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../Constants/app_color.dart';
-import '../../Constants/routes.dart';
 import '../../Controllers/LocationController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
-import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PositionScreen extends StatelessWidget {
   PositionScreen({super.key});
 
- 
-  HomeController homeController = Get.find();
-
+  final HomeController homeController = Get.find();
+  final LatLng center = const LatLng(-33.86, 151.20);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,57 +28,52 @@ class PositionScreen extends StatelessWidget {
         body: Container(
             padding: const EdgeInsets.all(20),
             child: SingleChildScrollView(
-                child:  GetBuilder<LocationController>(
-                    builder: (controller) =>  Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppListTitle(text: 'delivery'.tr),
-                Container(
-                          height: 400,
-                          width: double.infinity,
-                          child: Obx(
-                            () => GoogleMap(
-                              mapType: MapType.normal,
-                              initialCameraPosition: CameraPosition(
-                                target: LatLng(
-                                  controller.position.value?.latitude ??
-                                      0.0,
-                                  controller
-                                          .position.value?.longitude ??
-                                      0.0,
-                                ),
-                                zoom: 14,
-                              ),
-                              markers: Set<Marker>.from([
-                                Marker(
-                                  markerId: MarkerId('currentPosition'),
-                                  position: LatLng(
-                                    controller
-                                            .position.value?.latitude ??
-                                        0.0,
-                                    controller
-                                            .position.value?.longitude ??
-                                        0.0,
+                child: GetBuilder<LocationController>(
+                    builder: (controller) => Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppListTitle(text: 'delivery'.tr),
+                            Container(
+                              height: 400,
+                              width: double.infinity,
+                              child: Obx(
+                                () => GoogleMap(
+                                  mapType: MapType.normal,
+                                  initialCameraPosition: CameraPosition(
+                                    target: LatLng(
+                                      controller.position.value?.latitude ??
+                                          0.0,
+                                      controller.position.value?.longitude ??
+                                          0.0,
+                                    ),
+                                    zoom: 14,
                                   ),
-                                  infoWindow:
-                                      InfoWindow(title: 'Current Position'),
+                                  markers: Set<Marker>.from([
+                                    Marker(
+                                      markerId: MarkerId('currentPosition'),
+                                      position: LatLng(
+                                        controller.position.value?.latitude ??
+                                            0.0,
+                                        controller.position.value?.longitude ??
+                                            0.0,
+                                      ),
+                                      infoWindow:
+                                          InfoWindow(title: 'Current Position'),
+                                    ),
+                                  ]),
                                 ),
-                              ]),
+                              ),
                             ),
-                          ),
-
-                    
-                        ),
-                ButtonForm(
-                  text: "set_location".tr,
-                  color: AppColors.secondary,
-                  onPressed: () => {
-                    //Get.toNamed(AppRoute.)
-                     homeController.getAddress(controller
-                                            .position.value)
-                  },
-                )
-              ],
-            )))));
+                            ButtonForm(
+                              text: "set_location".tr,
+                              color: AppColors.secondary,
+                              onPressed: () => {
+                                //Get.toNamed(AppRoute.)
+                                homeController
+                                    .getAddress(controller.position.value)
+                              },
+                            )
+                          ],
+                        )))));
   }
 }

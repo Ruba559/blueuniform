@@ -11,7 +11,7 @@ class OrderClient {
 
 
 
-    Future<dynamic> addOrder(user_id, paymentMethode, latitude, longitude, cartItems , address) async {
+    Future<dynamic> addOrder(user_id, paymentMethode, latitude, longitude, cartItems , address , total) async {
     var url = Uri.parse(baseUrl + order);
 
     var response = await http.post(
@@ -26,6 +26,7 @@ class OrderClient {
         'longitude': longitude,
         'cartItems': cartItems,
         'address' : address,
+        'total' : total,
       }),
     );
     if (response.statusCode == 200) {
@@ -34,5 +35,16 @@ class OrderClient {
       return false;
     }
   }
+
+    Future<dynamic> getOrders(user_id) async {
+    var response = await client.get(Uri.parse(baseUrl + orders + "/$user_id"));
+
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return '';
+    }
+  }
+
   
 }

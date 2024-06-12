@@ -1,5 +1,5 @@
-import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationController extends GetxController {
@@ -8,7 +8,7 @@ class LocationController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-   await getLocation();
+    await getLocation();
     update();
   }
 
@@ -17,7 +17,8 @@ class LocationController extends GetxController {
     if (permission.isGranted) {
       Position? currentPosition = await Geolocator.getCurrentPosition();
       position.value = currentPosition;
-         update();
+      print(position.value);
+      update();
     } else {
       print('Location permission denied');
     }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../Constants/app_color.dart';
 import '../../../Constants/app_style.dart';
+import '../../../Constants/routes.dart';
 import '../../../main.dart';
 
 PreferredSize AppAppBar() {
@@ -27,7 +28,11 @@ PreferredSize AppAppBar() {
                       ),
             ),
         actions: [
-           Container(
+        InkWell(
+          onTap: () => {
+            Get.toNamed(AppRoute.profile)
+          },
+          child:Container(
             width: 45,
               margin: EdgeInsets.all(5),
               decoration: BoxDecoration(
@@ -42,7 +47,7 @@ PreferredSize AppAppBar() {
                   width: 40.0,
                   fit: BoxFit.fill,
                 ): Image.asset('assets/images/logo.png'),
-              ))
+              )))   
         ],
       ));
 }

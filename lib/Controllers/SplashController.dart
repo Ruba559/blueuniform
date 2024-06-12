@@ -1,15 +1,12 @@
 import 'package:blueuniform/Controllers/userController.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Constants/routes.dart';
 import '../DataAccesslayer/Clients/BoxStorage.dart';
 import '../main.dart';
 
-class SplashController extends GetxController
-   {
-
-      UserController userController = Get.find();
+class SplashController extends GetxController {
+  UserController userController = Get.find();
   //   with
   //       // ignore: deprecated_member_use
   //       SingleGetTickerProviderMixin {
@@ -35,14 +32,13 @@ class SplashController extends GetxController
   //   super.onInit();
   // }
   BoxStorage boxStorage = BoxStorage();
-   @override
-   
+  @override
   void onReady() {
     if (userController.authed == true) {
       if (userController.user != null) {
         MyApp.user = userController.user;
       }
-  Future.delayed(const Duration(seconds: 3))
+      Future.delayed(const Duration(seconds: 3))
           .then((value) => Get.toNamed(AppRoute.splashScreen2));
       ;
       Future.delayed(const Duration(seconds: 6))
@@ -50,6 +46,9 @@ class SplashController extends GetxController
       ;
     } else {
       Future.delayed(const Duration(seconds: 3))
+          .then((value) => Get.toNamed(AppRoute.splashScreen2));
+      ;
+      Future.delayed(const Duration(seconds: 6))
           .then((value) => Get.toNamed(AppRoute.login));
     }
     super.onReady();

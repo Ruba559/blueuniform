@@ -1,10 +1,12 @@
 import 'package:blueuniform/Constants/app_style.dart';
 import 'package:blueuniform/Constants/app_text_style.dart';
+import 'package:blueuniform/Controllers/FavoritesController.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Constants/app_color.dart';
+import '../../Controllers/CartController.dart';
 import '../../Controllers/HomeController.dart';
 import '../../DataAccesslayer/Models/product.dart';
 import '../../main.dart';
@@ -15,7 +17,11 @@ import '../Widgets/layouts/appbar.dart';
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
 
-  final HomeController homeController = Get.find();
+  HomeController homeController = Get.find();
+
+  CartController cartController = Get.find();
+  FavoritesController favoritesController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +33,7 @@ class ProductScreen extends StatelessWidget {
         //   drawer: AppDrawer(),
         body: CustomScrollView(slivers: [
           SliverAppBar(
+              automaticallyImplyLeading: false,
               backgroundColor: AppColors.white,
               expandedHeight: 500,
               flexibleSpace: FlexibleSpaceBar(
@@ -165,14 +172,17 @@ class ProductScreen extends StatelessWidget {
                           color: AppColors.secondary,
                           width: 225,
                           onPressed: () => {
-                            homeController.addToCart(homeController.category)
+                            cartController.addToCart(
+                                homeController.quantity,
+                                homeController.category!,
+                                homeController.product!)
                           },
                         ),
                         GetBuilder<HomeController>(
                             builder: (controller) => InkWell(
                                   onTap: () => {
-                                    homeController
-                                        .addToFavorites(homeController.category)
+                                    favoritesController.addToFavorites(
+                                        homeController.category!)
                                   },
                                   child: Container(
                                       margin: EdgeInsets.all(10),
@@ -180,8 +190,8 @@ class ProductScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           color: AppColors.red,
                                           borderRadius: radius10),
-                                      child: controller.favoritesController
-                                                  .getItemIndex(homeController
+                                      child: favoritesController.getItemIndex(
+                                                  homeController
                                                       .category!.id) !=
                                               null
                                           ? Icon(
