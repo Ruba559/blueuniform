@@ -5,7 +5,6 @@ import '../DataAccesslayer/Models/cart.dart';
 import '../Views/Widgets/snackbar.dart';
 
 class CartController extends GetxController {
-  
   List<Cart> cartItems = [];
 
   BoxClient boxClient = BoxClient();
@@ -24,8 +23,7 @@ class CartController extends GetxController {
     cartItems = await boxClient.getCartItems();
   }
 
-  addToCart(quantity,  category , product) async {
-
+  addToCart(quantity, category, product) async {
     var cartItemIndex = getCartItemIndex(product.id, category.id);
     if (cartItemIndex == null) {
       var cartItem = Cart(
@@ -35,14 +33,15 @@ class CartController extends GetxController {
         price: category.price,
         productId: product.id,
         categoryId: category.id,
+        orderId: 0,
       );
       cartItems.add(cartItem);
       await syncCart();
 
-      SnackBars.showSuccess('تمت الإضافة للسلة بنجاح');
+      SnackBars.showSuccess('added_to_cart'.tr);
       update();
     } else {
-      SnackBars.showWarning('تمت الاضافة مسبقاً');
+      SnackBars.showWarning('already_added'.tr);
     }
   }
 
@@ -50,7 +49,7 @@ class CartController extends GetxController {
     await boxClient.addToCart(cartItems);
   }
 
-Future<void> syncCartUpdate(value) async {
+  Future<void> syncCartUpdate(value) async {
     await boxClient.addToCart(value);
   }
 
@@ -85,7 +84,7 @@ Future<void> syncCartUpdate(value) async {
 
   Future<void> calc() async {
     for (var item in cartItems) {
-      totalAmount += item.price;
+      totalAmount += item.price * item.quantity;
     }
     update();
   }
@@ -95,5 +94,4 @@ Future<void> syncCartUpdate(value) async {
     await syncCart();
     calc();
   }
-  
 }

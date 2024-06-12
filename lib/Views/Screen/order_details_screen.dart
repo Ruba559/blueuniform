@@ -109,7 +109,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           ],
                         ))),
                 ButtonForm(
-                  text: 'update'.tr,
+                  text: order.status  == 0 ? 'update'.tr : 'order_done'.tr,
                   color:
                       order.status == 0 ? AppColors.secondary : AppColors.grey,
                   onPressed: () => {controller.updateOrder(order)},

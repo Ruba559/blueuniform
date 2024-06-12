@@ -35,7 +35,6 @@ class HomeController extends GetxController {
 
   LocationController locationController = Get.put(LocationController());
 
-
   late TextEditingController address;
 
   void onInit() async {
@@ -59,8 +58,10 @@ class HomeController extends GetxController {
   }
 
   getProductFromProducts(category_id) {
+    print('object');
     category =
         categories.where((element) => element.id.isEqual(category_id)).first;
+    product = category!.products!.first;
     Get.toNamed(AppRoute.product);
 
     update();
@@ -75,7 +76,6 @@ class HomeController extends GetxController {
     quantity = value;
     update();
   }
-
 
   getPosition() async {
     if (await locationController.checkLocationServiceEnabled()) {
@@ -105,8 +105,9 @@ class HomeController extends GetxController {
       cartItems.add({
         'quantity': item.quantity,
         'product_id': item.productId,
-        'price' : item.price,
-        'total' : item.price * item.quantity ,
+        'price': item.price,
+        'total': item.price * item.quantity,
+        'orderId': item.orderId,
       });
     }
   }
@@ -114,6 +115,7 @@ class HomeController extends GetxController {
   addOrder() async {
     isLoading.value = true;
     getCartItemsMap();
+    print(cartItems.first['orderId']);
     await orderRepo.addOrder(
         MyApp.user!.id,
         paymentMethode,

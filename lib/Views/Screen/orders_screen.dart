@@ -98,7 +98,7 @@ final  OrderController orderController = Get.put(OrderController());
                                                                               .ellipsis,
                                                                     ),
 
-                                                                    Text(controller.orderItems[index].status == 0? 'pending'.tr : "order_done"),
+                                                                    Text(controller.orderItems[index].status == 0? 'pending'.tr : "order_done".tr),
                                                               
                                                               ],
                                                             ),

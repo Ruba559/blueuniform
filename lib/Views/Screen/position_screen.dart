@@ -42,6 +42,7 @@ final  HomeController homeController = Get.find();
                           width: double.infinity,
                           child: Obx(
                             () => GoogleMap(
+                              
                               mapType: MapType.normal,
                               initialCameraPosition: CameraPosition(
                                 target: LatLng(
@@ -53,8 +54,11 @@ final  HomeController homeController = Get.find();
                                 ),
                                 zoom: 14,
                               ),
+                              
                               markers: Set<Marker>.from([
                                 Marker(
+                                 
+                                    
                                   markerId: MarkerId('currentPosition'),
                                   position: LatLng(
                                     controller

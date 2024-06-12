@@ -33,13 +33,13 @@ class FavoritesController extends GetxController {
       favoriteItems.add(item);
       await syncItems();
 
-      SnackBars.showSuccess('تمت الإضافة للمفضلة بنجاح');
+      SnackBars.showSuccess('added_to_favorites'.tr);
       update();
     } else {
       favoriteItems.removeAt(itemIndex);
       await syncItems();
       update();
-      SnackBars.showSuccess('تمت الازالة من المفضلة');
+      SnackBars.showSuccess('removed_from_favorites'.tr);
     }
   }
 

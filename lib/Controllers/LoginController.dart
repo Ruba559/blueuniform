@@ -41,11 +41,10 @@ class LoginController extends GetxController {
         logging.value = false;
         message = '';
         update();
-        print('object');
         Get.offAllNamed(AppRoute.home);
       } else {
-        print('غير');
-        message = 'البيانات غير متطابقة';
+       
+        message = 'data_does_not_match'.tr;
         logging.value = false;
         update();
       }

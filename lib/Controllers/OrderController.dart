@@ -35,20 +35,19 @@ class OrderController extends GetxController {
     cartItems.clear();
     for (dynamic item in order.orderDetails) {
       var cartItem = Cart(
-        quantity: item.quantity,
-        name: item.category.name,
-        image: item.category.image,
-        price: item.category.price,
-        productId: item.product.id,
-        categoryId: item.category.id,
-      );
+          quantity: item.quantity,
+          name: item.category.name,
+          image: item.category.image,
+          price: item.category.price,
+          productId: item.product.id,
+          categoryId: item.category.id,
+          orderId: order.id);
       cartItems.add(cartItem);
     }
-
+    print(cartItems.length);
     await cartController.syncCartUpdate(cartItems);
     await cartController.getCartItemsFromStorage();
 
-    print(cartItems);
     Get.toNamed(AppRoute.cart);
   }
 }
