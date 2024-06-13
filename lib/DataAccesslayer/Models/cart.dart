@@ -9,6 +9,7 @@ class Cart {
   num price;
   int productId;
   int categoryId;
+  int? orderId;
 
   Cart({
     required this.quantity,
@@ -17,6 +18,7 @@ class Cart {
     required this.price,
     required this.productId,
     required this.categoryId,
+    required this.orderId,
   });
 
   Map<String, dynamic> toMap() {
@@ -27,6 +29,7 @@ class Cart {
       'price': price,
       'product_id': productId,
       'category_id': categoryId,
+      'orderId': orderId,
     };
   }
 
@@ -38,7 +41,7 @@ class Cart {
       price: map['price'] as num,
       productId: map['product_id'] as int,
       categoryId: map['category_id'] as int,
-
+       orderId: map['order_id'] as int,
     );
   }
   //  int quantity;

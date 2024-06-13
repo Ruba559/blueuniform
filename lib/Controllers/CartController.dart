@@ -55,14 +55,15 @@ class CartController extends GetxController {
         price: category.price,
         productId: product.id,
         categoryId: category.id,
+        orderId: 0,
       );
       cartItems.add(cartItem);
       await syncCart();
 
-      SnackBars.showSuccess('تمت الإضافة للسلة بنجاح');
+      SnackBars.showSuccess('add_to_cart'.tr);
       update();
     } else {
-      SnackBars.showWarning('تمت الاضافة مسبقاً');
+      SnackBars.showWarning('already_added'.tr);
     }
   }
 

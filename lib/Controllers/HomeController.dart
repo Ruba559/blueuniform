@@ -48,27 +48,15 @@ class HomeController extends GetxController {
 
 
   getProductFromProducts(category_id) {
+    print('object');
     category =
         categories.where((element) => element.id.isEqual(category_id)).first;
+    product = category!.products!.first;
     Get.toNamed(AppRoute.product);
 
     update();
   }
 
-
-/* 
-
-  getPosition() async {
-    if (await locationController.checkLocationServiceEnabled()) {
-      Get.toNamed(AppRoute.position);
-    } else {
-      SnackBars.showWarning('يرجى تفعيل الموقع');
-    }
-  } */
-
-
-
- 
 
 
  

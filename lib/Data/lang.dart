@@ -74,6 +74,7 @@ class Lang implements Translations {
           "about": "عن المؤسسة",
           "contactus": "اتصل بنا",
           "name": "الإسم",
+           "already_added" : "مضاف مسبقاً",
           'send_order': "ارسال الطلب"
         },
         "en": {

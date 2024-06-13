@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationController extends GetxController {
@@ -41,6 +42,27 @@ class LocationController extends GetxController {
     }
     gettingLocation = false;
     update();
+  }
+
+  addInitialMarker() {
+    final initialMarker = Marker(
+      markerId: MarkerId('marker_1'),
+      position: LatLng(position!.latitude, position!.longitude),
+    );
+    markers.add(initialMarker);
+  }
+
+  var markers = Set<Marker>().obs;
+
+  void onMarkerTapped(LatLng position) {
+    markers.clear();
+    final newMarker = Marker(
+      markerId: MarkerId('marker_1'),
+      position: position,
+      onTap: () => onMarkerTapped(position),
+    );
+    position = position;
+    markers.add(newMarker);
   }
 
   Future<bool> checkLocationServiceEnabled() async {
