@@ -9,11 +9,10 @@ class OrderClient {
 
   OrderClient();
 
-
-
-    Future<dynamic> addOrder(user_id, paymentMethode, latitude, longitude, cartItems , address , total) async {
+  Future<dynamic> addOrder(user_id, paymentMethode, latitude, longitude,
+      cartItems, address, total) async {
     var url = Uri.parse(baseUrl + order);
-
+    print('start send order');
     var response = await http.post(
       url,
       headers: <String, String>{
@@ -25,10 +24,11 @@ class OrderClient {
         'latitude': latitude,
         'longitude': longitude,
         'cartItems': cartItems,
-        'address' : address,
-        'total' : total,
+        'address': address,
+        'total': total,
       }),
     );
+    print(response.body);
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -36,15 +36,13 @@ class OrderClient {
     }
   }
 
-    Future<dynamic> getOrders(user_id) async {
+  Future<dynamic> getOrders(user_id) async {
     var response = await client.get(Uri.parse(baseUrl + orders + "/$user_id"));
-
+    print(response.body);
     if (response.statusCode == 200) {
       return response.body;
     } else {
       return '';
     }
   }
-
-  
 }

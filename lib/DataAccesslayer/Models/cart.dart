@@ -38,7 +38,7 @@ class Cart {
       price: map['price'] as num,
       productId: map['product_id'] as int,
       categoryId: map['category_id'] as int,
-      //category: Category.fromMapcart(map['category']),
+
     );
   }
   //  int quantity;

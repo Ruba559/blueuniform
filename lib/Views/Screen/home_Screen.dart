@@ -1,3 +1,4 @@
+import 'package:blueuniform/Constants/routes.dart';
 import 'package:blueuniform/Views/Widgets/layouts/appdrawar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,8 +48,10 @@ class HomeScreen extends StatelessWidget {
                                   homeController.categories.length, (index) {
                                 return InkWell(
                                     onTap: () => {
-                                          homeController.getProduct(
-                                              homeController.categories[index])
+                                          Get.toNamed(AppRoute.product,
+                                              arguments: [
+                                                homeController.categories[index]
+                                              ])
                                         },
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(25),

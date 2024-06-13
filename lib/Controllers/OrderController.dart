@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:blueuniform/Constants/routes.dart';
 import 'package:blueuniform/Controllers/CartController.dart';
 import 'package:blueuniform/main.dart';
@@ -12,20 +10,30 @@ import '../Functions/check_internet.dart';
 
 class OrderController extends GetxController {
   List<Order> orderItems = [];
-  var isLoading = false.obs;
+  bool isLoading = false;
 
   OrderRepo orderRepo = OrderRepo();
 
   CartController cartController = Get.find();
 
   void onInit() async {
-    isLoading.value = true;
-    if (await checkInternet()) {
-      orderItems = await orderRepo.getOrders(MyApp.user!.id);
-      update();
-      isLoading.value = false;
-    } else {}
+    await getOrders();
     super.onInit();
+  }
+
+  Future<void> getOrders() async {
+    isLoading = true;
+    update();
+    if (await checkInternet()) {
+      print("start get orders");
+      orderItems = await orderRepo.getOrders(MyApp.user!.id);
+      print(orderItems);
+      update();
+      isLoading = false;
+      update();
+    } else {
+      isLoading = false;
+    }
   }
 
   List<Cart> cartItems = [];

@@ -1,19 +1,19 @@
+import 'package:blueuniform/Constants/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../Constants/app_color.dart';
 import '../../Constants/app_style.dart';
 import '../../Constants/app_text_style.dart';
 import '../../Controllers/FavoritesController.dart';
-import '../../Controllers/HomeController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
-import 'package:get/get.dart';
 
 class FavoritesScreen extends StatelessWidget {
   FavoritesScreen({super.key});
-FavoritesController favoriteController = Get.find();
-final   HomeController homeController = Get.find();
+  FavoritesController favoriteController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +53,16 @@ final   HomeController homeController = Get.find();
                                             margin: const EdgeInsets.symmetric(
                                                 vertical: 8),
                                             padding: const EdgeInsets.all(6),
-                                            child: InkWell( 
+                                            child: InkWell(
                                               onTap: () => {
-                                                    homeController.getProductFromProducts(controller.favoriteItems[
-                                                                index]
-                                                            .categoryId)
+                                                Get.toNamed(AppRoute.product,
+                                                    arguments: [
+                                                      controller.categoryFromId(
+                                                          controller
+                                                              .favoriteItems[
+                                                                  index]
+                                                              .categoryId)
+                                                    ])
                                               },
                                               child: Row(
                                                   mainAxisAlignment:
@@ -71,7 +76,6 @@ final   HomeController homeController = Get.find();
                                                         controller
                                                             .favoriteItems[
                                                                 index]
-                                                            
                                                             .image,
                                                         height: 80,
                                                         width: 80,
@@ -89,7 +93,6 @@ final   HomeController homeController = Get.find();
                                                               controller
                                                                   .favoriteItems[
                                                                       index]
-                                                                 
                                                                   .name,
                                                               style: AppTextStyle
                                                                   .body

@@ -1,13 +1,12 @@
 import 'package:blueuniform/Constants/app_style.dart';
 import 'package:blueuniform/Constants/app_text_style.dart';
-import 'package:blueuniform/Controllers/FavoritesController.dart';
+import 'package:blueuniform/Controllers/ProductScreenController.dart';
+import 'package:blueuniform/DataAccesslayer/Models/category.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Constants/app_color.dart';
-import '../../Controllers/CartController.dart';
-import '../../Controllers/HomeController.dart';
 import '../../DataAccesslayer/Models/product.dart';
 import '../../main.dart';
 import '../Widgets/label_form.dart';
@@ -17,11 +16,10 @@ import '../Widgets/layouts/appbar.dart';
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
 
-final  HomeController homeController = Get.find();
-  
- final CartController cartController = Get.find();
- final FavoritesController favoritesController = Get.find();
-
+  final Category category = Get.arguments[0];
+  ProductScreenController controller = Get.put(
+    ProductScreenController(category: Get.arguments[0]),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +47,10 @@ final  HomeController homeController = Get.find();
                         bottomLeft: Radius.circular(70),
                       ),
                       child: Hero(
-                        tag: homeController.category!.id,
+                        tag: category.id,
                         child: Image.network(
                           fit: BoxFit.cover,
-                          homeController.category!.image,
+                          category.image,
                         ),
                       ),
                     )),
@@ -60,7 +58,6 @@ final  HomeController homeController = Get.find();
           SliverToBoxAdapter(
             child: Container(
                 padding: EdgeInsets.all(25),
-                width: double.infinity,
                 height: 450,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -70,7 +67,7 @@ final  HomeController homeController = Get.find();
                         children: [
                           Column(children: [
                             Text(
-                              homeController.category!.name,
+                              category.name,
                               style: AppTextStyle.title,
                             ),
                             SizedBox(
@@ -84,7 +81,7 @@ final  HomeController homeController = Get.find();
                           ]),
                           Column(children: [
                             Text(
-                              homeController.category!.price.toString(),
+                              category.price.toString(),
                               style: AppTextStyle.title
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
@@ -100,8 +97,9 @@ final  HomeController homeController = Get.find();
                         text: "available_sizes".tr,
                       ),
                     ),
-                    GetBuilder<HomeController>(
-                        builder: (controller) => InputDecorator(
+                    GetBuilder(
+                        init: controller,
+                        builder: (_) => InputDecorator(
                               decoration: const InputDecoration(
                                 isDense: true,
                                 enabledBorder: OutlineInputBorder(
@@ -114,14 +112,9 @@ final  HomeController homeController = Get.find();
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<Product>(
                                   isDense: true,
-                                  value: homeController.product!,
                                   isExpanded: true,
-                                  items: homeController.category!.products!
-                                      .map((Product item) =>
-                                          DropdownMenuItem<Product>(
-                                              value: item,
-                                              child: Text(item.size)))
-                                      .toList(),
+                                  value: controller.selectedProduct,
+                                  items: controller.productList,
                                   onChanged: (Product? value) {
                                     controller.selectSize(value);
                                   },
@@ -134,8 +127,9 @@ final  HomeController homeController = Get.find();
                         text: "required_quantity".tr,
                       ),
                     ),
-                    GetBuilder<HomeController>(
-                        builder: (controller) => Row(
+                    GetBuilder(
+                        init: controller,
+                        builder: (_) => Row(
                                 children: List.generate(
                               5,
                               (i) {
@@ -171,29 +165,19 @@ final  HomeController homeController = Get.find();
                           text: "add_to_cart".tr,
                           color: AppColors.secondary,
                           width: 225,
-                          onPressed: () => {
-                            cartController.addToCart(
-                                homeController.quantity,
-                                homeController.category!,
-                                homeController.product!)
-                          },
+                          onPressed: () => {controller.addToCart()},
                         ),
-                        GetBuilder<FavoritesController>(
-                            builder: (controller) => InkWell(
-                                  onTap: () => {
-                                    favoritesController.addToFavorites(
-                                        homeController.category!)
-                                  },
+                        GetBuilder(
+                            init: controller,
+                            builder: (_) => InkWell(
+                                  onTap: () => {controller.addToFavorite()},
                                   child: Container(
                                       margin: EdgeInsets.all(10),
                                       padding: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           color: AppColors.red,
                                           borderRadius: radius10),
-                                      child: favoritesController.getItemIndex(
-                                                  homeController
-                                                      .category!.id) !=
-                                              null
+                                      child: controller.inFavorite
                                           ? Icon(
                                               Icons.favorite_sharp,
                                               color: AppColors.white,

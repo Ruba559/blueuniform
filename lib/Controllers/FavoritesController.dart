@@ -1,12 +1,14 @@
+import 'package:blueuniform/Controllers/HomeController.dart';
 import 'package:get/get.dart';
 import '../DataAccesslayer/Clients/box_client.dart';
+import '../DataAccesslayer/Models/category.dart';
 import '../DataAccesslayer/Models/favorite.dart';
 import '../Views/Widgets/snackbar.dart';
 
 class FavoritesController extends GetxController {
   List<Favorite> favoriteItems = [];
   BoxClient boxClient = BoxClient();
-
+  HomeController homeController = Get.find();
   @override
   void onInit() async {
     super.onInit();
@@ -63,5 +65,12 @@ class FavoritesController extends GetxController {
     await syncItems();
 
     update();
+  }
+
+    Category categoryFromId(id) {
+    return homeController.categories
+        .where((element) => element.id == id)
+        .toList()
+        .first;
   }
 }

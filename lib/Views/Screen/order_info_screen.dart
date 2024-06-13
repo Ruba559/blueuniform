@@ -2,22 +2,22 @@ import 'package:blueuniform/Constants/app_style.dart';
 import 'package:blueuniform/Constants/app_text_style.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../Constants/app_color.dart';
-import '../../Constants/routes.dart';
 import '../../Controllers/CartController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
-import 'package:get/get.dart';
 
 class OrderInfoScreen extends StatelessWidget {
   OrderInfoScreen({super.key});
 
-final  CartController controller = Get.find();
+  final CartController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    controller.calc();
+    //controller.calc();
     return Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
@@ -41,13 +41,13 @@ final  CartController controller = Get.find();
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                             Text(
-                                'details'.tr,
-                                style: AppTextStyle.medium,
-                              ),
-                            
-                            GetBuilder<CartController>(
-                                builder: (controller) => Expanded(
+                            Text(
+                              'details'.tr,
+                              style: AppTextStyle.medium,
+                            ),
+                            GetBuilder(
+                                init: controller,
+                                builder: (_) => Expanded(
                                     flex: 3,
                                     child: ListView.builder(
                                         shrinkWrap: true,
@@ -63,8 +63,8 @@ final  CartController controller = Get.find();
                                               child: Row(
                                                 children: [
                                                   Text(
-                                                    controller.cartItems[index]
-                                                        .name,
+                                                    controller
+                                                        .cartItems[index].name,
                                                     style: AppTextStyle.body,
                                                   ),
                                                   SizedBox(
@@ -76,36 +76,36 @@ final  CartController controller = Get.find();
                                                 ],
                                               ));
                                         }))),
-                            Expanded(
-                                flex: 1,
-                                child: Container(
-                                 
-                                    padding: const EdgeInsets.all(6),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'total'.tr,
-                                          style: AppTextStyle.body,
-                                        ),
-                                        SizedBox(
-                                          width: 15,
-                                        ),
-                                       
-                                        Text(
-                                            " ${controller.totalAmount.toString()} ريال سعودي",
-                                            style: AppTextStyle.title.copyWith(
-                                                fontWeight: FontWeight.bold)),
-                                      ],
-                                    )))
+                            Container(
+                                padding: const EdgeInsets.all(6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'total'.tr,
+                                      style: AppTextStyle.body,
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                        " ${controller.getTotalAmount()} ريال سعودي",
+                                        style: AppTextStyle.title.copyWith(
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                ))
                           ],
                         ))),
-                ButtonForm(
-                  text: 'continue_and_payment'.tr,
-                  color: AppColors.secondary,
-                  onPressed: () => {Get.toNamed(AppRoute.PaymentMethods)},
-                )
+                GetBuilder(
+                    init: controller,
+                    builder: (context) {
+                      return ButtonForm(
+                        text: 'send_order'.tr,
+                        color: AppColors.secondary,
+                        onPressed: () => {controller.addOrder()},
+                        isLoading: controller.sendingOrder,
+                      );
+                    })
               ],
             )));
   }

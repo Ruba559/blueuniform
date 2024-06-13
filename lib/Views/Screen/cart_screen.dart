@@ -7,7 +7,6 @@ import '../../Constants/app_color.dart';
 import '../../Constants/app_style.dart';
 import '../../Constants/app_text_style.dart';
 import '../../Controllers/CartController.dart';
-import '../../Controllers/HomeController.dart';
 import '../../Controllers/LocationController.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
@@ -16,9 +15,9 @@ import '../Widgets/list_title.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
- final CartController cartController = Get.find();
- final HomeController hometController = Get.find();
- final LocationController locationController = Get.put(LocationController());
+  final CartController cartController = Get.find();
+
+  final LocationController locationController = Get.put(LocationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +33,9 @@ class CartScreen extends StatelessWidget {
               children: [
                 AppListTitle(text: 'shopping_cart'.tr),
                 Expanded(
-                    child: GetBuilder<CartController>(
+                    child: GetBuilder(
                         init: cartController,
-                        builder: (controller) => Column(
+                        builder: (_) => Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -44,7 +43,7 @@ class CartScreen extends StatelessWidget {
                                       child: ListView.builder(
                                           shrinkWrap: true,
                                           itemCount:
-                                              controller.cartItems.length,
+                                              cartController.cartItems.length,
                                           scrollDirection: Axis.vertical,
                                           itemBuilder: (BuildContext context,
                                               int index) {
@@ -68,14 +67,21 @@ class CartScreen extends StatelessWidget {
                                                       InkWell(
                                                         onTap: () {
                                                           Get.toNamed(
-                                                              AppRoute.product);
+                                                              AppRoute.product,
+                                                              arguments: [
+                                                                cartController.categoryFromId(
+                                                                    cartController
+                                                                        .cartItems[
+                                                                            index]
+                                                                        .categoryId)
+                                                              ]);
                                                         },
                                                         child: Container(
                                                             child: ClipRRect(
                                                           borderRadius:
                                                               radius20,
                                                           child: Image.network(
-                                                            controller
+                                                            cartController
                                                                 .cartItems[
                                                                     index]
                                                                 .image,
@@ -93,7 +99,7 @@ class CartScreen extends StatelessWidget {
                                                           SizedBox(
                                                               width: 110,
                                                               child: Text(
-                                                                controller
+                                                                cartController
                                                                     .cartItems[
                                                                         index]
                                                                     .name
@@ -116,7 +122,7 @@ class CartScreen extends StatelessWidget {
                                                                     .spaceBetween,
                                                             children: [
                                                               Text(
-                                                                '${'quantity'.tr} : ${controller.cartItems[index].quantity}',
+                                                                '${'quantity'.tr} : ${cartController.cartItems[index].quantity}',
                                                                 style:
                                                                     AppTextStyle
                                                                         .xsmall,
@@ -125,7 +131,7 @@ class CartScreen extends StatelessWidget {
                                                                 width: 10,
                                                               ),
                                                               Text(
-                                                                '${'price'.tr} : ${controller.cartItems[index].price}',
+                                                                '${'price'.tr} : ${cartController.cartItems[index].price}',
                                                                 style:
                                                                     AppTextStyle
                                                                         .xsmall,
@@ -138,17 +144,11 @@ class CartScreen extends StatelessWidget {
                                                         children: [
                                                           InkWell(
                                                             onTap: () => {
-                                                              controller
-                                                                          .cartItems[
-                                                                              index]
-                                                                          .quantity <=
-                                                                      1
+                                                              cartController.cartItems[index].quantity <= 1
                                                                   ? Get.defaultDialog(
-                                                                      titleStyle:
-                                                                          AppTextStyle.title
-                                                                              .apply(
-                                                                                  fontSizeFactor:
-                                                                                      .8),
+                                                                      titleStyle: AppTextStyle.title.apply(
+                                                                          fontSizeFactor:
+                                                                              .8),
                                                                       middleText:
                                                                           '',
                                                                       title:
@@ -172,10 +172,10 @@ class CartScreen extends StatelessWidget {
                                                                       onConfirm:
                                                                           () =>
                                                                               {
-                                                                                controller.updateQuantity(index, 'minus'),
+                                                                                cartController.updateQuantity(index, 'minus'),
                                                                                 Navigator.pop(context, true)
                                                                               })
-                                                                  : controller
+                                                                  : cartController
                                                                       .updateQuantity(
                                                                           index,
                                                                           'minus')
@@ -201,7 +201,7 @@ class CartScreen extends StatelessWidget {
                                                           InkWell(
                                                               onTap:
                                                                   () => {
-                                                                        controller.updateQuantity(
+                                                                        cartController.updateQuantity(
                                                                             index,
                                                                             'plus')
                                                                       },
@@ -233,7 +233,7 @@ class CartScreen extends StatelessWidget {
                                     onPressed: () => {
                                       cartController.cartItems.length <= 0
                                           ? null
-                                          : hometController.getPosition()
+                                          : Get.toNamed(AppRoute.position)
                                     },
                                   )
                                 ])))

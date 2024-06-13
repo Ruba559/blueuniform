@@ -41,7 +41,7 @@ class Lang implements Translations {
           "details": "التفاصيل",
           "number": "عدد: ",
           "total": "السعر الإجمالي :",
-          "continue_and_payment": " متابعة و الدفع",
+          "continue_and_payment": " متابعة  ",
           "available_payment_methods": "وسائل الدفع المتاحة",
           "how_payment": "كيف تود دفع قيمة الطلب ؟ ",
           "payment_sadad": "الدفع بواسطة SADAD",
@@ -73,7 +73,8 @@ class Lang implements Translations {
           "terms": "الاحكام والشروط",
           "about": "عن المؤسسة",
           "contactus": "اتصل بنا",
-          "name": "الإسم"
+          "name": "الإسم",
+          'send_order': "ارسال الطلب"
         },
         "en": {
           "home": " Home",
@@ -113,7 +114,7 @@ class Lang implements Translations {
           "details": "Details",
           "number": "Number :",
           "total": "Total : ",
-          "continue_and_payment": "Continue and payment",
+          "continue_and_payment": "Send Order ",
           "available_payment_methods": "Available payment methods",
           "how_payment": "How would you like to pay for the order?",
           "payment_sadad": "Payment by SADAD",
@@ -145,7 +146,8 @@ class Lang implements Translations {
           "terms": "Terms & Condetions",
           "about": "About us",
           "contactus": "Contact Us",
-          "name": "Name"
+          "name": "Name",
+          'send_order': "Send Order"
         },
       };
 }
