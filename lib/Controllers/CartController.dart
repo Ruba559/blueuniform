@@ -4,8 +4,8 @@ import 'package:blueuniform/DataAccesslayer/Models/category.dart';
 import 'package:blueuniform/DataAccesslayer/Repository/OrderRepo.dart';
 import 'package:blueuniform/main.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../DataAccesslayer/Clients/box_client.dart';
 import '../DataAccesslayer/Models/cart.dart';
@@ -25,7 +25,7 @@ class CartController extends GetxController {
 
   OrderRepo orderRepo = OrderRepo();
 
-  final position = Rx<Position?>(null);
+  LatLng? position;
   var paymentMethode = 'sadad';
   TextEditingController address = TextEditingController();
   @override
@@ -117,7 +117,7 @@ class CartController extends GetxController {
   List<Map<String, dynamic>> orderCartItems = [];
 
   void getCartItemsMap() {
-    cartItems.clear();
+    //
     for (Cart item in cartItems) {
       orderCartItems.add({
         'quantity': item.quantity,
@@ -126,11 +126,16 @@ class CartController extends GetxController {
         'total': item.price * item.quantity,
       });
     }
+    //cartItems.clear();
   }
 
-  getAddress(value) {
-    position.value = value;
-    print(position.value);
+  updatePosition(LatLng value) {
+    position = value;
+    print(position);
+    update();
+  }
+
+  getAddress() {
     Get.toNamed(AppRoute.getAddress);
   }
 
@@ -142,18 +147,23 @@ class CartController extends GetxController {
   addOrder() async {
     sendingOrder = true;
     update();
-    getCartItemsMap();
-    await orderRepo.addOrder(
-        MyApp.user!.id,
-        paymentMethode,
-        position.value!.latitude,
-        position.value!.longitude,
-        cartItems,
-        address.text,
-        getTotalAmount());
-    sendingOrder = false;
-    clearCart();
-    update();
-    Get.offNamed(AppRoute.orderComplate);
+    try {
+      getCartItemsMap();
+      await orderRepo.addOrder(
+          MyApp.user!.id,
+          paymentMethode,
+          position!.latitude,
+          position!.longitude,
+          orderCartItems,
+          address.text,
+          getTotalAmount());
+      sendingOrder = false;
+      clearCart();
+      update();
+      Get.offNamed(AppRoute.orderComplate);
+    } catch (e) {
+      sendingOrder = false;
+      update();
+    }
   }
 }

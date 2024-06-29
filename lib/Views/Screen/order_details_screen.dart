@@ -3,13 +3,14 @@ import 'package:blueuniform/Constants/app_text_style.dart';
 import 'package:blueuniform/Controllers/OrderController.dart';
 import 'package:blueuniform/Views/Widgets/button_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../Constants/app_color.dart';
 import '../../DataAccesslayer/Models/order.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
 import '../Widgets/layouts/appdrawar.dart';
 import '../Widgets/list_title.dart';
-import 'package:get/get.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   OrderDetailsScreen({super.key});
@@ -37,14 +38,14 @@ class OrderDetailsScreen extends StatelessWidget {
                         margin: EdgeInsets.all(10),
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(241, 241, 241, 1), borderRadius: radius10),
+                            color: const Color.fromRGBO(241, 241, 241, 1),
+                            borderRadius: radius10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                           Text(
-                                'details'.tr,
-                                style: AppTextStyle.medium,
-                              
+                            Text(
+                              'details'.tr,
+                              style: AppTextStyle.medium,
                             ),
                             GetBuilder<OrderController>(
                                 builder: (controller) => Expanded(
@@ -61,16 +62,15 @@ class OrderDetailsScreen extends StatelessWidget {
                                                       vertical: 4),
                                               padding: const EdgeInsets.all(10),
                                               child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 children: [
-                                                   Text(
-                                                    '${order.orderDetails[index].category!.name}',
-                                                    style: AppTextStyle.body,
-                                                     overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis
-                                                  ),
-                                                
+                                                  Text(
+                                                      '${order.orderDetails[index].category!.name}',
+                                                      style: AppTextStyle.body,
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
                                                   Text(
                                                     '${'size'.tr} ${order.orderDetails[index].product!.size}',
                                                     style: AppTextStyle.body,
@@ -87,7 +87,7 @@ class OrderDetailsScreen extends StatelessWidget {
                             Expanded(
                                 flex: 1,
                                 child: Container(
-                                  //  alignment: Alignment.bottomRight,
+                                    //  alignment: Alignment.bottomRight,
                                     padding: const EdgeInsets.all(6),
                                     child: Column(
                                       crossAxisAlignment:
@@ -109,7 +109,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           ],
                         ))),
                 ButtonForm(
-                  text: order.status  == 0 ? 'update'.tr : 'order_done'.tr,
+                  text: order.status == 0 ? 'update'.tr : 'order_done'.tr,
                   color:
                       order.status == 0 ? AppColors.secondary : AppColors.grey,
                   onPressed: () => {controller.updateOrder(order)},

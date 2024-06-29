@@ -24,7 +24,7 @@ class CartScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
         bottomNavigationBar: AppButtomNavBar(
-          selectedIndex: 1,
+          selectedIndex: 2,
         ),
         drawer: AppDrawer(),
         body: Container(

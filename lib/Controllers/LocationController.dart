@@ -1,6 +1,6 @@
+import 'package:blueuniform/Controllers/CartController.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -9,6 +9,7 @@ class LocationController extends GetxController {
   Marker mapMarker = Marker(markerId: MarkerId("currentLocation"));
   bool gettingLocation = false;
   bool showLocationRequest = false;
+  CartController cartController = Get.find();
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -20,6 +21,7 @@ class LocationController extends GetxController {
     mapMarker = Marker(
         markerId: MarkerId("currentLocation"),
         position: LatLng(latLng.latitude, latLng.longitude));
+    cartController.updatePosition(latLng);
     update();
   }
 
@@ -29,6 +31,8 @@ class LocationController extends GetxController {
     var permission = await Permission.location.request();
     if (permission.isGranted) {
       Position? currentPosition = await Geolocator.getCurrentPosition();
+      cartController.updatePosition(
+          LatLng(currentPosition.latitude, currentPosition.longitude));
       position = currentPosition;
       mapMarker = Marker(
           markerId: MarkerId("currentLocation"),
@@ -62,6 +66,7 @@ class LocationController extends GetxController {
       onTap: () => onMarkerTapped(position),
     );
     position = position;
+    cartController.updatePosition(position);
     markers.add(newMarker);
   }
 

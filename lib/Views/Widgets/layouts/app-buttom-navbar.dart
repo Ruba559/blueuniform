@@ -30,15 +30,15 @@ class AppButtomNavBar extends StatelessWidget {
             break;
 
           case 1:
-            Get.toNamed(AppRoute.cart);
+            Get.toNamed(AppRoute.notifications);
             break;
 
           case 2:
-            Get.toNamed(AppRoute.favorites);
+            Get.toNamed(AppRoute.cart);
             break;
 
           case 3:
-            Get.toNamed(AppRoute.setting);
+            Get.toNamed(AppRoute.favorites);
             break;
         }
       }),
@@ -57,7 +57,17 @@ class AppButtomNavBar extends StatelessWidget {
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
-              FontAwesomeIcons.cartShopping,
+              FontAwesomeIcons.bell,
+              size: 24,
+            ),
+          ),
+          label: 'notifications'.tr,
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.only(bottom: 3),
+            child: Icon(
+              Icons.shopping_cart,
               size: 24,
             ),
           ),
@@ -67,21 +77,11 @@ class AppButtomNavBar extends StatelessWidget {
           icon: Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: Icon(
-              FontAwesomeIcons.heart,
+              Icons.favorite,
               size: 24,
             ),
           ),
-          label: 'favorite'.tr,
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(bottom: 3),
-            child: Icon(
-              Icons.settings,
-              size: 24,
-            ),
-          ),
-          label: 'settings'.tr,
+          label: "favorite".tr,
         ),
       ],
     );

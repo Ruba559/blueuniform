@@ -1,7 +1,3 @@
-import 'dart:convert';
-import 'package:blueuniform/DataAccesslayer/Models/category.dart';
-import 'package:blueuniform/DataAccesslayer/Models/product.dart';
-
 class Cart {
   num quantity;
   String name;
@@ -41,7 +37,7 @@ class Cart {
       price: map['price'] as num,
       productId: map['product_id'] as int,
       categoryId: map['category_id'] as int,
-       orderId: map['order_id'] as int,
+      orderId: map['orderId'] as int,
     );
   }
   //  int quantity;

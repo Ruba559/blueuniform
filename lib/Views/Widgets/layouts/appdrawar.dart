@@ -83,7 +83,20 @@ class AppDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(
-                    Icons.lock,
+                    Icons.favorite,
+                    color: AppColors.primary,
+                  ),
+                  title: Text(
+                    "favorite".tr,
+                    style: AppTextStyle.body.copyWith(color: AppColors.primary),
+                  ),
+                  onTap: () {
+                    Get.toNamed(AppRoute.favorites);
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.question_answer,
                     color: AppColors.primary,
                   ),
                   title: Text(
@@ -109,7 +122,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(
-                    Icons.language,
+                    Icons.info,
                     color: AppColors.primary,
                   ),
                   title: Text(
@@ -122,7 +135,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(
-                    Icons.language,
+                    Icons.call,
                     color: AppColors.primary,
                   ),
                   title: Text(

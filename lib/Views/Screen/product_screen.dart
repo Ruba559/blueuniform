@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 import '../../Constants/app_color.dart';
 import '../../DataAccesslayer/Models/product.dart';
-import '../../main.dart';
 import '../Widgets/label_form.dart';
 import '../Widgets/layouts/app-buttom-navbar.dart';
 import '../Widgets/layouts/appbar.dart';
@@ -73,17 +72,18 @@ class ProductScreen extends StatelessWidget {
                             SizedBox(
                               height: 10,
                             ),
-                            Text(
+                            /* Text(
                               MyApp.user!.stage,
                               style: AppTextStyle.body
                                   .copyWith(color: AppColors.secondary),
-                            )
+                            ) */
                           ]),
                           Column(children: [
                             Text(
                               category.price.toString(),
-                              style: AppTextStyle.title
-                                  .copyWith(fontWeight: FontWeight.bold),
+                              style: AppTextStyle.title.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.secondary),
                             ),
                             Text(
                               'ريال سعودي',

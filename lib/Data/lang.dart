@@ -54,6 +54,9 @@ class Lang implements Translations {
           "available_sizes": "المقاسات المتوفرة",
           "required_quantity": "الكمية المطلوبة",
           "add_to_cart": "إضافة لسلة الشراء",
+          "added_to_cart": "تمت الإضافة لسلة الشراء",
+          "added_to_favorites": "تمت الإضافة للمفضلة",
+          "removed_from_favorites": "تم الحذف من المفضلة",
           "save": "حفظ",
           "switch_locale": "English",
           "settings": "الإعدادات",
@@ -74,8 +77,9 @@ class Lang implements Translations {
           "about": "عن المؤسسة",
           "contactus": "اتصل بنا",
           "name": "الإسم",
-           "already_added" : "مضاف مسبقاً",
-          'send_order': "ارسال الطلب"
+          "already_added": "مضاف مسبقاً",
+          'send_order': "ارسال الطلب",
+          'notifications': "الإشعارات"
         },
         "en": {
           "home": " Home",
@@ -128,6 +132,9 @@ class Lang implements Translations {
           "available_sizes": "Available sizes",
           "required_quantity": "Required quantity",
           "add_to_cart": "Add to cart",
+          "added_to_cart": "Added to cart",
+          "added_to_favorites": "Added To Favourites Success",
+          "removed_from_favorites": "Removed From Favourites",
           "save": "Save",
           "switch_locale": "العربية",
           "settings": "Settings",
@@ -148,7 +155,8 @@ class Lang implements Translations {
           "about": "About us",
           "contactus": "Contact Us",
           "name": "Name",
-          'send_order': "Send Order"
+          'send_order': "Send Order",
+          'notifications': "Notifications"
         },
       };
 }

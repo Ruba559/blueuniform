@@ -9,8 +9,6 @@ class UserClient {
 
   UserClient();
 
-  
-
   Future<dynamic> Login(email, password) async {
     var url = Uri.parse(baseUrl + login);
 
@@ -32,15 +30,14 @@ class UserClient {
     }
   }
 
-
-  Future<dynamic> UpdateProfile(id, email,name , password, image) async {
+  Future<dynamic> UpdateProfile(id, email, name, password, image) async {
     var request =
         http.MultipartRequest('POST', Uri.parse(baseUrl + updateProfile));
 
     request.fields.addAll({
       'id': id.toString(),
       'email': email.toString(),
-       'name': name.toString(),
+      'name': name.toString(),
       'password': password.toString(),
     });
     if (image != null) {
@@ -56,5 +53,14 @@ class UserClient {
     }
   }
 
-  
+  Future<dynamic> getNoties(userId) async {
+    var response = await client
+        .get(Uri.parse(baseUrl + notifications + userId.toString()));
+
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return '';
+    }
+  }
 }

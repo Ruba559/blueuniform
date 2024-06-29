@@ -1,4 +1,4 @@
-package com.example.blueuniform
+package brain.blueuniform.user
 
 import io.flutter.embedding.android.FlutterActivity
 

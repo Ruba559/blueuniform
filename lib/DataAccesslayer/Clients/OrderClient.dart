@@ -12,7 +12,7 @@ class OrderClient {
   Future<dynamic> addOrder(user_id, paymentMethode, latitude, longitude,
       cartItems, address, total) async {
     var url = Uri.parse(baseUrl + order);
-    print('start send order');
+
     var response = await http.post(
       url,
       headers: <String, String>{
@@ -28,7 +28,7 @@ class OrderClient {
         'total': total,
       }),
     );
-    print(response.body);
+
     if (response.statusCode == 200) {
       return true;
     } else {

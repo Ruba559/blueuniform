@@ -59,7 +59,7 @@ class PositionScreen extends StatelessWidget {
                           text: "set_location".tr,
                           color: AppColors.secondary,
                           onPressed: () =>
-                              {cartController.getAddress(controller.position)},
+                              {cartController.getAddress()},
                         )
                       ],
                     ))));

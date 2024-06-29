@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../Views/Screen/address_screen.dart';
 import '../Views/Screen/auth/login_info_screen.dart';
 import '../Views/Screen/auth/login_screen.dart';
+import '../Views/Screen/auth/notifications_screen.dart';
 import '../Views/Screen/auth/register_screen.dart';
 import '../Views/Screen/cart_screen.dart';
 import '../Views/Screen/favorites_screen.dart';
@@ -123,6 +124,11 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoute.contactus,
     page: () => ContactScreen(),
+    transition: Transition.leftToRight,
+  ),
+  GetPage(
+    name: AppRoute.notifications,
+    page: () => NotificationsScreen(),
     transition: Transition.leftToRight,
   ),
 ];

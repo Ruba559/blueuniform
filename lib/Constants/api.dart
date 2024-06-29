@@ -1,4 +1,4 @@
-const baseUrl = "https://blue.brain-solutions.agency/api/v1/";
+const baseUrl = "https://blueuniform.store/api/v1/";
 
 const categories = "categories";
 const login = "login";
@@ -16,3 +16,9 @@ const updateProfile = 'updateProfile';
 
 const order = 'order';
 const orders = "orders";
+
+const privacy = "privacy";
+const terms = "terms";
+const about = "about";
+
+const notifications = "notifications/";

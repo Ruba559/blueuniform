@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../Clients/UserClient.dart';
+import '../Models/notifications.dart';
 import '../Models/user.dart';
 
 class UserRepo {
@@ -25,5 +26,16 @@ class UserRepo {
     } else {
       return '';
     }
+  }
+
+  Future<List<BackNotification>> getNoties(userId) async {
+    var response = await client.getNoties(userId);
+    if (response != '') {
+      final parsed = json.decode(response).cast<Map<String, dynamic>>();
+      return parsed
+          .map<BackNotification>((json) => BackNotification.fromMap(json))
+          .toList();
+    }
+    return [];
   }
 }

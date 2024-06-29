@@ -1,5 +1,7 @@
 import 'package:blueuniform/Constants/routes.dart';
+import 'package:blueuniform/Controllers/ProductScreenController.dart';
 import 'package:blueuniform/Views/Widgets/layouts/appdrawar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,21 +49,23 @@ class HomeScreen extends StatelessWidget {
                               children: List.generate(
                                   homeController.categories.length, (index) {
                                 return InkWell(
-                                    onTap: () => {
-                                          Get.toNamed(AppRoute.product,
-                                              arguments: [
-                                                homeController.categories[index]
-                                              ])
-                                        },
+                                    onTap: () async {
+                                      await Get.delete<
+                                          ProductScreenController>();
+                                      Get.toNamed(AppRoute.product, arguments: [
+                                        homeController.categories[index]
+                                      ]);
+                                    },
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(25),
                                       child: Hero(
                                         tag:
                                             homeController.categories[index].id,
-                                        child: Image.network(
-                                            fit: BoxFit.fill,
-                                            homeController
-                                                .categories[index].image),
+                                        child: CachedNetworkImage(
+                                          imageUrl: homeController
+                                              .categories[index].image,
+                                          fit: BoxFit.fill,
+                                        ),
                                       ),
                                     ));
                               }),

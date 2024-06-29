@@ -21,7 +21,7 @@ class FavoritesScreen extends StatelessWidget {
         backgroundColor: AppColors.white,
         appBar: AppAppBar(),
         bottomNavigationBar: AppButtomNavBar(
-          selectedIndex: 2,
+          selectedIndex: 3,
         ),
         drawer: AppDrawer(),
         body: Container(

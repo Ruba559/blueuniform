@@ -22,4 +22,6 @@ class AppRoute {
   static const String privacy = "/home/privacy";
   static const String terms = "/home/terms";
   static const String contactus = "/home/contactus";
+  static const String notifications = "/home/notifications";
+  
 }

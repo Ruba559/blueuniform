@@ -1,12 +1,15 @@
+import 'package:blueuniform/Controllers/legal_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
-
 import '../../../Constants/app_color.dart';
-import '../../../Constants/app_text_style.dart';
+
 import '../../Widgets/layouts/app-buttom-navbar.dart';
 import '../../Widgets/layouts/appbar.dart';
 import '../../Widgets/layouts/appdrawar.dart';
 import '../../Widgets/list_title.dart';
+
+final LegalController controller = Get.find();
 
 class TermsScreen extends StatelessWidget {
   TermsScreen({super.key});
@@ -24,17 +27,27 @@ class TermsScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppListTitle(text: 'terms'.tr),
+                AppListTitle(text: "سياسة الإرجاع والتبديل"),
                 SizedBox(
                   height: 20,
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Text(
-                      "شركة تعليمية تقـدم تعليماً متفـرداً يوائم متطلبات العصر، محافظة في بيئتها التعليمية على الهوية الإسلامية بأسلوب تربوي جاذب. منذ أن تأسست الشركة في عـام 2007م وبمنشآت مجهزة بأحدث الوسائل التعليمية والتقنية وبكادر إداري وتعليمـي خبير، حققت الشركة قفزات نوعية واستراتيجية بفضل الله ثم بفضل الرؤية السديدة والمواكبة لكل المستجدات. وها نحن اليوم نتواجـد في العديد مـن مناطق مملكتنا الحبيبة، داعمون لمسيرة التعليم، ومشاركون في التجديد والابتكار لنصبح أيقونة في مسيرة التنمية والعطاء والنماء.",
-                      style: AppTextStyle.body.apply(color: AppColors.grey),
-                    ),
-                  ),
+                      child: GetBuilder(
+                          init: controller,
+                          builder: (context) {
+                            return /* HtmlWidget(
+                              controller.privacy,
+                              textStyle: TextStyle(fontFamily: "Cairo"),
+                            ); */
+                                Html(
+                              data: controller.terms,
+                              style: {
+                                "body": Style(fontFamily: "Cairo"),
+                                "strong": Style(color: AppColors.secondary)
+                              },
+                            );
+                          })),
                 )
               ],
             )));
