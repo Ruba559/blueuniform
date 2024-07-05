@@ -40,7 +40,7 @@ class Lang implements Translations {
           "back_to_home": "العودة للرئيسية",
           "details": "التفاصيل",
           "number": "عدد: ",
-          "total": "السعر الإجمالي :",
+          "total": " الإجمالي :",
           "continue_and_payment": " متابعة  ",
           "available_payment_methods": "وسائل الدفع المتاحة",
           "how_payment": "كيف تود دفع قيمة الطلب ؟ ",

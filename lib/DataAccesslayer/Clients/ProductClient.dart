@@ -9,13 +9,11 @@ class ProductClient {
 
   Future<dynamic> getCategories() async {
     var response = await client.get(Uri.parse(baseUrl + categories));
-
+    print(response.body);
     if (response.statusCode == 200) {
       return response.body;
     } else {
       return '';
     }
   }
-
-
 }

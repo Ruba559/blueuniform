@@ -44,7 +44,7 @@ class HomeController extends GetxController {
     print('object');
     category =
         categories.where((element) => element.id.isEqual(category_id)).first;
-    product = category!.products.first;
+    product = category!.products?.first;
     Get.toNamed(AppRoute.product);
 
     update();

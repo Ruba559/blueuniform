@@ -56,7 +56,7 @@ class UserClient {
   Future<dynamic> getNoties(userId) async {
     var response = await client
         .get(Uri.parse(baseUrl + notifications + userId.toString()));
-
+    print(response.body);
     if (response.statusCode == 200) {
       return response.body;
     } else {

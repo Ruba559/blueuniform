@@ -28,102 +28,98 @@ class NotificationsScreen extends StatelessWidget {
             child: Column(
               children: [
                 AppListTitle(text: 'notifications'.tr),
-                Expanded(
+                Flexible(
                     child: GetBuilder(
                         init: controller,
-                        builder: (controller) => RefreshIndicator(
-                              onRefresh: () async {
-                                await controller.getNoties();
-                              },
-                              child: controller.loadingNoties
-                                  ? Center(
-                                      child: CircularProgressIndicator(),
-                                    )
-                                  : controller.notifications.length == 0
-                                      ? Center(
-                                          child: Text(
-                                            "لا توجد إشعارات",
-                                            style: AppTextStyle.body,
-                                          ),
-                                        )
-                                      : ListView.builder(
-                                          shrinkWrap: false,
-                                          itemCount:
-                                              controller.notifications.length,
-                                          scrollDirection: Axis.vertical,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius: radius10,
-                                                    color: AppColors.white,
-                                                    border: Border.all(
-                                                        width: 0.8,
-                                                        color: AppColors.grey)),
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 8),
-                                                padding:
-                                                    const EdgeInsets.all(5),
-                                                child: InkWell(
-                                                  onTap: () => {
-                                                    if (controller
+                        builder: (controller) => controller.loadingNoties
+                            ? Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : RefreshIndicator(
+                                onRefresh: () async {
+                                  await controller.getNoties();
+                                },
+                                child: ListView.builder(
+                                    shrinkWrap: false,
+                                    itemCount: controller.notifications.length,
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius: radius10,
+                                              color: AppColors.white,
+                                              border: Border.all(
+                                                  width: 0.8,
+                                                  color: AppColors.grey)),
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 8),
+                                          padding: const EdgeInsets.all(8),
+                                          child: InkWell(
+                                            onTap: () => {
+                                              if (controller
+                                                      .notifications[index]
+                                                      .type ==
+                                                  'orders')
+                                                {Get.toNamed(AppRoute.orders)}
+                                              else
+                                                {Get.toNamed(AppRoute.home)}
+                                            },
+                                            child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width: 50,
+                                                    height: 50,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius: radius10,
+                                                        color: AppColors
+                                                            .secondary),
+                                                    child: Center(
+                                                      child: Icon(
+                                                        Icons.notifications,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        controller
                                                             .notifications[
                                                                 index]
-                                                            .type ==
-                                                        'orders')
-                                                      {
-                                                        Get.toNamed(
-                                                            AppRoute.orders)
-                                                      }
-                                                    else
-                                                      {
-                                                        Get.toNamed(
-                                                            AppRoute.home)
-                                                      }
-                                                  },
-                                                  child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              controller
-                                                                  .notifications[
-                                                                      index]
-                                                                  .title,
-                                                              style: AppTextStyle
-                                                                  .body
-                                                                  .copyWith(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                            ),
-                                                            Text(
-                                                              controller
-                                                                  .notifications[
-                                                                      index]
-                                                                  .subtitle,
-                                                              style: AppTextStyle
-                                                                  .body
-                                                                  .apply(
-                                                                      color: AppColors
-                                                                          .grey),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ]),
-                                                ));
-                                          }),
-                            )))
+                                                            .title,
+                                                        style: AppTextStyle.body
+                                                            .copyWith(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                      Text(
+                                                        controller
+                                                            .notifications[
+                                                                index]
+                                                            .subtitle,
+                                                        style: AppTextStyle.body
+                                                            .apply(
+                                                                color: AppColors
+                                                                    .grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ]),
+                                          ));
+                                    }),
+                              )))
               ],
             )));
   }

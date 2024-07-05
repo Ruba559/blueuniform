@@ -7,7 +7,7 @@ class Category {
   final String name;
   final String image;
   final num price;
-  List<Product> products;
+  List<Product>? products;
   final String createdAt;
 
   Category({
@@ -25,7 +25,9 @@ class Category {
       name: map['name'] ?? "",
       image: map['image'] ?? "",
       price: map['price'] ?? "",
-      products: detailsfromJson(jsonEncode(map['products'])),
+      products: map['products'] != null
+          ? detailsfromJson(jsonEncode(map['products']))
+          : null,
       createdAt: map['created_at'] ?? "",
     );
   }

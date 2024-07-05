@@ -19,9 +19,9 @@ class ProductScreenController extends GetxController {
 
   @override
   void onInit() {
-    selectedProduct = category.products.first;
+    selectedProduct = category.products?.first;
     print(category.name);
-    productList = category.products
+    productList = category.products!
         .map((Product item) =>
             DropdownMenuItem<Product>(value: item, child: Text(item.size)))
         .toList();

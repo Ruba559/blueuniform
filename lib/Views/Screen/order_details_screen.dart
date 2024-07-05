@@ -47,6 +47,7 @@ class OrderDetailsScreen extends StatelessWidget {
                               'details'.tr,
                               style: AppTextStyle.medium,
                             ),
+                            Divider(),
                             GetBuilder<OrderController>(
                                 builder: (controller) => Expanded(
                                     flex: 3,
@@ -60,27 +61,44 @@ class OrderDetailsScreen extends StatelessWidget {
                                               margin:
                                                   const EdgeInsets.symmetric(
                                                       vertical: 4),
-                                              padding: const EdgeInsets.all(10),
-                                              child: Row(
+                                              padding: const EdgeInsets.all(5),
+                                              child: Column(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                      '${order.orderDetails[index].category!.name}',
-                                                      style: AppTextStyle.body,
+                                                      '• ${order.orderDetails[index].category!.name}',
+                                                      style:
+                                                          AppTextStyle.bodyBold,
                                                       overflow: TextOverflow
                                                           .ellipsis),
-                                                  Text(
-                                                    '${'size'.tr} ${order.orderDetails[index].product!.size}',
-                                                    style: AppTextStyle.body,
-                                                  ),
                                                   SizedBox(
-                                                    width: 15,
+                                                    height: 10,
                                                   ),
-                                                  Text(
-                                                      "${'number'.tr} ${order.orderDetails[index].quantity}",
-                                                      style: AppTextStyle.body)
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        '${'size'.tr} ${order.orderDetails[index].product!.size}  - ',
+                                                        style:
+                                                            AppTextStyle.small,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 15,
+                                                      ),
+                                                      Text(
+                                                          "${'number'.tr} ${order.orderDetails[index].quantity} - ",
+                                                          style: AppTextStyle
+                                                              .small),
+                                                      Text(
+                                                          "${'total'.tr} ${order.orderDetails[index].quantity * order.orderDetails[index].price}",
+                                                          style: AppTextStyle
+                                                              .small)
+                                                    ],
+                                                  ),
                                                 ],
                                               ));
                                         }))),

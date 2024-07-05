@@ -22,7 +22,7 @@ class OrderDetail {
     return OrderDetail(
       id: map['id'] as int,
       product: Product.fromMap(map['product']),
-      quantity: map['quantity'] ,
+      quantity: map['quantity'],
       price: map['price'],
       total: map['total'],
       category: Category.fromMap(map['category']),

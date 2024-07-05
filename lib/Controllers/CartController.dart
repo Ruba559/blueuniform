@@ -104,7 +104,7 @@ class CartController extends GetxController {
   num getTotalAmount() {
     num total = 0;
     for (var item in cartItems) {
-      total += item.price;
+      total += item.price * item.quantity;
     }
     return total;
   }

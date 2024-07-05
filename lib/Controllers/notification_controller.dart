@@ -17,4 +17,10 @@ class NotificationController extends GetxController {
     loadingNoties = false;
     update();
   }
+
+  @override
+  void onInit() async {
+    await getNoties();
+    super.onInit();
+  }
 }
