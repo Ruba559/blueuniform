@@ -57,7 +57,8 @@ class ProductScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Container(
                 padding: EdgeInsets.all(25),
-                height: 450,
+                height:
+                    controller.selectedProduct!.sizes!.length > 0 ? 650 : 450,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -65,10 +66,11 @@ class ProductScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(children: [
-                            Text(
+                          SizedBox(width: 200, child:  Text(
                               category.name,
                               style: AppTextStyle.title,
-                            ),
+                              overflow: TextOverflow.clip,
+                            ),), 
                             SizedBox(
                               height: 10,
                             ),
@@ -121,6 +123,53 @@ class ProductScreen extends StatelessWidget {
                                 ),
                               ),
                             )),
+                    Container(
+                        child: controller.selectedProduct!.sizes!.length > 0
+                            ? Column(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: LabelForm(
+                                      text: "size_info".tr,
+                                    ),
+                                  ),
+                                  GetBuilder(
+                                      init: controller,
+                                      builder: (_) => ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: controller
+                                              .selectedProduct!.sizes!.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 4),
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      '• ${controller.selectedProduct!.sizes![index].type} : ',
+                                                      style: AppTextStyle.small
+                                                          .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      '${controller.selectedProduct!.sizes![index].cm} سم | ${controller.selectedProduct!.sizes![index].inches}انش  ',
+                                                      style: AppTextStyle.small,
+                                                    ),
+                                                  ],
+                                                ));
+                                          }))
+                                ],
+                              )
+                            : null),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: LabelForm(

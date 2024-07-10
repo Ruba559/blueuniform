@@ -79,7 +79,8 @@ class Lang implements Translations {
           "name": "الإسم",
           "already_added": "مضاف مسبقاً",
           'send_order': "ارسال الطلب",
-          'notifications': "الإشعارات"
+          'notifications': "الإشعارات",
+          'size_info' : "دليل القياسات",
         },
         "en": {
           "home": " Home",
@@ -156,7 +157,8 @@ class Lang implements Translations {
           "contactus": "Contact Us",
           "name": "Name",
           'send_order': "Send Order",
-          'notifications': "Notifications"
+          'notifications': "Notifications",
+           'size_info' : "Size Info",
         },
       };
 }
