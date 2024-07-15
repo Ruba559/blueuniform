@@ -36,6 +36,8 @@ class CartController extends GetxController {
 
   Future<void> getCartItemsFromStorage() async {
     cartItems = await boxClient.getCartItems();
+    print('getCartItemsFromStorage');
+    print(cartItems);
   }
 
   Category categoryFromId(id) {
@@ -93,6 +95,7 @@ class CartController extends GetxController {
       if (cartItems[index!].quantity <= 1) {
         cartItems.removeAt(index);
         await syncCart();
+        print(cartItems);
       } else {
         cartItems[index!].quantity = cartItems[index!].quantity - 1;
       }
@@ -110,20 +113,24 @@ class CartController extends GetxController {
   }
 
   Future<void> clearCart() async {
+    print('cleeer');
     cartItems.clear();
     await syncCart();
+    orderCartItems = [];
+    print(orderCartItems);
   }
 
   List<Map<String, dynamic>> orderCartItems = [];
 
   void getCartItemsMap() {
-    //
     for (Cart item in cartItems) {
       orderCartItems.add({
         'quantity': item.quantity,
         'product_id': item.productId,
+        'category_id': item.categoryId,
         'price': item.price,
         'total': item.price * item.quantity,
+        'orderId': item.orderId,
       });
     }
     //cartItems.clear();
@@ -145,6 +152,8 @@ class CartController extends GetxController {
   }
 
   addOrder() async {
+    print('cartItems');
+    print(cartItems);
     sendingOrder = true;
     update();
     try {
@@ -158,7 +167,7 @@ class CartController extends GetxController {
           address.text,
           getTotalAmount());
       sendingOrder = false;
-      clearCart();
+      await clearCart();
       update();
       Get.offNamed(AppRoute.orderComplate);
     } catch (e) {

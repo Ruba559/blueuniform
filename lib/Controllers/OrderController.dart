@@ -56,6 +56,7 @@ class OrderController extends GetxController {
     await cartController.syncCartUpdate(cartItems);
     await cartController.getCartItemsFromStorage();
 
+    print(cartItems);
     Get.toNamed(AppRoute.cart);
   }
 }

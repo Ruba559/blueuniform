@@ -104,7 +104,7 @@ class OrdersScreen extends StatelessWidget {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "المبلغ الإجمالي : " +
+                                                          "total_price".tr +
                                                               controller
                                                                   .orderItems[
                                                                       index]
